@@ -1,0 +1,76 @@
+% Se define un color gris desde su código RGB
+\definecolor{gris}{RGB}{220,220,220}
+
+\setcounter{secnumdepth}{3} % Para permitir numerar las sub-subsecciones
+
+% Modifica el nombre de los índices al castellano
+\addto\captionsspanish{
+  \renewcommand{\contentsname}{Índice de contenido}
+  \renewcommand{\listfigurename}{Índice de figuras}
+  \renewcommand{\listtablename}{Índice de tablas}
+}
+
+% Formateo de los nombres de los apartados:
+\titleformat{\chapter}[block]
+  {\normalfont\Huge\bfseries\singlespacing}{\thechapter.}{1em}{\Huge}
+\titlespacing*{\chapter}{0pt}{-62pt}{0pt}
+
+\titleformat{\section}[block]
+  {\normalfont\Large\bfseries}{\thesection.}{4pt}{\Large}
+\titlespacing*{\section}{0pt}{\baselineskip}{0pt}
+
+\titleformat{\subsection}[block]
+  {\normalfont\large\bfseries}{\thesubsection.}{4pt}{\normalsize\large}
+\titlespacing*{\subsection}{0pt}{0pt}{0pt}
+
+\titleformat{\subsubsection}[block]
+  {\normalfont\normalsize\bfseries}{\thesubsubsection.}{4pt}{\normalsize}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
+
+\def\tablename{Tabla}
+
+%% Variables para portada y cabeceras
+%% Cambiar los valores para cada documento!!!
+\def\title{TÍTULO DEL PROYECTO}
+\def\subject{ASIGNATURA/SUBTÍTULO}
+\def\author{Juan Francisco Mier Montoto}
+\def\target{www.mier.info}
+\def\authorid{UO283319}
+\def\date{mes AÑO}
+\def\org{Escuela Politécnica de Ingeniería de Gijón}
+\def\area{Grado en Ingeniería Informática en Tecnologías de la Información}
+
+\def\ORG{\expandafter\MakeUppercase\expandafter{\org}}
+\def\AREA{\expandafter\MakeUppercase\expandafter{\area}}
+\def\SUBJECT{\expandafter\MakeUppercase\expandafter{\subject}}
+
+\captionsetup{justification=centering}
+\setlength{\headheight}{65pt}
+
+\fancyhf{}
+\fancyhead[L]{\includegraphics[height=16mm]{style/square.png}
+  \hspace{1em} \Longstack[l] {
+    \textbf{\SUBJECT} \newline
+    \textbf{\title}}
+  \newline \leftmark{}
+}
+\fancyhead[R]{\bfseries{Hoja \hyperlink{toc}{\thepage}~de~\pageref{LastPage}}}
+\fancyfoot[C]{\href{\target}{\author}}
+\renewcommand{\headrulewidth}{0pt} % default is 0pt
+\renewcommand{\footrulewidth}{0.4pt} % default is 0
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{\includegraphics[height=16mm]{style/square.png}
+    \hspace{1em} \Longstack[l]{
+      \textbf{\SUBJECT} \newline
+      \textbf{\title}}}
+  \fancyhead[R]{\bfseries{Hoja \hyperlink{toc}{\thepage}~de~\pageref{LastPage}}}
+  \fancyfoot[C]{\href{\target}{\author}}
+  \renewcommand{\headrulewidth}{0pt} % default is 0pt
+  \renewcommand{\footrulewidth}{0.4pt} % default is 0pt
+}
+
+\pagestyle{fancy}
+
+\restylefloat{table}

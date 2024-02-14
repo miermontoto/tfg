@@ -1,0 +1,67 @@
+\documentclass[12pt, oneside, openany]{book}
+
+\usepackage{mathptmx} % Contiene una fuente similar a Times New Roman
+
+\usepackage[spanish, es-tabla]{babel} % Permite escritura en castellano
+\usepackage[utf8]{inputenc} % Permite utilizar caracteres UTF8
+
+\usepackage{graphicx} % Para la inclusión de gráficos e imágenes
+\graphicspath{ {images/} } % Ruta para buscar las imágenes
+\usepackage[a4paper,top=30mm,left=30mm,right=25mm,bottom=25mm,headheight=20mm]{geometry} % Configuración de los margenes de la página
+
+% Paquetes para que funcione el formato.
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{ragged2e}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{stackengine}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{hypcap}
+\usepackage{caption}
+\usepackage{fancyvrb}
+
+\usepackage{hyperref} % Paquete para que las referencias funcionen, y permite introducir links
+\usepackage{xcolor} % Paquete para trabajar con colores (fondo de celdas, color del texto...)
+\input{config.tex}
+
+
+\begin{document}
+
+\rmfamily % Fuente tipo Romana
+
+% Portada de la memoria
+\input{title.tex}
+
+% Índice de contenido
+\addcontentsline{toc}{chapter}{Índice de contenido} % Añade la referencia al índice de contenido
+\hypertarget{toc}{}
+\tableofcontents
+\newpage
+
+% Índice de figuras
+\addcontentsline{toc}{chapter}{Índice de figuras}  % Añade la referencia al índice de contenido
+\hypertarget{lof}{}
+\listoffigures
+
+\justify{} % Texto justificado
+\setlength{\parskip}{\baselineskip} % Separación entre párrafos de 1 linea
+\onehalfspacing{}
+
+%% El contenido de la memoria, dividido en capítulos:
+\input{sections/1_intro.tex}
+\input{sections/concl.tex}
+
+%% Esto incluirá la bibliografía correctamente en nuestro trabajo
+\newpage % En una nueva página
+\addcontentsline{toc}{chapter}{Bibliografía} % Añade la referencia al índice de contenido
+
+\bibliographystyle{ieeetr} % Define el estilo de la bibliografía
+\bibliography{biblio} % Indica el archivo que contiene la colección de citas
+
+\nocite{template}
+
+\end{document}
