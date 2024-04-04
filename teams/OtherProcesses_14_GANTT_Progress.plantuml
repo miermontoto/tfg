@@ -1,0 +1,46 @@
+@startgantt OtherProcesses_14_GANTT_Progress
+Project starts 2024-01-01
+[Analysis and Design] starts 2024-01-01
+[Exp. A. and Design] lasts 1 week
+[Analysis and Design] is colored in LightBlue/Blue
+[Analysis and Design] lasts 10 days
+[Analysis and Design] is 100% complete
+
+[Dev. of Module 1] starts 4 days after [Analysis and Design]'s end
+[Dev. of Module 1] lasts 1 week
+[Dev. of Module 1] is colored in LightBlue/Blue
+[Dev. of Module 1] is 60% complete
+[Expected Dev.Mod.1] lasts 1 week
+[Expected Dev.Mod.1] starts 2024-01-08
+
+[Dev. of Module 2] starts at [Analysis and Design]'s end
+[Dev. of Module 2] lasts 2 weeks
+[Dev. of Module 2] is colored in Red/DarkRed
+[Dev. of Module 2] is 0% complete
+[Expected Dev.Mod.2] lasts 2 week
+[Expected Dev.Mod.2] starts 2024-01-08
+
+[Dev. of Module 3] starts at [Analysis and Design]'s end
+[Dev. of Module 3] lasts 1 week
+[Dev. of Module 3] is colored in LightBlue/Blue
+[Dev. of Module 3] is 0% complete
+[Expected Dev.Mod.3] lasts 1 week
+[Expected Dev.Mod.3] starts 2024-01-08
+
+[Integration] starts at [Dev. of Module 1]'s end
+[Integration] starts at [Dev. of Module 2]'s end
+[Integration] starts at [Dev. of Module 3]'s end
+[Integration] lasts 1 week
+[Integration] is colored in Red/DarkRed
+[Integration] is 0% complete
+[Exp. Integration] lasts 1 week
+[Exp. Integration] starts 2024-01-22
+
+[Deployment] starts at [Integration]'s end
+[Deployment] is colored in Red/DarkRed
+[Deployment] lasts 1 week
+[Deployment] is 0% complete
+[Exp. Deployment] lasts 1 week
+[Exp. Deployment] starts 2024-01-29
+
+@endgantt

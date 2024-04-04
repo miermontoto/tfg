@@ -1,0 +1,16 @@
+@startgantt OtherProcesses_12_GANTT
+[Analysis and Design] lasts 1 week
+[Dev. of Module 1] starts at [Analysis and Design]'s end
+[Dev. of Module 1] lasts 1 week
+[Dev. of Module 2] starts at [Analysis and Design]'s end
+[Dev. of Module 2] lasts 2 weeks
+[Dev. of Module 3] starts at [Analysis and Design]'s end
+[Dev. of Module 3] lasts 1 week
+[Integration] starts at [Dev. of Module 1]'s end
+[Integration] starts at [Dev. of Module 2]'s end
+[Integration] starts at [Dev. of Module 3]'s end
+[Integration] lasts 1 week
+[Deployment] starts at [Integration]'s end
+[Deployment] lasts 1 week
+
+@endgantt
