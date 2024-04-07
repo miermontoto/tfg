@@ -1,5 +1,13 @@
 \chapter{Fundamento teórico}\label{chap:teoria}
 \section{Definición de Data Lake}\label{sec:datalake}
+Los \textit{data lakes}~\cite{mier2023dashboards} son almacenes de datos que almacenan
+grandes cantidades de datos de manera no estructurada. A diferencia de los \textit{data
+warehouses}, los data lakes no tienen un esquema definido, lo que permite
+almacenar datos de cualquier tipo y formato. Esto permite almacenar grandes
+cantidades de datos sin tener que definir un esquema de antemano, lo que puede
+ser útil en algunos casos. Sin embargo, esto también puede ser un inconveniente, ya
+que no se puede realizar un análisis de negocio de los datos almacenados en un
+data lake sin antes transformarlos en un formato estructurado
 
 \section{Procesos ETL}\label{sec:etl}
 Los procesos ETL~\cite{mier2023dashboards} son procesos que combinan datos de múltiples
@@ -23,23 +31,31 @@ calidad, de recursos humanos\ldots)
 En el ámbito de deste proyecto, los dashboards reflejan en tiempo real el rendimiento de
 actividades o procesos de negocio, y se utilizan para tomar decisiones informadas sobre los
 mismos. En el caso de una empresa, un dashboard puede mostrar desde el rendimiento de la
-plataforma en tiempo real hasta un reflejo del de las ventas, y permitir a los directivos tomar decisiones informadas sobre el futuro de la empresa.
+plataforma en tiempo real hasta un reflejo del de las ventas, y permitir a los directivos tomar
+decisiones informadas sobre el futuro de la empresa.
 
 \section{Componentes del stack}\label{sec:componentes}
 En el \textit{stack} tecnológico escogido para el proyecto se manejan
 diferentes términos y conceptos que son necesarios desarrollar para
 entender el funcionamiento del sistema.
 
-\subsection{Productor}\label{subsec:productor}
+\subsection{Tópico}\label{subsec:topico}
+Un tópico es una categoría a la que se envían los mensajes. Al proceso de enviar mensajes a
+un tópico se le llama \emph{publicar}, y al proceso de leer mensajes de un tópico se le llama
+\emph{consumir}.
 
+\subsection{Productor}\label{subsec:productor}
+El productor es el componente responsable de crear y enviar mensajes al cluster de Kafka.
+Está separado del resto de los componentes y produce mensajes de manera asíncrona y rápida.
 
 \subsection{Consumidor}\label{subsec:consumidor}
-
-
-\subsection{Tópico}\label{subsec:topico}
-
+El consumidor es el componente responsable de leer los mensajes producidos por el productor.
+Está suscrito a un \nameref{subsec:topico} a través del broker y consume los mensajes.
 
 \subsection{Broker}\label{subsec:broker}
-
+El broker es el componente responsable de recibir los mensajes producidos por el productor y
+enviarlos a los consumidores. Es el intermediario entre los productores y los consumidores.
 
 \subsection{Zookeeper}\label{subsec:zookeeper}
+Zookeeper es un servicio de coordinación distribuida que se utiliza para gestionar y coordinar
+los brokers de Kafka. Se encarga de mantener la información de los brokers y de los tópicos.
