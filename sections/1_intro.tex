@@ -1,24 +1,27 @@
 \chapter{Introducción}\label{chap:intro}
 \section{Antecedentes}\label{sec:antecedentes}
-En la actualidad, la cantidad de datos que se generan y almacenan en las empresas es cada vez
-mayor. Estos datos provienen de múltiples fuentes y en múltiples formatos, lo que dificulta su
-análisis y explotación.
+En la actualidad, la cantidad de datos que se generan y almacenan es cada vez mayor
+\footnote{\url{https://www.statista.com/statistics/871513/worldwide-data-created/}}, una tendencia
+que por supuesto se traduce a las empresas. Estos datos provienen de múltiples fuentes y en múltiples
+formatos, lo que dificulta su análisis y explotación. A esta característica de la información se le
+conoce como \textit{heterogeneidad}\footnote{\url{https://www.sciencedirect.com/topics/computer-science/data-heterogeneity}}.
 
 A su vez, el progreso tecnológico ha permitido la creación de nuevas herramientas y técnicas
 que facilitan la recogida, almacenamiento y análisis de estos datos. Una de estas técnicas son
-los \textit{data lakes}, que permiten almacenar grandes cantidades de datos de diferentes
-tipos y formatos, para poder analizarlos y explotarlos de forma más eficiente.
+los \textit{data lakes}\footnote{\url{https://aws.amazon.com/es/what-is/data-lake/}},
+que permiten almacenar grandes cantidades de datos de diferentes tipos y formatos, para poder
+analizarlos y explotarlos de forma más eficiente.
 
 De manera paralela, el progreso en la \textit{ciencia de datos} ha supuesto una mejora en la
 visualización de estos, lo que permite un mejor análisis. La visualización de datos suele
-significar la existencia de uno o varios \textit{dashboards}, que permiten al usuario final
-la consulta rápida y sencilla de los datos sin necesidad de conocimientos técnicos del sistema.
+significar la existencia de uno o varios \textit{dashboards}\cite{mier2023dashboards}, que
+permiten al usuario final la consulta rápida y sencilla de los datos sin necesidad de conocimientos técnicos del sistema.
 
 \section{Motivación}\label{sec:motivacion}
-El proyecto surge de la necesidad de \fullref{sec:empresa} de recoger y analizar
-datos de múltiples características de todas las fuentes de las que se disponen, tanto internas
-(como bases de datos, logs, la propia API, etc.) como externas (como APIs de otras empresas,
-datos web de terceros, etc.).
+El proyecto surge de la necesidad de la empresa (ver \fullref{sec:empresa}) de recoger y
+analizar datos heterogéneos de todas las fuentes de las que se disponen, tanto internas
+(e.g.~bases de datos, archivos de registros, APIs, entre otros), como externas
+(e.g. APIs o datos de webs de terceros, datos de fuentes públicas\ldots).
 
 En la actualidad, la empresa dispone de una gran cantidad de datos que se encuentran en
 diferentes formatos y en diferentes ubicaciones, lo que dificulta su análisis y explotación.
@@ -27,14 +30,16 @@ en NewRelic o AWS CloudWatch) para poder analizar estos datos, lo que supone un 
 
 Además del uso interno, la empresa también quiere ofrecer a sus clientes la posibilidad de
 consultar estos datos de forma visual y sencilla, para que puedan analizarlos y explotarlos de
-forma autónoma, lo que supondría un valor añadido para los mismos.
+forma autónoma, lo que supondría un valor añadido para los mismos. Este tipo de dashboards
+son diferentes a los dashboards de monitorización antes mencionados, ya que permiten al usuario
+final la consulta de datos de negocio, y no de infraestructura.
 
 \section{Finalidad del proyecto}\label{sec:finalidad}
-El objetivo de este sistema es centralizar y unificar todas estas fuentes que se encuentran
-dispersas, en diferentes formatos y que en la actualidad se tienen que consultar manualmente,
-para poder realizar análisis de los datos de forma más eficiente.
+El objetivo de este sistema es centralizar y unificar las fuentes de datos heterogéneas
+cuya consulta se realiza de manera manual, con la finalidad de analizar los datos de forma
+más eficiente.
 
-Como se comenta anteriormente, el cumplimiento de este objetivo permitirá:
+El cumplimiento de este objetivo permitirá a la empresa obtener una serie de beneficios:
 \begin{itemize}
 	\item una eliminación del tiempo invertido en la consulta manual de los datos.
 	\item una reducción de los costes de las plataformas de terceros.
@@ -44,9 +49,9 @@ Como se comenta anteriormente, el cumplimiento de este objetivo permitirá:
 	\item el beneficio económico que supondría la venta de este servicio a los clientes.
 \end{itemize}
 
-Además de la mejora de los procesos ya existentes, la explotación de esta herramienta abrirá la
-puerta a nuevas posibilidades de análisis y explotación de los datos, como la detección de
-anomalías en la infraestructura o la predicción de patrones y eventos futuros.
+Además de la mejora de los procesos ya existentes, la explotación mediante esta herramienta
+abrirá la puerta a nuevas posibilidades de análisis y explotación de los datos, como la detección
+de anomalías en la infraestructura o la predicción de patrones y eventos futuros.
 
 \section{La empresa}\label{sec:empresa}
 Okticket es una startup nacida en Gijón en 2017 cuyo producto principal es un servicio software
@@ -54,14 +59,24 @@ que reduce los costes y el tiempo que invierten las empresas en contabilizar y m
 de viaje de los profesionales mediante el escaneo automático de tickets y notas de gastos.
 
 Sus oficinas principales (incluyendo la zona de desarrollo) se encuentran en el Parque
-Tecnológico de Gijón, aunque cuenta con un número de sedes creciente en varios países:
-Francia, Portugal y, más recientemente, México.
+Tecnológico de Gijón, aunque cuenta con un número de sedes creciente en varios países, como
+Francia, Portugal o, más recientemente, México.
 
 Okticket es una de las empresas que más crecen tanto del sector como del propio Parque
 Tecnológico. Debido a este rápido crecimiento, el equipo está en constante desarrollo y
-cambio, tanto aquí en España como en el resto de sedes.
+cambio, tanto aquí en España como en el resto de sedes. Este crecimiento se refleja
+en la recepción de un gran número de galardones y reconocimientos
+\footnote{\href{https://www.linkedin.com/posts/okticket_okticket-en-el-especial-startups-de-forbes-activity-7140622980618903552-UGWK}{Okticket en el especial startups 2023 de Forbes (LinkedIn)}}
+\footnote{\href{https://www.elcomercio.es/economia/arcelor-okticket-premios-20230222002438-ntvo.html}{Arcelor y Okticket, premios nacional de Ingeniería Informática (EL COMERCIO)}}
+\footnote{\href{https://www.okticket.es/blog/empresa-pyme-innovadora}{Okticket recibe el sello Pyme Innovadora (okticket.es)}}
+\footnote{\href{https://www.okticket.es/blog/okticket-empresa-emergente-certificada}{Okticket, empresa emergente certificada (okticket.es)}}
 
-Pese a que la parte principal del negocio es el SaaS (Software as a Service en inglés),
-es decir, la aplicación completa tanto para administradores como para empleados,
-recientemente se han añadido nuevas propuestas como la OKTCard, una tarjeta inteligente
-que gestiona automáticamente los gastos, entre otros proyectos.
+La parte principal del negocio es el núcleo del software como servicio (Software as a
+Service en inglés, en adelante \textit{SaaS}), es decir, la aplicación completa tanto
+para administradores como para empleados. Este SaaS se oferta a empresas de cualquier
+tamaño, cuyo precio final varía en función del número de usuarios, las características
+e integraciones que requiera la empresa cliente y el soporte que se ofrezca.
+
+Recientemente se han añadido nuevas propuestas a la cartera de servicios ofertada por
+Okticket, como la OKTCard {-} una tarjeta inteligente que gestiona automáticamente los gastos,
+así como la inclusión de nuevos ``módulos'' de gestión de gastos y viajes.
