@@ -1,13 +1,14 @@
 \chapter{Fundamento teórico}\label{chap:teoria}
 \section{Definición de Data Lake}\label{sec:datalake}
-Los \textit{data lakes} son almacenes de datos que almacenan grandes cantidades de
-datos de manera no estructurada~\cite{mier2023dashboards}. A diferencia de los
-\textit{data warehouses}, los data lakes no tienen un esquema definido, lo que permite
+Los \textit{data lakes}\footnote{\url{https://aws.amazon.com/es/what-is/data-lake/}}
+son almacenes de datos que almacenan grandes cantidades de datos de manera no
+estructurada~\cite{mier2023dashboards}. A diferencia de los \textit{data warehouses},
+los \textit{data lakes} no tienen un esquema definido, lo que permite
 almacenar datos de cualquier tipo y formato. Esto permite almacenar grandes
 cantidades de datos sin tener que definir un esquema de antemano, lo que puede
 ser útil en algunos casos. Sin embargo, esto también puede ser un inconveniente, ya
 que no se puede realizar un análisis de negocio de los datos almacenados en un
-data lake sin antes transformarlos en un formato estructurado
+data lake sin antes transformarlos en un formato estructurado.
 
 \section{Procesos ETL}\label{sec:etl}
 Los procesos ETL~\cite{mier2023dashboards} son procesos que combinan datos de múltiples
@@ -15,11 +16,14 @@ fuentes en un único destino, transformando los datos en un formato común. Esto
 se utilizan para extraer datos de diferentes fuentes, transformarlos en un formato común
 y cargarlos en un dashboard para que se muestren de manera visual.
 
-Estos procesos deben estar “personalizados” para cada caso, ya que cada sistema
-procesa diferentes tipos de datos, de diferentes fuentes y en diferentes formatos. Además,
-estos procesos deben ser escalables, ya que los datos que se muestran en los dashboards
-suelen ser datos que se generan de manera continua, y por lo tanto los procesos ETL deben
-ser capaces de procesar grandes cantidades de datos de manera eficiente.
+Los proceoss ETL deben de adaptarse a la estructura de los datos de la fuente de origen,
+ya que cada sistema procesa diferentes tipos de datos, de diferentes fuentes y en diferentes formatos.
+
+Una de las características clave de los procesos ETL es que sean escalables, ya que los datos
+que se muestran en los dashboards suelen ser datos que se generan de manera continua, y por
+lo tanto los procesos ETL deben ser capaces de procesar grandes cantidades de datos de manera
+eficiente. En ocasiones, los procesos ETL se pueden realizar en \textit{streaming}, lo que
+significa que los datos se procesan en tiempo real a medida que se generan.
 
 \section{Dashboards}\label{sec:dashboards}
 La palabra \textit{dashboard}, que traducido de manera literal significa \textit{cuadro de mandos},
