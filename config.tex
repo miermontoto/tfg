@@ -74,6 +74,8 @@
   \renewcommand{\footrulewidth}{0.4pt} % default is 0pt
 }
 
+\newcommand*{\fullref}[1]{\textit{\hyperref[{#1}]{\ref*{#1} \nameref*{#1}}}}
+
 \pagestyle{fancy}
 
 \restylefloat{table}

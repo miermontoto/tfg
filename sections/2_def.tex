@@ -1,1 +1,86 @@
-\chapter{Fundamento teórico}
+\chapter{Fundamento teórico}\label{chap:teoria}
+\section{Data lake}\label{sec:datalake}
+Los \textit{data lakes}\footnote{\url{https://aws.amazon.com/es/what-is/data-lake/}}
+son almacenes de datos que almacenan grandes cantidades de datos de manera no
+estructurada~\cite{mier2023dashboards}.
+
+A diferencia de los \textit{data warehouses}, los \textit{data lakes} no tienen un
+esquema definido, lo que permite almacenar datos \textit{heterogéneos}. Esto permite
+almacenar grandes cantidades de información sin tener que definir un esquema de antemano,
+lo que puede ser útil en aquellos casos en los que no se conoce la estructura de los
+datos que se van a almacenar.
+
+
+\section{Modelo DIKW}\label{sec:dikw}
+La pirámide DIKW\footnote{\url{https://en.wikipedia.org/wiki/DIKW_pyramid}} es un modelo que
+describe la relación entre los datos, la información, el conocimiento y la sabiduría. Según este
+modelo, los datos son la materia prima de la información, que a su vez es la materia prima del
+conocimiento, que a su vez es la materia prima de la sabiduría.
+
+La visualización de datos es una técnica que permite representar los datos de forma visual, para
+facilitar su análisis y explotación. Los dashboards (ver~\fullref{sec:dashboards}) son una
+herramienta que permite visualizar los datos de forma sencilla y eficiente, para poder tomar
+decisiones informadas sobre los mismos.
+
+\section{Procesos ETL}\label{sec:etl}
+Los procesos ETL~\cite{mier2023dashboards} son procesos que combinan datos de múltiples
+fuentes en un único destino, transformando los datos en un formato común. Estos procesos
+se utilizan para extraer datos de diferentes fuentes, transformarlos en un formato común
+y cargarlos en un destino común.
+
+Los procesos ETL deben de adaptarse a la estructura de los datos de la fuente de origen,
+ya que dichas fuentes pueden tener diferentes estructuras y tener tipos de datos diferentes
+(la \textit{heterogeneidad} que ya se ha mencionado).
+
+Una de las características clave de los procesos ETL es que sean escalables, ya que los datos
+que se muestran en los dashboards suelen ser datos que se generan de manera continua, y por
+lo tanto los procesos ETL deben ser capaces de procesar grandes cantidades de datos de manera
+eficiente. En ocasiones, los procesos ETL se pueden realizar en \textit{streaming}, lo que
+significa que los datos se procesan en tiempo real a medida que se generan.
+
+\section{Dashboards}\label{sec:dashboards}
+La palabra \textit{dashboard}, que traducido de manera literal significa \textit{cuadro de mandos},
+es un término que se utiliza para referirse a cualquier interfaz gráfica que muestre información
+relevante de manera visual sobre un proceso o negocio. Aunque el término se utiliza en
+muchos ámbitos (puede incluir indicadores comerciales, de producción, de marketing, de
+calidad, de recursos humanos\ldots)
+
+En el ámbito de deste proyecto, los dashboards reflejan en tiempo real el rendimiento de
+actividades o procesos de negocio, y se utilizan para tomar decisiones informadas sobre los
+mismos. En el caso de una empresa, un dashboard puede mostrar desde el rendimiento de la
+plataforma en tiempo real hasta un reflejo del de las ventas, y permitir a los directivos tomar
+decisiones informadas sobre el futuro de la empresa.
+
+Para el sistema que se describe, se plantean dos tipos de dashboards diferentes:
+\begin{itemize}
+	\item \textbf{Dashboards internos}: que reflejan el rendimiento de la plataforma en tiempo real.
+	\item \textbf{Dashboards externos}: que reflejan el rendimiento de las ventas y permiten a los
+	      clientes tomar decisiones informadas sobre su negocio.
+\end{itemize}
+\newpage{}
+\section{Componentes del sistema}\label{sec:componentes}
+En el \textit{stack} tecnológico escogido para el proyecto se manejan
+diferentes términos y conceptos que son necesarios desarrollar para
+entender el funcionamiento del sistema.
+
+\subsection{Tópico}\label{subsec:topico}
+Un tópico es una categoría a la que se envían los mensajes a la que los consumidores están
+\textit{suscritos}. Los consumidores pueden estar suscritos a uno o varios tópicos, y los
+productores pueden enviar mensajes a uno o varios tópicos. Los tópicos son la unidad básica
+de organización de los mensajes en cualquier sistema de mensajería de publicación/suscripción.
+
+\subsection{Productor}\label{subsec:productor}
+El productor es el componente responsable de crear y enviar mensajes al cluster de Kafka.
+Está separado del resto de los componentes y produce mensajes de manera asíncrona y rápida.
+
+\subsection{Consumidor}\label{subsec:consumidor}
+El consumidor es el componente responsable de leer los mensajes producidos por el productor.
+Está suscrito a un \nameref{subsec:topico} a través del broker y consume los mensajes.
+
+\subsection{Broker}\label{subsec:broker}
+El broker es el componente responsable de recibir los mensajes producidos por el productor y
+enviarlos a los consumidores. Es el intermediario entre los productores y los consumidores.
+
+\subsection{Zookeeper}\label{subsec:zookeeper}
+Zookeeper es un servicio de coordinación distribuida que se utiliza para gestionar y coordinar
+los brokers de Kafka. Se encarga de mantener la información de los brokers y de los tópicos.
