@@ -1,4 +1,6 @@
 \chapter{Fundamento teórico}\label{chap:teoria}
+|TODO| introducir fundamento teórico
+
 \section{Data lake}\label{sec:datalake}
 Los \textit{data lakes}\footnote{\url{https://aws.amazon.com/es/what-is/data-lake/}}
 son almacenes de datos que almacenan grandes cantidades de datos de manera no
@@ -10,40 +12,93 @@ almacenar grandes cantidades de información sin tener que definir un esquema de
 lo que puede ser útil en aquellos casos en los que no se conoce la estructura de los
 datos que se van a almacenar.
 
-
-\section{Modelo DIKW}\label{sec:dikw}
-La pirámide DIKW\footnote{\url{https://en.wikipedia.org/wiki/DIKW_pyramid}} es un modelo que
-describe la relación entre los datos, la información, el conocimiento y la sabiduría. Según este
-modelo, los datos son la materia prima de la información, que a su vez es la materia prima del
-conocimiento, que a su vez es la materia prima de la sabiduría.
-
-La visualización de datos es una técnica que permite representar los datos de forma visual, para
-facilitar su análisis y explotación. Los dashboards (ver~\fullref{sec:dashboards}) son una
-herramienta que permite visualizar los datos de forma sencilla y eficiente, para poder tomar
-decisiones informadas sobre los mismos.
-
 \section{Procesos ETL}\label{sec:etl}
+\subsection{Definición}
 Los procesos ETL~\cite{mier2023dashboards} son procesos que combinan datos de múltiples
 fuentes en un único destino, transformando los datos en un formato común. Estos procesos
 se utilizan para extraer datos de diferentes fuentes, transformarlos en un formato común
 y cargarlos en un destino común.
 
-Los procesos ETL deben de adaptarse a la estructura de los datos de la fuente de origen,
-ya que dichas fuentes pueden tener diferentes estructuras y tener tipos de datos diferentes
-(la \textit{heterogeneidad} que ya se ha mencionado).
+\subsection{Características}
+Los procesos ETL cuentan con una serie de características que los hacen útiles para la
+integración de datos:
 
-Una de las características clave de los procesos ETL es que sean escalables, ya que los datos
-que se muestran en los dashboards suelen ser datos que se generan de manera continua, y por
-lo tanto los procesos ETL deben ser capaces de procesar grandes cantidades de datos de manera
-eficiente. En ocasiones, los procesos ETL se pueden realizar en \textit{streaming}, lo que
-significa que los datos se procesan en tiempo real a medida que se generan.
+\begin{itemize}
+	\item \textbf{Adaptabilidad:} los procesos ETL deben de adaptarse a la estructura de los
+		datos de la fuente de origen, ya que dichas fuentes pueden tener diferentes estructuras
+		y tener tipos de datos diferentes (la característica de \textit{heterogeneidad} de los
+		datos que ya se ha mencionado).
+	\item \textbf{Escalabilidad:} otra de las características clave de los procesos ETL es que sean
+		escalables, ya que los datos que se muestran en los dashboards suelen ser datos que se generan
+		de manera continua, y por lo tanto los procesos ETL deben ser capaces de procesar grandes cantidades
+		de datos de manera eficiente. En ocasiones, los procesos ETL se pueden realizar en \textit{streaming},
+		lo que significa que los datos se procesan en tiempo real a medida que se generan.
+\end{itemize}
 
+\subsection{Funcionamiento}
+\subsubsection{Extracción}
+En este proceso se extraen los datos de las fuentes de datos, que pueden ser bases de datos, logs,
+APIs, etc. En este paso, se pueden aplicar filtros para extraer solo los datos que se necesiten, y
+se pueden extraer datos de múltiples fuentes.
+
+Frecuentemente, los datos brutos se almacenan temporalmente en una zona de almacenamiento intermedia
+llamada staging area (que es estrictamente transitoria).
+
+En algunos casos, los datos se pueden extraer de manera incremental, es decir, solo se extraen los
+datos que han cambiado desde la última extracción. Esto puede ser útil para reducir el tiempo de
+procesamiento y el volumen de datos que se almacenan.
+
+En otros casos, los datos se pueden extraer de manera continua, es decir, se extraen los datos en
+tiempo real según se van generando. Esto puede ser útil para procesar datos que se generan en tiempo
+real, como logs o datos de sensores.
+
+\subsubsection{Transformación}
+En este proceso se transforman los datos extraídos en un formato común, normalmente tablas relacionales.
+
+Una transformación básica de datos es la limpieza, revisión y corrección de los datos extraídos,
+para asegurar que los datos que se almacenan son correctos y consistentes. Otras operaciones más
+complejas pueden ser la agregación de datos, la conversión de formatos, la normalización de datos,
+el cifrado, etc.
+
+\subsubsection{Carga}
+En este proceso se cargan los datos transformados en el destino final. Frecuentemente, los datos se
+almacenan en una data warehouse o data lake para su posterior análisis.
+
+En algunos casos, los datos se pueden cargar de manera incremental, es decir, solo se cargan los datos
+que han cambiado desde la última carga. Esto puede ser útil para reducir el tiempo de procesamiento y
+el volumen de datos que se almacenan. En otros casos, los datos se pueden cargar de manera continua,
+es decir, se cargan los datos en tiempo real según se van generando. Esto puede ser útil para procesar
+datos que se generan en tiempo real, como logs o datos de sensores.
+
+\subsection{Alternativas}
+Aunque lo más común es el flujo anteriormente explicado de \textit{extracción}, \textit{transformación} y
+\textit{carga}, existen algunos flujos y procesos alternativos que evitan algunos de estos pasos, normalmente
+en casos específicos que se beneficien del cambio:
+
+\begin{itemize}
+	\item \textbf{Virtualización:} en lugar de extraer los datos de las fuentes, se crea una capa virtual que
+		permite acceder a los datos de las fuentes sin necesidad de extraerlos. Esto permite ahorrar espacio de
+		almacenamiento y tiempo de procesamiento, pero puede ser menos eficiente en algunos casos.
+	\item \textbf{Proceso \textit{ELT}:} en lugar de transformar los datos antes de cargarlos en el destino,
+		se cargan los datos en bruto y se transforman en el destino. Funciona bien para grandes conjuntos de
+		datos sin estructura que requieran una carga (o recarga) contínua, aunque, al igual que la virtualización,
+		puede ser menos eficiente en algunos casos.
+\end{itemize}
+
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.75\textwidth]{virt.png}
+	\captionof{figure}{Ejemplo de flujo con virtualización}
+\end{minipage}
+
+\newpage{}
 \section{Dashboards}\label{sec:dashboards}
+\paragraph{Definición}~\cite{mier2023dashboards}
 La palabra \textit{dashboard}, que traducido de manera literal significa \textit{cuadro de mandos},
 es un término que se utiliza para referirse a cualquier interfaz gráfica que muestre información
 relevante de manera visual sobre un proceso o negocio. Aunque el término se utiliza en
-muchos ámbitos (puede incluir indicadores comerciales, de producción, de marketing, de
-calidad, de recursos humanos\ldots)
+muchos ámbitos: indicadores comerciales, de producción, de marketing, de calidad, de recursos
+humanos\ldots
 
 En el ámbito de deste proyecto, los dashboards reflejan en tiempo real el rendimiento de
 actividades o procesos de negocio, y se utilizan para tomar decisiones informadas sobre los
@@ -51,36 +106,61 @@ mismos. En el caso de una empresa, un dashboard puede mostrar desde el rendimien
 plataforma en tiempo real hasta un reflejo del de las ventas, y permitir a los directivos tomar
 decisiones informadas sobre el futuro de la empresa.
 
+\paragraph{Características}
+Los dashboards cuentan con una serie de características que los hacen útiles para la toma de
+decisiones:
+
+\begin{itemize}
+	\item \textbf{Visualización de datos:} es la característica fundamental de cualquier
+		cuadro de mandos, y aquella que determina su utilidad. La visualización de datos
+		es la ciencia de presentar los datos de manera que se pueda extraer información útil
+		y realizar decisiones informadas sobre ellos. Un buen dashboard cuenta con gráficas,
+		tablas, indicadores, etc. que permiten al usuario entender la información que se
+		está presentando con un conocimiento técnico mínimo.
+	\item \textbf{Interactividad y personalización:} un dashboard debe permitir al usuario
+		interactuar con los datos (filtrarlos, ordenarlos, profundizar en ellos...) y ajustar
+		la información que se muestra a cada proceso o negocio que se esté evaluando.
+		Esta capacidad asegura que el dashboard se adapte tanto a las necesidades actuales
+		como a las evoluciones futuras de lo que se esté analizando.
+	\item \textbf{Accesibilidad y portabilidad:} un dashboard debe ser accesible desde una
+		variedad de situaciones y dispositivos, manteniendo su funcionalidad y forma. Aunque
+		normalmente los dashboards se analizan en pantallas grandes, es importante que también
+		se puedan consultar en otras circunstancias, como dispositivos móviles.
+\end{itemize}
+
+\newpage{}
+\paragraph{Dashboards planteados}
 Para el sistema que se describe, se plantean dos tipos de dashboards diferentes:
 \begin{itemize}
 	\item \textbf{Dashboards internos}: que reflejan el rendimiento de la plataforma en tiempo real.
 	\item \textbf{Dashboards externos}: que reflejan el rendimiento de las ventas y permiten a los
 	      clientes tomar decisiones informadas sobre su negocio.
 \end{itemize}
-\newpage{}
-\section{Componentes del sistema}\label{sec:componentes}
-En el \textit{stack} tecnológico escogido para el proyecto se manejan
-diferentes términos y conceptos que son necesarios desarrollar para
-entender el funcionamiento del sistema.
 
-\subsection{Tópico}\label{subsec:topico}
-Un tópico es una categoría a la que se envían los mensajes a la que los consumidores están
-\textit{suscritos}. Los consumidores pueden estar suscritos a uno o varios tópicos, y los
-productores pueden enviar mensajes a uno o varios tópicos. Los tópicos son la unidad básica
-de organización de los mensajes en cualquier sistema de mensajería de publicación/suscripción.
+% mover esta sección a la valoración de alternativas cuando se tenga
+% \section{Componentes del sistema}\label{sec:componentes}
+% En el \textit{stack} tecnológico escogido para el proyecto se manejan
+% diferentes términos y conceptos que son necesarios desarrollar para
+% entender el funcionamiento del sistema.
 
-\subsection{Productor}\label{subsec:productor}
-El productor es el componente responsable de crear y enviar mensajes al cluster de Kafka.
-Está separado del resto de los componentes y produce mensajes de manera asíncrona y rápida.
+% \subsection{Tópico}\label{subsec:topico}
+% Un tópico es una categoría a la que se envían los mensajes a la que los consumidores están
+% \textit{suscritos}. Los consumidores pueden estar suscritos a uno o varios tópicos, y los
+% productores pueden enviar mensajes a uno o varios tópicos. Los tópicos son la unidad básica
+% de organización de los mensajes en cualquier sistema de mensajería de publicación/suscripción.
 
-\subsection{Consumidor}\label{subsec:consumidor}
-El consumidor es el componente responsable de leer los mensajes producidos por el productor.
-Está suscrito a un \nameref{subsec:topico} a través del broker y consume los mensajes.
+% \subsection{Productor}\label{subsec:productor}
+% El productor es el componente responsable de crear y enviar mensajes al cluster de Kafka.
+% Está separado del resto de los componentes y produce mensajes de manera asíncrona y rápida.
 
-\subsection{Broker}\label{subsec:broker}
-El broker es el componente responsable de recibir los mensajes producidos por el productor y
-enviarlos a los consumidores. Es el intermediario entre los productores y los consumidores.
+% \subsection{Consumidor}\label{subsec:consumidor}
+% El consumidor es el componente responsable de leer los mensajes producidos por el productor.
+% Está suscrito a un \nameref{subsec:topico} a través del broker y consume los mensajes.
 
-\subsection{Zookeeper}\label{subsec:zookeeper}
-Zookeeper es un servicio de coordinación distribuida que se utiliza para gestionar y coordinar
-los brokers de Kafka. Se encarga de mantener la información de los brokers y de los tópicos.
+% \subsection{Broker}\label{subsec:broker}
+% El broker es el componente responsable de recibir los mensajes producidos por el productor y
+% enviarlos a los consumidores. Es el intermediario entre los productores y los consumidores.
+
+% \subsection{Zookeeper}\label{subsec:zookeeper}
+% Zookeeper es un servicio de coordinación distribuida que se utiliza para gestionar y coordinar
+% los brokers de Kafka. Se encarga de mantener la información de los brokers y de los tópicos.
