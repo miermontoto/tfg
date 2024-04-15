@@ -32,9 +32,7 @@
 \begin{document}
 
 \rmfamily % Fuente tipo Romana
-
-% Portada de la memoria
-\input{title.tex}
+\input{title.tex} % Portada de la memoria
 
 % Índice de contenido
 \addcontentsline{toc}{chapter}{Índice de contenido} % Añade la referencia al índice de contenido
@@ -52,14 +50,14 @@
 \onehalfspacing{}
 
 %% El contenido de la memoria, dividido en capítulos:
-\input{sections/1_intro.tex}
-\input{sections/2_def.tex}
-\input{sections/3_planif.tex}
-\input{sections/4_analisis.tex}
-\input{sections/5_diseño.tex}
-\input{sections/6_impl.tex}
-\input{sections/7_resultados.tex}
-\input{sections/concl.tex}
+\include{sections/1_intro.tex}
+\include{sections/2_def.tex}
+\include{sections/3_planif.tex}
+\include{sections/4_analisis.tex}
+\include{sections/5_diseño.tex}
+\include{sections/6_impl.tex}
+\include{sections/7_resultados.tex}
+\include{sections/concl.tex}
 
 %% Esto incluirá la bibliografía correctamente en nuestro trabajo
 \newpage % En una nueva página
