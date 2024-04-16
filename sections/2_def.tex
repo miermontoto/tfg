@@ -1,5 +1,8 @@
 \chapter{Fundamento teórico}\label{chap:teoria}
-|TODO| introducir fundamento teórico
+En este capítulo se presentan los conceptos y términos fundamentales que se utilizan en el
+proyecto, para proporcionar una base teórica sobre la que se desarrolla el trabajo. Se discuten
+los conceptos de \textit{data lake}, \textit{procesos ETL} y \textit{dashboards}, que son
+fundamentales para el desarrollo del proyecto.
 
 \section{Data lake}\label{sec:datalake}
 Los \textit{data lakes}\footnote{\url{https://aws.amazon.com/es/what-is/data-lake/}}
@@ -84,16 +87,15 @@ en casos específicos que se beneficien del cambio:
 		datos sin estructura que requieran una carga (o recarga) contínua, aunque, al igual que la virtualización,
 		puede ser menos eficiente en algunos casos.
 \end{itemize}
-
-\begin{minipage}{\linewidth}
-	\centering
-	\includegraphics[width=0.75\textwidth]{virt.png}
+\vspace{3.5mm}
+\begin{minipage}{0.85\linewidth}
+	\includegraphics[width=\textwidth]{virt.png}
 	\captionof{figure}{Ejemplo de flujo con virtualización}
 \end{minipage}
 
 \newpage{}
 \section{Dashboards}\label{sec:dashboards}
-\paragraph{Definición}~\cite{mier2023dashboards}
+\subsection{Definición}~\cite{mier2023dashboards}
 La palabra \textit{dashboard}, que traducido de manera literal significa \textit{cuadro de mandos},
 es un término que se utiliza para referirse a cualquier interfaz gráfica que muestre información
 relevante de manera visual sobre un proceso o negocio. Aunque el término se utiliza en
@@ -106,7 +108,7 @@ mismos. En el caso de una empresa, un dashboard puede mostrar desde el rendimien
 plataforma en tiempo real hasta un reflejo del de las ventas, y permitir a los directivos tomar
 decisiones informadas sobre el futuro de la empresa.
 
-\paragraph{Características}
+\subsection{Características}
 Los dashboards cuentan con una serie de características que los hacen útiles para la toma de
 decisiones:
 
@@ -129,13 +131,19 @@ decisiones:
 \end{itemize}
 
 \newpage{}
-\paragraph{Dashboards planteados}
+\subsection{Dashboards planteados}
 Para el sistema que se describe, se plantean dos tipos de dashboards diferentes:
+
 \begin{itemize}
 	\item \textbf{Dashboards internos}: que reflejan el rendimiento de la plataforma en tiempo real.
 	\item \textbf{Dashboards externos}: que reflejan el rendimiento de las ventas y permiten a los
 	      clientes tomar decisiones informadas sobre su negocio.
 \end{itemize}
+
+Hay que destacar que los dashboards externos son diferentes a los dashboards de monitorización, tanto
+en el contenido que presentan como en la manera de acceder a ellos: mientras que los dashboards de
+monitorización serán de uso interno exclusivo, los dashboards externos deben estar disponibles para
+los clientes de las empresas que los contraten.
 
 % mover esta sección a la valoración de alternativas cuando se tenga
 % \section{Componentes del sistema}\label{sec:componentes}
