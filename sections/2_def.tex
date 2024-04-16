@@ -7,7 +7,13 @@ fundamentales para el desarrollo del proyecto.
 \section{Data lake}\label{sec:datalake}
 Los \textit{data lakes}\footnote{\url{https://aws.amazon.com/es/what-is/data-lake/}}
 son almacenes de datos que almacenan grandes cantidades de datos de manera no
-estructurada~\cite{mier2023dashboards}.
+estructurada~\cite{mier2023dashboards}. En el ámbito de una empresa, un \textit{data lake}
+contiene datos de diferentes fuentes de valor no considerado hasta su análisis, de manera
+que su explotación posterior y su análisis no depende de una estructuración y transformación
+compleja, reduciendo los costes de los procesos ETL derivados (ver \fullref{sec:etl}). Esto
+no quiere decir que no se apliquen estos procesos a los datos, sino que se aplican de manera
+más flexible y básica que en otras estructuras de almacenamiento de datos con esquemas
+predefinidos, como los \textit{data warehouses}.~\cite{pwint2018data}
 
 A diferencia de los \textit{data warehouses}, los \textit{data lakes} no tienen un
 esquema definido, lo que permite almacenar datos \textit{heterogéneos}. Esto permite
@@ -15,6 +21,15 @@ almacenar grandes cantidades de información sin tener que definir un esquema de
 lo que puede ser útil en aquellos casos en los que no se conoce la estructura de los
 datos que se van a almacenar.
 
+Estas características de los \textit{data lakes} hacen que sean más atractivos en el sector
+empresarial de cara al análisis de información, en contraste con las estructuras planteadas
+normalmente en el campo de la investigación académica.
+
+Para consultar esta gran cantidad de datos almacenados, se suelen utilizar técnicas de
+visualización de datos, como los \textit{dashboards} (ver \fullref{sec:dashboards}), que
+permiten visualizar los datos de manera sencilla y eficiente.
+
+\newpage{}
 \section{Procesos ETL}\label{sec:etl}
 \subsection{Definición}
 Los procesos ETL~\cite{mier2023dashboards} son procesos que combinan datos de múltiples
@@ -37,8 +52,17 @@ integración de datos:
 		de datos de manera eficiente. En ocasiones, los procesos ETL se pueden realizar en \textit{streaming},
 		lo que significa que los datos se procesan en tiempo real a medida que se generan.
 \end{itemize}
-
+\newpage{}
 \subsection{Funcionamiento}
+Los procesos ETL se dividen en tres fases principales: \textit{extracción}, \textit{transformación}
+y \textit{carga}.
+
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.6\textwidth]{etl.png}
+	\captionof{figure}{Fases de un proceso ETL}
+\end{minipage}
+
 \subsubsection{Extracción}
 En este proceso se extraen los datos de las fuentes de datos, que pueden ser bases de datos, logs,
 APIs, etc. En este paso, se pueden aplicar filtros para extraer solo los datos que se necesiten, y
@@ -82,16 +106,22 @@ en casos específicos que se beneficien del cambio:
 	\item \textbf{Virtualización:} en lugar de extraer los datos de las fuentes, se crea una capa virtual que
 		permite acceder a los datos de las fuentes sin necesidad de extraerlos. Esto permite ahorrar espacio de
 		almacenamiento y tiempo de procesamiento, pero puede ser menos eficiente en algunos casos.
+
+		\begin{minipage}{0.9\linewidth}
+			\includegraphics[width=\textwidth]{virt.png}
+			\captionof{figure}{Ejemplo de flujo con virtualización}
+		\end{minipage}
 	\item \textbf{Proceso \textit{ELT}:} en lugar de transformar los datos antes de cargarlos en el destino,
 		se cargan los datos en bruto y se transforman en el destino. Funciona bien para grandes conjuntos de
 		datos sin estructura que requieran una carga (o recarga) contínua, aunque, al igual que la virtualización,
 		puede ser menos eficiente en algunos casos.
+
+		\begin{minipage}{0.9\linewidth}
+			\includegraphics[width=\textwidth]{elt.png}
+			\captionof{figure}{Comparación de flujos ETL y ELT}
+		\end{minipage}
 \end{itemize}
-\vspace{3.5mm}
-\begin{minipage}{0.85\linewidth}
-	\includegraphics[width=\textwidth]{virt.png}
-	\captionof{figure}{Ejemplo de flujo con virtualización}
-\end{minipage}
+
 
 \newpage{}
 \section{Dashboards}\label{sec:dashboards}
