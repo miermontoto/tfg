@@ -6,6 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: priyanshuone6/latexdiff-action@v1
+      - uses: xu-cheng/latex-action@v2
         with:
-          file-paths: main.tex
+          root_file: main.tex
