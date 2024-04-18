@@ -35,7 +35,7 @@ permiten visualizar los datos de manera sencilla y eficiente.
 Los procesos ETL~\cite{mier2023dashboards} son procesos que combinan datos de múltiples
 fuentes en un único destino, transformando los datos en un formato común. Estos procesos
 se utilizan para extraer datos de diferentes fuentes, transformarlos en un formato común
-y cargarlos en un destino común.
+y cargarlos en un destino común, como puede ser un \textit{data lake}.
 
 \subsection{Características}
 Los procesos ETL, fundamentales en el ámbito de la gestión de datos, presentan atributos
@@ -65,13 +65,10 @@ y \textit{carga}.
 	\captionof{figure}{Fases de un proceso ETL}
 \end{minipage}
 
-\subsubsection{Extracción}
+\paragraph{Extracción}
 En este proceso se extraen los datos de las fuentes de datos, que pueden ser bases de datos, logs,
 APIs, etc. En este paso, se pueden aplicar filtros para extraer solo los datos que se necesiten, y
-se pueden extraer datos de múltiples fuentes.
-
-Frecuentemente, los datos brutos se almacenan temporalmente en una zona de almacenamiento intermedia
-llamada staging area (que es estrictamente transitoria).
+se pueden extraer datos de múltiples fuentes \emph{heterogéneas}.
 
 En algunos casos, los datos se pueden extraer de manera incremental, es decir, solo se extraen los
 datos que han cambiado desde la última extracción. Esto puede ser útil para reducir el tiempo de
@@ -81,7 +78,7 @@ En otros casos, los datos se pueden extraer de manera continua, es decir, se ext
 tiempo real según se van generando. Esto puede ser útil para procesar datos que se generan en tiempo
 real, como logs o datos de sensores.
 
-\subsubsection{Transformación}
+\paragraph{Transformación}
 En este proceso se transforman los datos extraídos en un formato común, normalmente tablas relacionales.
 
 Una transformación básica de datos es la limpieza, revisión y corrección de los datos extraídos,
@@ -89,15 +86,17 @@ para asegurar que los datos que se almacenan son correctos y consistentes. Otras
 complejas pueden ser la agregación de datos, la conversión de formatos, la normalización de datos,
 el cifrado, etc.
 
-\subsubsection{Carga}
+Estos procesos de transformación son vitales cuando el sistema maneja una gran cantidad de datos heterogéneos
+de múltiples fuentes de manera simultánea, como puede ser el caso de un \textit{data lake} o un \textit{data
+warehouse}. En el caso del primero, no es necesaria la transformación de los datos a un formato común, pero si
+otros procesos clave como la limpieza y la normalización de los datos, entre otros.
+
+\paragraph{Carga}
 En este proceso se cargan los datos transformados en el destino final. Frecuentemente, los datos se
 almacenan en una data warehouse o data lake para su posterior análisis.
 
-En algunos casos, los datos se pueden cargar de manera incremental, es decir, solo se cargan los datos
-que han cambiado desde la última carga. Esto puede ser útil para reducir el tiempo de procesamiento y
-el volumen de datos que se almacenan. En otros casos, los datos se pueden cargar de manera continua,
-es decir, se cargan los datos en tiempo real según se van generando. Esto puede ser útil para procesar
-datos que se generan en tiempo real, como logs o datos de sensores.
+La frecuencia del proceso de carga depende de la naturaleza de los datos y de las necesidades del
+negocio, como ya se ha descrito en el proceso de extracción.
 
 \subsection{Alternativas}
 Aunque lo más común es el flujo anteriormente explicado de \textit{extracción}, \textit{transformación} y

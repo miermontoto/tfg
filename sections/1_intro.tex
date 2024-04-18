@@ -1,14 +1,14 @@
 \chapter{Introducción}\label{chap:intro}
-En este capítulo se presenta una introducción al trabajo de investigación realizado, proporcionando
-un contexto general y estableciendo el escenario para los capítulos siguientes. Se discutirán los
-antecedentes y la motivación detrás de este trabajo, la finalidad del proyecto, y se proporcionará
-una breve descripción de la empresa en la que se ha desarrollado este trabajo. Este capítulo tiene
-como objetivo proporcionar una visión general del proyecto y establecer las bases para los capítulos
-detallados que siguen.
+En este capítulo se presenta una introducción al trabajo de desarrollo de software realizado,
+proporcionando un contexto general y estableciendo el escenario para los capítulos siguientes.
+Se discutirán los antecedentes y la motivación detrás de este trabajo, la finalidad del proyecto,
+y se proporcionará una breve descripción de la empresa en la que se ha desarrollado este trabajo.
+Este capítulo tiene como objetivo proporcionar una visión general del proyecto y establecer las
+bases para los capítulos detallados que siguen.
 
 \section{Antecedentes}\label{sec:antecedentes}
 Hoy en día, nos encontramos en una era donde la generación y almacenamiento de datos crece
-exponencialmente \footnote{\url{https://www.statista.com/statistics/871513/worldwide-data-created/}},
+exponencialmente\footnote{\url{https://www.statista.com/statistics/871513/worldwide-data-created/}},
 reflejando una realidad ineludible en el ámbito empresarial. La diversidad de fuentes y formatos de
 estos datos introduce una complejidad significativa en su manejo, conocida como \textit{heterogeneidad}
 \footnote{\url{https://www.sciencedirect.com/topics/computer-science/data-heterogeneity}}, siendo las
@@ -22,12 +22,28 @@ patrones ocultos, identificación de nuevas oportunidades de mercado y optimizac
 de decisiones.
 
 La evolución tecnológica ha propiciado el desarrollo de innovadoras herramientas y metodologías
-diseñadas para enfrentar estos desafíos. Entre ellas, los \textit{data lakes} (ver~\fullref{sec:datalake})
-se destacan por su capacidad para consolidar vastos volúmenes de datos heterogéneos, facilitando su
-posterior análisis y aprovechamiento de manera más efectiva.
+diseñadas para enfrentar estos desafíos. Entre ellas, los \textit{data lakes} (o \emph{lagos de
+información}) se destacan por su capacidad para consolidar vastos volúmenes de datos heterogéneos,
+facilitando su posterior análisis y aprovechamiento de manera más efectiva.
+
+Sin embargo, el proceso de integración, visualización y análisis de estos datos es una tarea desafiante,
+ya que requiere de una gran cantidad de recursos y de un tiempo de desarrollo considerable del que,
+normalmente, no se dispone en el ámbito empresarial.
 
 \newpage{}
 \subsection{Análisis y visualización de datos}\label{subsec:datos}
+Con la ingesta masiva de datos, se presentan nuevos problemas a la hora de analizar y obtener
+información de ellos:
+
+\begin{itemize}
+	\item Sin la necesaria automatización y correcta aplicación de los procesos ETL,
+		el proceso de análisis puede dar lugar a errores y decisiones de negocio incorrectas.
+	\item La heterogeneidad de los datos, tanto en formato como en origen, dificulta su
+		consolidación y análisis.
+	\item La masificación de información a representar requiere de herramientas de visualización,
+		como \textit{dashboards}, que permitan a su análisis.
+\end{itemize}
+
 La visualización de datos es una técnica que permite representar la información de manera visual,
 para facilitar su análisis y comprensión. La visualización de datos es una parte importante del
 proceso de análisis de datos, ya que permite identificar patrones, tendencias y anomalías en los
@@ -35,26 +51,19 @@ datos de forma más rápida y sencilla.
 
 La evolución de la visualización de datos ha ido de la mano de la evolución de la tecnología, y
 actualmente existen múltiples herramientas y técnicas que permiten analizar datos de forma
-más eficiente y efectiva. Una de estas técnicas es el modelo DIKW (ver~\fullref{subsec:dikw}).
+más eficiente y efectiva. Una de estas técnicas es el modelo DIKW.
 
-La visualización de datos es una técnica que permite representar los datos de forma visual, para
-facilitar su análisis y explotación. Los dashboards (ver~\fullref{sec:dashboards}) son una
-herramienta que permite visualizar los datos de forma sencilla y eficiente, para poder tomar
-decisiones informadas sobre los mismos.
-
-\subsection{Modelo DIKW}\label{subsec:dikw}
 La pirámide DIKW\cite{enwiki:1211227190} es un modelo que describe la relación entre los datos,
 la información, el conocimiento y la sabiduría. Según este modelo, los datos son la materia prima
 de la información, que a su vez es la materia prima del conocimiento, que a su vez es la materia
 prima de la sabiduría.
 
 \newpage{}
-
 \section{Motivación}\label{sec:motivacion}
-El proyecto surge de la necesidad de la empresa (ver \fullref{sec:empresa}) de extraer información
-y conocimiento de las múltiples y heterogéneas fuentes de datos de las que se disponen,
-tanto internas (e.g.~bases de datos, archivos de registros, APIs, entre otros),
-como externas (e.g. APIs o datos de webs de terceros, datos de fuentes públicas\ldots).
+El proyecto surge de la necesidad de la empresa de extraer información y conocimiento de las
+múltiples y heterogéneas fuentes de datos de las que se disponen, tanto internas (e.g.~bases de
+datos, archivos de registros, APIs, entre otros), como externas (e.g. APIs o datos de webs de
+terceros, datos de fuentes públicas\ldots).
 
 En la actualidad, la empresa dispone de una gran cantidad de datos que se encuentran en
 diferentes formatos y en diferentes ubicaciones, lo que dificulta su análisis y explotación.
@@ -67,17 +76,18 @@ forma autónoma, lo que supondría un valor añadido para los mismos.
 
 \section{Finalidad del proyecto}\label{sec:finalidad}
 \subsection{Objetivos}\label{subsec:objetivos}
-El objetivo de este sistema es centralizar y unificar las fuentes de datos heterogéneas
-cuya consulta se realiza de manera manual, con la finalidad de analizar los datos de forma
-más eficiente. El cumplimiento de este objetivo permitirá a la empresa obtener una serie de
-beneficios:
+El objetivo de este proyecto es la creación de una herramienta que centralice y unifique las
+fuentes de datos heterogéneas cuya consulta se realiza actualmente de manera manual mediante
+la creación y despliegue de un data lake (y todas las herramientas asociadas necesarias), con
+la finalidad de analizar los datos de forma más eficiente. El cumplimiento de este objetivo
+permitirá a la empresa obtener una serie de beneficios;
 
 \begin{itemize}
 	\item \textbf{Eliminar el tiempo invertido} en la consulta manual de los datos.
 	\item \textbf{Reducir los costes} asociados a servicios de terceros.
 	\item \textbf{Mejorar la toma de decisiones}, al poder analizar los datos de forma más eficiente.
 	\item \textbf{Incrementar la calidad de los servicios} ofrecidos a los clientes, al poder ofrecerles
-	      la posibilidad de consultar los datos de forma visual y sencilla.
+	    la posibilidad de consultar los datos de forma visual y sencilla.
 	\item \textbf{Explotar económicamente} este servicio, ofreciéndolo a terceros.
 \end{itemize}
 
@@ -204,3 +214,8 @@ e integraciones que requiera la empresa cliente y el soporte que se ofrezca.
 Recientemente se han añadido nuevas propuestas a la cartera de servicios ofertada por
 Okticket, como la OKTCard {-} una tarjeta inteligente que gestiona automáticamente los gastos,
 así como la inclusión de nuevos ``módulos'' de gestión de gastos y viajes.
+
+Debido a todo este crecimiento, la empresa maneja una gran cantidad de datos importantes que se
+encuentran en diferentes formatos y en diferentes ubicaciones, lo que dificulta su análisis y
+explotación. Por otra parte, se depende de la consulta manual o de servicios de terceros para
+poder analizar estos datos, lo que supone un coste adicional.
