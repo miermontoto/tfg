@@ -4,9 +4,12 @@ proyecto, para proporcionar una base teórica sobre la que se desarrolla el trab
 los conceptos de \textit{data lake}, \textit{procesos ETL} y \textit{dashboards}, que son
 fundamentales para el desarrollo del proyecto.
 
-\section{Data lake}\label{sec:datalake}
+\section{Paradigmas de almacenamiento de datos}\label{sec:paradigmas}
+
+
+\subsection{Data lake}\label{sec:datalake}
 Los \textit{data lakes}\footnote{\url{https://aws.amazon.com/es/what-is/data-lake/}}
-son almacenes de datos que almacenan grandes cantidades de datos de manera no
+son almacenes de datos que guardan grandes cantidades de datos de manera no
 estructurada~\cite{mier2023dashboards}. En el ámbito de una empresa, un \textit{data lake}
 contiene datos de diferentes fuentes de valor no considerado hasta su análisis, de manera
 que su explotación posterior y su análisis no depende de una estructuración y transformación
@@ -32,13 +35,12 @@ permiten observar los datos de manera sencilla y eficiente.
 
 \newpage{}
 \section{Procesos ETL}\label{sec:etl}
-\subsection{Definición}
 Los procesos ETL~\cite{mier2023dashboards} son procesos que combinan datos de múltiples
 fuentes en un único destino, transformando los datos en un formato común. Estos procesos
 se utilizan para extraer datos de diferentes fuentes, transformarlos en un formato común
 y cargarlos en un destino común, como puede ser un \textit{data lake}.
 
-\subsection{Características}
+% \subsection{Características}
 Los procesos ETL, fundamentales en el ámbito de la gestión de datos, presentan atributos
 distintivos que facilitan la integración eficaz de información procedente de diversas fuentes:
 
@@ -58,15 +60,20 @@ distintivos que facilitan la integración eficaz de información procedente de d
 \newpage{}
 \subsection{Funcionamiento}
 Los procesos ETL se dividen en tres fases principales: \textit{extracción}, \textit{transformación}
-y \textit{carga}.
+y \textit{carga}, como se muestra en el sigiuente diagrama:
 
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=0.6\textwidth]{etl.png}
-	\captionof{figure}{Fases de un proceso ETL}
+	\includegraphics[width=0.8\textwidth]{etl.png}
+	\captionof{figure}{Fases de un proceso ETL (trabajo propio)}
 \end{minipage}
 
-\paragraph{Extracción}
+Al comienzo del proceso, se tienen datos presúntamente heterogéneos que no se pueden analizar de
+manera eficiente. Tras aplicar todos los pasos de las fases anteriores, se obtiene un conjunto de
+datos homogéneos y listos para ser analizados en el destino indicado (en el caso de este proyecto,
+un \emph{data lake}).
+
+\paragraph{Extracción (1)}
 En este proceso se extraen los datos de las fuentes de datos, que pueden ser bases de datos, logs,
 APIs, etc. En este paso, se pueden aplicar filtros para extraer solo los datos que se necesiten, y
 se pueden extraer datos de múltiples fuentes \emph{heterogéneas}.
@@ -79,60 +86,73 @@ En otros casos, los datos se pueden extraer de manera continua, es decir, se ext
 tiempo real según se van generando. Esto puede ser útil para procesar datos que se generan en tiempo
 real, como logs o datos de sensores.
 
-\paragraph{Transformación}
-En este proceso se transforman los datos extraídos en un formato común, normalmente tablas relacionales.
+\newpage{}
+\paragraph{Transformación (2)}
+En este proceso se transforman los datos extraídos en la fase anterior, normalmente aplicándoles
+un proceso de limpieza y transformación a un formato común. En este paso, se pueden aplicar
+diferentes operaciones a los datos, como la limpieza, la agregación, la normalización, la conversión
+de formatos, etc.
 
-Una transformación básica de datos es la limpieza, revisión y corrección de los datos extraídos,
-para asegurar que los datos que se almacenan son correctos y consistentes. Otras operaciones más
-complejas pueden ser la agregación de datos, la conversión de formatos, la normalización de datos,
-el cifrado, etc.
+Una transformación especialmente importante que se suele reaizar durante este proceso es la limpieza,
+revisión y corrección de los datos extraídos, para asegurar que se almacena información correcta y
+consistentes. Durante esta fase se contemplan operaciones más complejas, como pueden ser la agregación
+de datos, la conversión de formatos, la normalización de datos, el cifrado, etc.
 
 Estos procesos de transformación son vitales cuando el sistema maneja una gran cantidad de datos heterogéneos
 de múltiples fuentes de manera simultánea, como puede ser el caso de un \textit{data lake} o un \textit{data
 warehouse}. En el caso del primero, no es necesaria la transformación de los datos a un formato común, pero si
 otros procesos clave como la limpieza y la normalización de los datos, entre otros.
 
-\paragraph{Carga}
+\paragraph{Carga (3)}
 En este proceso se cargan los datos transformados en el destino final. Frecuentemente, los datos se
 almacenan en una data warehouse o data lake para su posterior análisis.
 
 La frecuencia del proceso de carga depende de la naturaleza de los datos y de las necesidades del
 negocio, como ya se ha descrito en el proceso de extracción.
 
+Tras completar este proceso, los datos están listos para ser analizados y visualizados desde las arquitecturas
+de datos que almacenen la información.
+
+\newpage{}
 \subsection{Alternativas}
 Aunque lo más común es el flujo anteriormente explicado de \textit{extracción}, \textit{transformación} y
 \textit{carga}, existen algunos flujos y procesos alternativos que evitan algunos de estos pasos, normalmente
 en casos específicos que se beneficien del cambio:
 
 \begin{itemize}
-	\item \textbf{Virtualización:} en lugar de extraer los datos de las fuentes, se crea una capa virtual que
-		permite acceder a los datos de las fuentes sin necesidad de extraerlos. Esto permite ahorrar espacio de
-		almacenamiento y tiempo de procesamiento, pero puede ser menos eficiente en algunos casos.
+	\item \textbf{Virtualización de datos:} capa virtual de abstracción que permite acceder a los datos de las
+		fuentes sin necesidad de extraerlos. Esto permite ahorrar espacio de almacenamiento y tiempo de procesamiento,
+		pero suele ser menos eficiente en términos de rendimiento y no es compatible con todas las arquitecturas de
+		datos.
 
-		\begin{minipage}{0.9\linewidth}
-			\includegraphics[width=\textwidth]{virt.png}
-			\captionof{figure}{Ejemplo de flujo con virtualización}
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=0.65\textwidth]{virt.png}
+			\captionof{figure}{Ejemplo de flujo con virtualización (trabajo propio)}
 		\end{minipage}
-	\item \textbf{Proceso \textit{ELT}:} en lugar de transformar los datos antes de cargarlos en el destino,
-		se cargan los datos en bruto y se transforman en el destino. Funciona bien para grandes conjuntos de
-		datos sin estructura que requieran una carga (o recarga) contínua, aunque, al igual que la virtualización,
-		puede ser menos eficiente en algunos casos.
+	\item \textbf{Proceso \textit{ELT}\footnote{\url{https://www.ibm.com/topics/elt}}:} en lugar de transformar
+		los datos antes de cargarlos en el destino, se cargan los datos en bruto y se transforman en el destino.
+		Funciona bien para grandes conjuntos de datos sin estructura que requieran una carga (o recarga) contínua,
+		aunque, al igual que la virtualización, puede ser menos eficiente o incompatible con algunas arquitecturas
+		de datos, como los \textit{data warehouses}.
 
-		\begin{minipage}{0.9\linewidth}
-			\includegraphics[width=\textwidth]{elt.png}
-			\captionof{figure}{Comparación de flujos ETL y ELT}
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=0.75\textwidth]{elt.png}
+			\captionof{figure}{Diagrama de flujo de un proceso \textit{ELT} (trabajo propio)}
 		\end{minipage}
 \end{itemize}
 
 
 \newpage{}
 \section{Dashboards}\label{sec:dashboards}
-\subsection{Definición}~\cite{mier2023dashboards}
+\paragraph{Definición}
 La palabra \textit{dashboard}, que traducido de manera literal significa \textit{cuadro de mandos},
 es un término que se utiliza para referirse a cualquier interfaz gráfica que muestre información
 relevante de manera visual sobre un proceso o negocio. Aunque el término se utiliza en
 muchos ámbitos: indicadores comerciales, de producción, de marketing, de calidad, de recursos
-humanos\ldots
+humanos\ldots, en este proyecto se utilizará en el ámbito de la monitorización de sistemas y
+procesos de negocio.
 
 En el ámbito de deste proyecto, los dashboards reflejan en tiempo real el rendimiento de
 actividades o procesos de negocio, y se utilizan para tomar decisiones informadas sobre los
@@ -140,9 +160,9 @@ mismos. En el caso de una empresa, un dashboard puede mostrar desde el rendimien
 plataforma en tiempo real hasta un reflejo del de las ventas, y permitir a los directivos tomar
 decisiones informadas sobre el futuro de la empresa.
 
-\subsection{Características}
+\paragraph{Características}
 Los dashboards cuentan con una serie de características que los hacen útiles para la toma de
-decisiones:
+decisiones:~\cite{mier2023dashboards}
 
 \begin{itemize}
 	\item \textbf{Visualización de datos:} es la característica fundamental de cualquier
