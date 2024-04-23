@@ -13,13 +13,23 @@ reflejando una realidad ineludible en el ámbito empresarial. La diversidad de f
 estos datos introduce una complejidad significativa en su manejo, conocida como \textit{heterogeneidad}
 \footnote{\url{https://www.sciencedirect.com/topics/computer-science/data-heterogeneity}}, siendo las
 bases de datos, archivos de registros y APIs las fuentes más habituales.
-
-La era del \textit{big data} describe este fenómeno de acumulación masiva de datos, cuya magnitud y
+El término \textit{big data} describe este fenómeno de acumulación masiva de datos, cuya magnitud y
 complejidad sobrepasan las capacidades de los métodos de procesamiento convencionales. Se distingue
 por tres características principales: volumen, variedad y velocidad. Su adecuada gestión y análisis
 pueden otorgar ventajas competitivas significativas a las empresas, tales como el descubrimiento de
 patrones ocultos, identificación de nuevas oportunidades de mercado y optimización de procesos de toma
 de decisiones.
+
+Uno de los procesos que permite la extracción de esta información es la pirámide DIKW, \cite{enwiki:1211227190}
+es un modelo que describe la relación entre los datos, la información, el conocimiento y la sabiduría.
+Según este modelo, los datos son la materia prima de la información, que a su vez es la materia prima
+del conocimiento, que a su vez es la materia prima de la sabiduría.
+
+Una organización sin los procesos adecuados para la gestión y análisis de estos datos, se enfrenta a
+importantes desafíos, como la dificultad para identificar patrones y tendencias, la toma de decisiones
+incorrectas y la pérdida de oportunidades de negocio. Por otro lado,una organización que logre extraer
+información valiosa de sus datos, podrá mejorar su eficiencia, aumentar su competitividad y adaptarse
+mejor a un entorno empresarial en constante cambio.
 
 La evolución tecnológica ha propiciado el desarrollo de innovadoras herramientas y metodologías
 diseñadas para enfrentar estos desafíos. Entre ellas, los \textit{data lakes} (o \emph{lagos de
@@ -30,15 +40,14 @@ Sin embargo, el proceso de integración, visualización y análisis de estos dat
 ya que requiere de una gran cantidad de recursos y de un tiempo de desarrollo considerable del que,
 normalmente, no se dispone en el ámbito empresarial.
 
-\newpage{}
-\subsection{Análisis y visualización de datos}\label{subsec:datos}
 Con la ingesta masiva de datos, se presentan nuevos problemas a la hora de analizar y obtener
 información de ellos:
 
 \begin{itemize}
 	\item Sin la necesaria automatización y correcta aplicación de los procesos ETL,
-		el proceso de análisis puede dar lugar a errores y decisiones de negocio incorrectas
-		al tratarse del crecimiento exponencial de los datos.
+		al tratarse de un crecimiento exponencial de los datos y, por lo tanto, de la fuerza
+		de trabajo necesaria para manejarla, el proceso de análisis puede dar lugar a errores
+		y decisiones de negocio incorrectas además de un aumento de los costes.
 	\item La heterogeneidad de los datos, tanto en formato como en origen, dificulta su
 		consolidación y análisis.
 	\item La masificación de información a representar requiere de herramientas de visualización,
@@ -50,17 +59,14 @@ para facilitar su análisis y comprensión. La visualización de datos es una pa
 proceso de análisis de datos, ya que permite identificar patrones, tendencias y anomalías en los
 datos de forma más rápida y sencilla.
 
-La evolución de la visualización de datos ha ido de la mano de la evolución de la tecnología, y
-actualmente existen múltiples herramientas y técnicas que permiten analizar datos de forma
-más eficiente y efectiva. Una de estas técnicas es el modelo DIKW.
-
-La pirámide DIKW\cite{enwiki:1211227190} es un modelo que describe la relación entre los datos,
-la información, el conocimiento y la sabiduría. Según este modelo, los datos son la materia prima
-de la información, que a su vez es la materia prima del conocimiento, que a su vez es la materia
-prima de la sabiduría.
 
 \newpage{}
 \section{Motivación}\label{sec:motivacion}
+Okticket, como el resto de empresas, se enfrenta a la necesidad de gestionar y analizar grandes
+volúmenes de datos, provenientes de múltiples fuentes y en diferentes formatos. La correcta gestión
+y análisis de estos datos es fundamental para la toma de decisiones y para la mejora de los procesos
+internos de la empresa.
+
 El proyecto surge de la necesidad de la empresa de extraer información y conocimiento de las
 múltiples y heterogéneas fuentes de datos de las que se disponen, tanto internas (e.g.~bases de
 datos, archivos de registros, APIs, entre otros), como externas (e.g. APIs o datos de webs de
@@ -76,7 +82,6 @@ consultar estos datos de forma visual y sencilla, para que puedan analizarlos y 
 forma autónoma, lo que supondría un valor añadido para los mismos.
 
 \section{Finalidad del proyecto}\label{sec:finalidad}
-\subsection{Objetivos}\label{subsec:objetivos}
 El objetivo de este proyecto es la creación de una herramienta que centralice y unifique las
 fuentes de datos heterogéneas. Esta consulta se realiza actualmente de manera manual mediante
 la creación y despliegue de un data lake (y todas las herramientas asociadas necesarias), con
