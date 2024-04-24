@@ -1,23 +1,37 @@
-\chapter{Fundamento teórico}\label{chap:teoria}
+\chapter{Fundamento teórico}\label{chap:teo}
 En este capítulo se presentan los conceptos y términos fundamentales que se utilizan en el
 proyecto, para proporcionar una base teórica sobre la que se desarrolla el trabajo. Se discuten
 los conceptos de \textit{data lake}, \textit{procesos ETL} y \textit{dashboards}, que son
 fundamentales para el desarrollo del proyecto.
 
 \section{Paradigmas de almacenamiento de datos}\label{sec:paradigmas}
+\subsection{Data warehouse}\label{sec:warehouse}
+Un \textit{data warehouse}\footnote{\url{https://aws.amazon.com/es/data-warehouse/}},
+también conocido en español como almacén de datos, es una base de datos que se utiliza para
+almacenar y analizar grandes cantidades de datos de manera eficiente. Los almacenes de datos
+proporcionan acceso rápido y compatible con plataformas de consultas (como SQL) a grandes
+cantidades de datos, lo que permite a los analistas y a los científicos de datos realizar
+análisis complejos sobre los datos almacenados.
+
+Todos los datos almacenados en un \textit{data warehouse} se encuentran en un formato común,
+para lo que se aplican procesos ETL (extracción, transformación y carga) que transforman los
+datos de diferentes fuentes en un formato común. Esto significa que la información se
+encuentra en un formato o esquema optimizado y específico, lo que facilita su manipulación y
+análisis pero limita la flexibilidad al acceso de los datos y genera costes adicionales en
+el caso de tener que modificar o transferir los mismos para su uso.
 
 
-\subsection{Data lake}\label{sec:datalake}
+\subsection{Data lake}\label{sec:lake}
 Los \textit{data lakes}\footnote{\url{https://aws.amazon.com/es/what-is/data-lake/}}
 son almacenes de datos que guardan grandes cantidades de datos de manera no
 estructurada~\cite{mier2023dashboards}. En el ámbito de una empresa, un \textit{data lake}
 contiene datos de diferentes fuentes de valor no considerado hasta su análisis, de manera
 que su explotación posterior y su análisis no depende de una estructuración y transformación
 compleja, reduciendo los costes de los procesos ETL derivados, una flujo de tareas que se
-aplican sobre la información para ingestarla.. Esto
-no quiere decir que no se apliquen estos procesos a los datos, sino que se aplican de manera
-más flexible y básica que en otras estructuras de almacenamiento de datos con esquemas
-predefinidos, como los \textit{data warehouses}.~\cite{pwint2018data}
+aplican sobre la información para ingestarla. Esto no quiere decir que no se apliquen estos
+procesos a los datos, sino que se aplican de manera más flexible y básica que en otras
+estructuras de almacenamiento de datos con esquemas predefinidos, como los
+\textit{data warehouses}.~\cite{pwint2018data}
 
 A diferencia de los \textit{data warehouses}, los \textit{data lakes} no tienen un
 esquema definido, lo que permite almacenar datos \textit{heterogéneos}. Esto permite
@@ -32,6 +46,18 @@ normalmente en el campo de la investigación académica.
 Para consultar esta gran cantidad de datos almacenados, se suelen utilizar técnicas de
 visualización de datos, como los \textit{dashboards}, herramientas de visualización que
 permiten observar los datos de manera sencilla y eficiente.
+
+\subsection{Data lakehouse}\label{sec:lakehouse}
+Los \textit{data lakehouses} son una combinación funcional de los dos paradigmas vistos
+anteriormente, los \textit{data lakes} y los \textit{data warehouses}. Los \textit{data
+lakehouses} permiten almacenar datos tanto de manera estructurada como no estructurada,
+lo que facilita aprovechar la información al contar con una única estructura de bajo coste
+que ofrece a los usuarios que lo necesiten explorar y analizar los datos según sus necesidades.
+
+Puesto que en este proyecto se plantea el uso de datos tanto estructurados como no estructurados,
+y no siempre será de interés aplicar procesos de transformación a toda la información obtenida,
+los \textit{data lakehouse} se presentan como una solución eficiente y flexible para el almacenamiento
+y análisis de los datos.
 
 \newpage{}
 \section{Procesos ETL}\label{sec:etl}
