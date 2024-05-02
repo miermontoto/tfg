@@ -82,114 +82,19 @@ consultar estos datos de forma visual y sencilla, para que puedan analizarlos y 
 forma autónoma, lo que supondría un valor añadido para los mismos.
 
 \section{Finalidad del proyecto}\label{sec:finalidad}
-El objetivo de este proyecto es la creación de una herramienta que centralice y unifique las
-fuentes de datos heterogéneas. Esta consulta se realiza actualmente de manera manual mediante
-la creación y despliegue de un data lake (y todas las herramientas asociadas necesarias), con
-la finalidad de analizar los datos de forma más eficiente. El cumplimiento de este objetivo
-permitirá a la empresa obtener una serie de beneficios;
+El objetivo del proyecto es el desarrollo y despliegue de una infraestructura de datos que permita
+la integración, almacenamiento y análisis de grandes volúmenes de datos, provenientes de múltiples
+fuentes y en diferentes formatos. La infraestructura de datos debe ser escalable, flexible y
+robusta, para poder adaptarse a las necesidades cambiantes de la empresa.
 
-\begin{itemize}
-	\item \textbf{Eliminar el tiempo invertido} en la consulta manual de los datos.
-	\item \textbf{Reducir los costes} asociados a servicios de terceros.
-	\item \textbf{Mejorar la toma de decisiones}, al poder analizar los datos de forma más eficiente.
-	\item \textbf{Incrementar la calidad de los servicios} ofrecidos a los clientes, al poder ofrecerles
-	    la posibilidad de consultar los datos de forma visual y sencilla.
-	\item \textbf{Explotar económicamente} este servicio, ofreciéndolo a terceros.
-\end{itemize}
+La infraestructura de datos debe permitir la integración de datos de múltiples fuentes, tanto
+internas como externas, y en diferentes formatos, como bases de datos, archivos de registros, APIs,
+entre otros. La integración de datos debe ser automática y programable, para poder automatizar el
+proceso de ingestión de datos y reducir el tiempo y los costes asociados.
 
-Además de la mejora de los procesos ya existentes, la explotación mediante esta herramienta
-abrirá la puerta a nuevas posibilidades de análisis y explotación de los datos, como la detección
-de anomalías en la infraestructura o la predicción de patrones y eventos futuros.
-
-\subsection{Requisitos}\label{subsec:requisitos}
-Los anteriores objetivos se detallan en requisitos funcionales y no funcionales, que se
-presentan a continuación.
-
-\subsubsection{Requisitos funcionales}\label{subsubsec:funcionales}
-\begin{enumerate}[label=RF\arabic*.]
-	\item \textbf{Integración de fuentes de datos:} El data lake debe ser capaz de integrar datos
-		de diferentes fuentes, de manera que se almacenen de manera unificada.
-		\begin{enumerate}[label*=\arabic*.]
-			\item \emph{Fuentes internas} \begin{enumerate}[label*=\arabic*.]
-					\item MongoDB
-					\item MySQL
-					\item Okticket API
-				\end{enumerate}
-			\item \emph{Fuentes externas} \begin{enumerate}[label*=\arabic*.]
-					\item APIs de terceros
-					\item Webs de terceros (\textit{scraping})
-				\end{enumerate}
-		\end{enumerate}
-	\item \textbf{Transformación de datos:} El data lake debe ser capaz de transformar los datos
-		integrados en un formato que pueda ser analizado.
-	\item \textbf{Limpieza de datos:} El data lake debe ser capaz de limpiar los datos, para que
-		estén preparados para el análisis. \begin{enumerate}[label*=\arabic*.]
-			\item Eliminación de duplicados
-			\item Eliminación de valores nulos
-			\item Eliminación de valores atípicos
-			\item Transformación de tipos de datos
-			\item Transformación de fechas
-		\end{enumerate}
-	\item \textbf{Gestón de metadatos:} El sistema debe gestionar metadatos, permitiendo a los
-		usuarios entender el origen, el contenido y el contexto de los datos. A la hora de
-		visualizar los datos, deben ser mostrados en la interfaz de consulta.
-		\begin{enumerate}[label*=\arabic*.]
-			\item Fuente de origen
-			\item Empresa vinculada
-			\item Fecha de creación
-			\item Fecha de actualización
-		\end{enumerate}
-	\item \textbf{Soporte para análisis:} Debe permitir el análisis de datos complejos, incluyendo
-		el procesamiento de grandes volúmenes de datos mediante búsquedas con el objetivo de segmentar
-		la información.
-	\item \textbf{Interfaz de consulta:} Debe ser capaz de visualizar los datos de forma sencilla y
-		eficiente, para que los usuarios puedan analizarlos y explotarlos de forma autónoma.
-		\begin{enumerate}[label*=\arabic*.]
-			\item \emph{Interfaz interna}
-				\begin{enumerate}[label*=\arabic*.]
-					\item Monitorización de infraestructura
-					\item Análisis de negocio
-					\item Gestión de soporte
-				\end{enumerate}
-			\item \emph{Intefaz externa:} Consulta de datos a nivel externo para los administradores de
-				empresas cliente que ofrezca un análisis a nivel de negocio de la información que se
-				posea relacionada con dicha empresa.
-		\end{enumerate}
-	\item \textbf{Gestión de calidad:} Herramientas y procesos para monitorear y mejorar continuamente
-		la calidad de los datos almacenados en el datalake. Debe soportar la generación de informes de
-		calidad de datos y la configuración de alertas basadas en umbrales de calidad de datos.
-\end{enumerate}
-
-\subsubsection{Requisitos no funcionales}\label{subsubsec:nofuncionales}
-\begin{enumerate}[label=RNF\arabic*.]
-	\item \textbf{Automatización} \begin{enumerate}[label*=\arabic*.]
-		\item Los procesos ETL que alimentan el \textit{data lake} deben ser automáticos.
-		\item Los procesos de limpieza y transformación de datos deben ser automáticos.
-		\item Los procesos de gestión de metadatos deben ser automáticos.
-		\item El proceso de despliegue del programa debe estar automatizado (pipelines, docker/kubernetes, etc.)
-	\end{enumerate}
-	\item \textbf{Escalabilidad} \begin{enumerate}[label*=\arabic*.]
-		\item El sistema debe ser escalable horizontalmente, para que pueda soportar el crecimiento de los datos.
-		\item El sistema debe ser escalable verticalmente, para que pueda soportar el crecimiento de los recursos de procesamiento.
-	\end{enumerate}
-	\item \textbf{Disponibilidad} \begin{enumerate}[label*=\arabic*.]
-		\item El sistema debe ser disponible 24/7, para que pueda ser utilizado por los usuarios en cualquier momento.
-		\item El sistema debe contar con al menos 3 nueves de disponibilidad (99,9\%).
-	\end{enumerate}
-	\item \textbf{Seguridad de la información:} El sistema debe garantizar la protección de la información y asegurar que los datos
-		no puedan ser accedidos por ningún agente externo.
-	\item \textbf{Rendimiento} \begin{enumerate}[label*=\arabic*.]
-		\item La latencia de navegación entre el usuario y el sistema debe ser inferior a 2 segundos.
-		\item La latencia de consultas de datos debe ser inferior a 15 segundos.
-	\end{enumerate}
-	\item \textbf{Eficiencia de costes:} El sistema debe ser eficiente en el coste de desarrollo, tanto en el tiempo como en el coste de
-		recursos.
-	\item \textbf{Mantenibilidad:} el sistema y su código debe de ser mantenible e introducir buenas prácticas de manera
-		que se facilite el desarrollo futuro sobre el mismo.
-	\item \textbf{Cumplimiento normativo y privacidad:} El sistema debe cumplir con toda la legislación y normativa
-		relativa a la privacidad de los datos, incluyendo la normativa de la empresa y las certificaciones a la que
-		está sometida.
-\end{enumerate}
+Pese a que el entregable principal de este proyecto es la creación de una infraestructura, se
+esperan también otros entregables en forma de herramientas de software, como \textit{scripts},
+que faciliten la integración y análisis de los datos, así como la visualización de los mismos.
 
 \newpage{}
 \section{La empresa}\label{sec:empresa}
