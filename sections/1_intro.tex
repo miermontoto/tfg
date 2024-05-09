@@ -9,13 +9,14 @@ bases para los capítulos detallados que siguen.
 \section{Antecedentes}\label{sec:antecedentes}
 Hoy en día, nos encontramos en una era donde la generación y almacenamiento de datos crece
 exponencialmente\footnote{\url{https://www.statista.com/statistics/871513/worldwide-data-created/}},
-reflejando una realidad ineludible en el ámbito empresarial. La diversidad de fuentes y formatos de
+un hecho que se ve reflejado en el ámbito empresarial. La diversidad de fuentes y formatos de
 estos datos introduce una complejidad significativa en su manejo, conocida como \textit{heterogeneidad}
 \footnote{\url{https://www.sciencedirect.com/topics/computer-science/data-heterogeneity}}, siendo las
 bases de datos, archivos de registros y APIs las fuentes más habituales.
+
 El término \textit{big data} describe este fenómeno de acumulación masiva de datos, cuya magnitud y
-complejidad sobrepasan las capacidades de los métodos de procesamiento convencionales. Se distingue
-por tres características principales: volumen, variedad y velocidad. Su adecuada gestión y análisis
+complejidad sobrepasan las capacidades de los métodos de procesamiento convencionales. El \textit{big data}
+por tres características principales: volumen, variedad y velocidad - su adecuada gestión y análisis
 pueden otorgar ventajas competitivas significativas a las empresas, tales como el descubrimiento de
 patrones ocultos, identificación de nuevas oportunidades de mercado y optimización de procesos de toma
 de decisiones.
@@ -23,22 +24,21 @@ de decisiones.
 Uno de los procesos que permite la extracción de esta información es la pirámide DIKW, \cite{enwiki:1211227190}
 es un modelo que describe la relación entre los datos, la información, el conocimiento y la sabiduría.
 Según este modelo, los datos son la materia prima de la información, que a su vez es la materia prima
-del conocimiento, que a su vez es la materia prima de la sabiduría.
-
-Una organización sin los procesos adecuados para la gestión y análisis de estos datos, se enfrenta a
-importantes desafíos, como la dificultad para identificar patrones y tendencias, la toma de decisiones
-incorrectas y la pérdida de oportunidades de negocio. Por otro lado,una organización que logre extraer
-información valiosa de sus datos, podrá mejorar su eficiencia, aumentar su competitividad y adaptarse
-mejor a un entorno empresarial en constante cambio.
+del conocimiento, que a su vez es la materia prima de la sabiduría. Una organización sin los procesos
+adecuados para la gestión y análisis de estos datos, se enfrenta a importantes desafíos, como la dificultad
+para identificar patrones y tendencias, la toma de decisiones incorrectas y la pérdida de oportunidades de
+negocio. Por otro lado, una organización que logre extraer información valiosa de sus datos, podrá mejorar su
+eficiencia, aumentar su competitividad y adaptarse mejor a un entorno empresarial en constante cambio.
 
 La evolución tecnológica ha propiciado el desarrollo de innovadoras herramientas y metodologías
 diseñadas para enfrentar estos desafíos. Entre ellas, los \textit{data lakes} (o \emph{lagos de
 información}) se destacan por su capacidad para consolidar vastos volúmenes de datos heterogéneos,
 facilitando su posterior análisis y aprovechamiento de manera más efectiva.
 
-Sin embargo, el proceso de integración, visualización y análisis de estos datos es una tarea desafiante,
-ya que requiere de una gran cantidad de recursos y de un tiempo de desarrollo considerable del que,
-normalmente, no se dispone en el ámbito empresarial.
+Sin embargo, a pesar de que existen herramientas de almacenamiento, el proceso de integración,
+visualización y análisis de estos datos es una tarea desafiante, ya que requiere de una gran
+cantidad de recursos y de un tiempo de desarrollo considerable del que, normalmente, no se dispone
+en el ámbito empresarial.
 
 Con la ingesta masiva de datos, se presentan nuevos problemas a la hora de analizar y obtener
 información de ellos:
@@ -46,19 +46,18 @@ información de ellos:
 \begin{itemize}
 	\item Sin la necesaria automatización y correcta aplicación de los procesos ETL,
 		al tratarse de un crecimiento exponencial de los datos y, por lo tanto, de la fuerza
-		de trabajo necesaria para manejarla, el proceso de análisis puede dar lugar a errores
-		y decisiones de negocio incorrectas además de un aumento de los costes.
+		de trabajo necesaria para manejarla, los resultados del análisis pueden ser incorrectos,
+		lo que deriva en errores y decisiones de negocio equivocadas que impactan negativamente
+		en la empresa.
 	\item La heterogeneidad de los datos, tanto en formato como en origen, dificulta su
 		consolidación y análisis.
-	\item La masificación de información a representar requiere de herramientas de visualización,
-		como \textit{dashboards}, que permitan a su análisis.
+	\item La masificación de información impide el análisis manual de los mismos, requiriendo resúmenes
+		estadísticos o representaciones gráficas como \textit{dashboards} para su correcta interpretación.
+		La visualización de datos es una técnica que permite representar la información de manera visual,
+		para facilitar su análisis y comprensión. La visualización de datos es una parte importante del
+		proceso de análisis de datos, ya que permite identificar patrones, tendencias y anomalías en los
+		datos de forma más rápida y sencilla.
 \end{itemize}
-
-La visualización de datos es una técnica que permite representar la información de manera visual,
-para facilitar su análisis y comprensión. La visualización de datos es una parte importante del
-proceso de análisis de datos, ya que permite identificar patrones, tendencias y anomalías en los
-datos de forma más rápida y sencilla.
-
 
 \newpage{}
 \section{Motivación}\label{sec:motivacion}
@@ -67,34 +66,19 @@ volúmenes de datos, provenientes de múltiples fuentes y en diferentes formatos
 y análisis de estos datos es fundamental para la toma de decisiones y para la mejora de los procesos
 internos de la empresa.
 
-El proyecto surge de la necesidad de la empresa de extraer información y conocimiento de las
-múltiples y heterogéneas fuentes de datos de las que se disponen, tanto internas (e.g.~bases de
-datos, archivos de registros, APIs, entre otros), como externas (e.g. APIs o datos de webs de
-terceros, datos de fuentes públicas\ldots).
-
 En la actualidad, la empresa dispone de una gran cantidad de datos que se encuentran en
 diferentes formatos y en diferentes ubicaciones, lo que dificulta su análisis y explotación.
 Por otra parte, se depende de la consulta manual o de servicios de terceros para poder analizar
 estos datos, lo que supone un coste adicional.
 
+El proyecto surge de la necesidad de la empresa de extraer información y conocimiento de las
+múltiples y heterogéneas fuentes de datos de las que se disponen, tanto internas (e.g.~bases de
+datos, archivos de registros, APIs, entre otros), como externas (e.g. APIs o datos de webs de
+terceros, datos de fuentes públicas\ldots).
+
 Además del uso interno, la empresa también quiere ofrecer a sus clientes la posibilidad de
 consultar estos datos de forma visual y sencilla, para que puedan analizarlos y explotarlos de
 forma autónoma, lo que supondría un valor añadido para los mismos.
-
-\section{Finalidad del proyecto}\label{sec:finalidad}
-El objetivo del proyecto es el desarrollo y despliegue de una infraestructura de datos que permita
-la integración, almacenamiento y análisis de grandes volúmenes de datos, provenientes de múltiples
-fuentes y en diferentes formatos. La infraestructura de datos debe ser escalable, flexible y
-robusta, para poder adaptarse a las necesidades cambiantes de la empresa.
-
-La infraestructura de datos debe permitir la integración de datos de múltiples fuentes, tanto
-internas como externas, y en diferentes formatos, como bases de datos, archivos de registros, APIs,
-entre otros. La integración de datos debe ser automática y programable, para poder automatizar el
-proceso de ingestión de datos y reducir el tiempo y los costes asociados.
-
-Pese a que el entregable principal de este proyecto es la creación de una infraestructura, se
-esperan también otros entregables en forma de herramientas de software, como \textit{scripts},
-que faciliten la integración y análisis de los datos, así como la visualización de los mismos.
 
 \newpage{}
 \section{La empresa}\label{sec:empresa}
@@ -130,3 +114,18 @@ Debido a todo este crecimiento, la empresa maneja una gran cantidad de datos imp
 encuentran en diferentes formatos y en diferentes ubicaciones, lo que dificulta su análisis y
 explotación. Por otra parte, se depende de la consulta manual o de servicios de terceros para
 poder analizar estos datos, lo que supone un coste adicional.
+
+\section{Objetivos}\label{sec:objetivos}
+El objetivo del proyecto es el desarrollo y despliegue de una infraestructura de datos que permita
+la integración, almacenamiento y análisis de grandes volúmenes de datos, provenientes de múltiples
+fuentes y en diferentes formatos. La infraestructura de datos debe ser escalable, flexible y
+robusta, para poder adaptarse a las necesidades cambiantes de la empresa.
+
+La infraestructura de datos debe permitir la integración de datos de múltiples fuentes, tanto
+internas como externas, y en diferentes formatos, como bases de datos, archivos de registros, APIs,
+entre otros. La integración de datos debe ser automática y programable, para poder automatizar el
+proceso de ingestión de datos y reducir el tiempo y los costes asociados.
+
+Pese a que el entregable principal de este proyecto es la creación de una infraestructura, se
+esperan también otros entregables en forma de herramientas de software, como \textit{scripts},
+que faciliten la integración y análisis de los datos, así como la visualización de los mismos.

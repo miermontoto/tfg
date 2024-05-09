@@ -4,8 +4,37 @@ proyecto, para proporcionar una base teórica sobre la que se desarrolla el trab
 los conceptos de \textit{data lake}, \textit{procesos ETL} y \textit{dashboards}, que son
 fundamentales para el desarrollo del proyecto.
 
+\section{Big data}\label{sec:bigdata}
+El término \textit{big data} se refiere a la gestión y análisis de grandes volúmenes de datos
+que no pueden ser tratados de manera convencional. Estos datos se caracterizan por su volumen,
+velocidad y variedad, lo que hace que sea difícil procesarlos con las herramientas tradicionales
+de gestión de datos.
+
+El \textit{big data} se caracteriza por tres características principales: volumen, variedad y
+velocidad. Estas características se conocen como las ``tres V'' del \textit{big data}:
+
+\begin{itemize}
+	\item \textbf{Volumen:} se refiere a la cantidad de datos que se generan y almacenan en un
+		determinado periodo de tiempo. El volumen de datos que se maneja en el \textit{big data}
+		es mucho mayor que el que se maneja en los sistemas tradicionales de gestión de datos.
+	\item \textbf{Variedad:} se refiere a la diversidad de fuentes y formatos de los datos que
+		se manejan en el \textit{big data}. Los datos pueden provenir de diferentes fuentes, como
+		bases de datos, archivos de registros y APIs, y pueden estar en diferentes formatos, como
+		texto, imágenes, audio, vídeo, etc.
+	\item \textbf{Velocidad:} se refiere a la velocidad a la que se generan y se procesan los
+		datos. En este ámbito, los datos se generan y se procesan a una velocidad mucho
+		mayor que en los sistemas tradicionales de gestión de datos.
+\end{itemize}
+
+El \textit{big data} es un fenómeno que ha surgido en los últimos años debido al crecimiento
+exponencial de los datos que se generan y almacenan en todo el mundo. Este crecimiento ha
+sido impulsado por el aumento de la conectividad y el uso de dispositivos móviles, que han
+permitido a las empresas y a los usuarios generar y almacenar grandes cantidades de datos
+de manera más eficiente.
+
+
 \section{Paradigmas de almacenamiento de datos}\label{sec:paradigmas}
-En el ámbito de la gestión de datos, existen diferentes paradigmas de almacenamiento de datos
+En el ámbito del \textit{big data}, existen diferentes paradigmas de almacenamiento de datos
 que se utilizan para almacenar y analizar grandes cantidades de información. Los tres paradigmas
 a considerar para este proyecto son los \textit{data warehouses}, los \textit{data lakes} y los
 \textit{data lakehouses}.
@@ -59,15 +88,19 @@ lakehouses} permiten almacenar datos tanto de manera estructurada como no estruc
 lo que facilita aprovechar la información al contar con una única estructura de bajo coste
 que ofrece a los usuarios que lo necesiten explorar y analizar los datos según sus necesidades.
 
-Puesto que en este proyecto se plantea el uso de datos tanto estructurados como no estructurados,
-y no siempre será de interés aplicar procesos de transformación a toda la información obtenida,
-los \textit{data lakehouse} se presentan como una solución eficiente y flexible para el almacenamiento
-y análisis de los datos.
+% Puesto que en este proyecto se plantea el uso de datos tanto estructurados como no estructurados,
+% y no siempre será de interés aplicar procesos de transformación a toda la información obtenida,
+% los \textit{data lakehouse} se presentan como una solución eficiente y flexible para el almacenamiento
+% y análisis de los datos.
 
 \newpage{}
 \section{Procesos ETL}\label{sec:etl}
-Los procesos ETL~\cite{mier2023dashboards} son procesos que combinan datos de múltiples
-fuentes en un único destino, transformando los datos en un formato común. Estos procesos
+Si anteriormente se presentaban los distintos paradigmas de almacenamiento de datos, para su creación
+y mantenimiento se requieren aplicar unos ciertos procesos que permitan la correcta ingesta y
+almacenamiento de los datos. Estos procesos se conocen como \textit{procesos ETL}.
+
+Formalmente se definen los procesos ETL~\cite{mier2023dashboards} como procesos que combinan datos de
+múltiples fuentes en un único destino, transformando los datos en un formato común. Estos procesos
 se utilizan para extraer datos de diferentes fuentes, transformarlos en un formato común
 y cargarlos en un destino común, como puede ser un \textit{data lake}.
 
@@ -86,48 +119,57 @@ distintivos que facilitan la integración eficaz de información procedente de d
 		cantidades de datos de manera eficiente. En ocasiones, los procesos ETL se pueden realizar en
 		\textit{streaming}, lo que significa que los datos se procesan en tiempo real a medida que se
 		generan.
+	\item \textbf{Eficiencia:} los procesos ETL deben ser eficientes, puesto que el tiempo de procesamiento
+		de los datos es un factor vital en el ámbito del \textit{big data}. Los procesos ETL deben ser
+		capaces de procesar grandes cantidades de datos en un tiempo razonable para que los datos estén
+		disponibles en el menor tiempo posible.
+	\item \textbf{Fiabilidad:} la fiabilidad es un componente crítico de todo el flujo de datos, ya que estos
+		se utilizan para la toma de decisiones importantes de cualquier empresa. Los procesos ETL deben
+		ser capaces de procesar los datos de manera fiable y consistente, para que los datos que se visualicen y
+		analicen posteriormente sean correctos y fiables.
 \end{itemize}
 
 \newpage{}
 \subsection{Funcionamiento}
-Los procesos ETL se dividen en tres fases principales: \textit{extracción}, \textit{transformación}
-y \textit{carga}, como se muestra en el sigiuente diagrama:
+Los procesos ETL se dividen en tres fases principales: \textit{(1) Extraer}, \textit{(2) Transformar} y
+\textit{(3) Cargar}, como se muestra en el siguiente diagrama:
 
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=0.8\textwidth]{etl.png}
-	\captionof{figure}{Fases de un proceso ETL (trabajo propio)}
+	\captionof{figure}{Fases de un proceso ETL}
 \end{minipage}
 
-Al comienzo del proceso, se tienen datos presúntamente heterogéneos que no se pueden analizar de
-manera eficiente. Tras aplicar todos los pasos de las fases anteriores, se obtiene un conjunto de
+Como entrada, se tienen datos presúntamente heterogéneos que no se pueden analizar de manera eficiente.
+Tras aplicar todos los pasos de las fases anteriores, se obtiene como salida un conjunto de
 datos homogéneos y listos para ser analizados en el destino indicado (en el caso de este proyecto,
 un \emph{data lake}).
 
 \paragraph{Extracción (1)}
-En este proceso se extraen los datos de las fuentes de datos, que pueden ser bases de datos, logs,
-APIs, etc. En este paso, se pueden aplicar filtros para extraer solo los datos que se necesiten, y
+En este proceso se obtienen los datos de las fuentes de datos, que pueden ser bases de datos, logs,
+APIs, etc. En esta fase, se pueden aplicar filtros para extraer solo los datos que se necesiten, y
 se pueden extraer datos de múltiples fuentes \emph{heterogéneas}.
 
-En algunos casos, los datos se pueden extraer de manera incremental, es decir, solo se extraen los
-datos que han cambiado desde la última extracción. Esto puede ser útil para reducir el tiempo de
-procesamiento y el volumen de datos que se almacenan.
-
-En otros casos, los datos se pueden extraer de manera continua, es decir, se extraen los datos en
-tiempo real según se van generando. Esto puede ser útil para procesar datos que se generan en tiempo
-real, como logs o datos de sensores.
+La fase de extracción se puede realizar de dos formas: continua o incremental. Una extracción incremental se
+realiza de manera periódica, por ejemplo, cada hora, cada día o cada semana, y se extraen los datos
+que se han generado desde la última extracción. Esto es útil cuando los datos se generan de manera
+periódica y se necesita mantener actualizada la información. Por otro lado, en una extracción continua se
+extraen los datos entiempo real según se van generando. Esto puede ser útil para procesar datos que se generan
+en tiempo real, como logs o datos de sensores.
 
 \newpage{}
 \paragraph{Transformación (2)}
-En este proceso se transforman los datos extraídos en la fase anterior, normalmente aplicándoles
+Durante esta fase, se transforman los datos extraídos en la fase anterior, normalmente aplicándoles
 un proceso de limpieza y transformación a un formato común. En este paso, se pueden aplicar
 diferentes operaciones a los datos, como la limpieza, la agregación, la normalización, la conversión
 de formatos, etc.
 
-Una transformación especialmente importante que se suele reaizar durante este proceso es la limpieza,
+Uno de los tipos de transformaciones de datos más comunes es la limpieza, que consiste en la
 revisión y corrección de los datos extraídos, para asegurar que se almacena información correcta y
 consistentes. Durante esta fase se contemplan operaciones más complejas, como pueden ser la agregación
-de datos, la conversión de formatos, la normalización de datos, el cifrado, etc.
+de datos, la conversión de formatos, la normalización de datos, el cifrado, etc. La limpieza de datos puede
+ser una tarea muy sencilla, como la eliminación de caracteres delimitadores, o muy compleja, como la
+corrección de errores en los datos o la detección de duplicados.
 
 Estos procesos de transformación son vitales cuando el sistema maneja una gran cantidad de datos heterogéneos
 de múltiples fuentes de manera simultánea, como puede ser el caso de un \textit{data lake} o un \textit{data
@@ -135,14 +177,9 @@ warehouse}. En el caso del primero, no es necesaria la transformación de los da
 otros procesos clave como la limpieza y la normalización de los datos, entre otros.
 
 \paragraph{Carga (3)}
-En este proceso se cargan los datos transformados en el destino final. Frecuentemente, los datos se
-almacenan en una data warehouse o data lake para su posterior análisis.
-
-La frecuencia del proceso de carga depende de la naturaleza de los datos y de las necesidades del
-negocio, como ya se ha descrito en el proceso de extracción.
-
-Tras completar este proceso, los datos están listos para ser analizados y visualizados desde las arquitecturas
-de datos que almacenen la información.
+En este proceso se vuelcan los datos transformados en el destino final. Frecuentemente, los datos se
+almacenan, dependiendo del paradigma de almacenamiento elegido, en una \textit{data lake}, \textit{data warehouse}
+o \textit{data lakehouse} para su posterior análisis.
 
 \newpage{}
 \subsection{Alternativas}
@@ -159,7 +196,7 @@ en casos específicos que se beneficien del cambio:
 		\begin{minipage}{\linewidth}
 			\centering
 			\includegraphics[width=0.65\textwidth]{virt.png}
-			\captionof{figure}{Ejemplo de flujo con virtualización (trabajo propio)}
+			\captionof{figure}{Ejemplo de flujo con virtualización}
 		\end{minipage}
 	\item \textbf{Proceso \textit{ELT}\footnote{\url{https://www.ibm.com/topics/elt}}:} en lugar de transformar
 		los datos antes de cargarlos en el destino, se cargan los datos en bruto y se transforman en el destino.
@@ -170,15 +207,15 @@ en casos específicos que se beneficien del cambio:
 		\begin{minipage}{\linewidth}
 			\centering
 			\includegraphics[width=0.75\textwidth]{elt.png}
-			\captionof{figure}{Diagrama de flujo de un proceso \textit{ELT} (trabajo propio)}
+			\captionof{figure}{Diagrama de flujo de un proceso \textit{ELT}}
 		\end{minipage}
 \end{itemize}
 
 
 \newpage{}
-\section{Dashboards}\label{sec:dashboards}
+\section{Cuadros de mandos (\textit{dashboards})}\label{sec:dashboards}
 \paragraph{Definición}
-La palabra \textit{dashboard}, que traducido de manera literal significa \textit{cuadro de mandos},
+Los cuadros de mandos, en adelante \textit{dashboards},
 es un término que se utiliza para referirse a cualquier interfaz gráfica que muestre información
 relevante de manera visual sobre un proceso o negocio. Aunque el término se utiliza en
 muchos ámbitos: indicadores comerciales, de producción, de marketing, de calidad, de recursos
@@ -186,10 +223,11 @@ humanos\ldots, en este proyecto se utilizará en el ámbito de la monitorizació
 procesos de negocio.
 
 En el ámbito de deste proyecto, los dashboards reflejan en tiempo real el rendimiento de
-actividades o procesos de negocio, y se utilizan para tomar decisiones informadas sobre los
-mismos. En el caso de una empresa, un dashboard puede mostrar desde el rendimiento de la
-plataforma en tiempo real hasta un reflejo del de las ventas, y permitir a los directivos tomar
-decisiones informadas sobre el futuro de la empresa.
+actividades o procesos de negocio, y se utilizan para tomar decisiones informadas basándose en
+los mismos. Por ejemplo, el dashboard de una empresa digital puede mostrar desde el rendimiento de la
+arquitectura en tiempo real hasta el número de ventas conseguidas, y permitir a los directivos tomar
+decisiones informadas sobre el futuro de la empresa (e.g. necesidad de aumentar la capacidad de los
+servidores, lanzar una campaña de marketing, etc.).
 
 \paragraph{Características}
 Los dashboards cuentan con una serie de características que los hacen útiles para la toma de
@@ -197,16 +235,16 @@ decisiones:~\cite{mier2023dashboards}
 
 \begin{itemize}
 	\item \textbf{Visualización de datos:} es la característica fundamental de cualquier
-		cuadro de mandos, y aquella que determina su utilidad. La visualización de datos
+		dashboard, y aquella que determina su utilidad. La visualización de datos
 		es la ciencia de presentar los datos de manera que se pueda extraer información útil
 		y realizar decisiones informadas sobre ellos. Un buen dashboard cuenta con gráficas,
 		tablas, indicadores, etc. que permiten al usuario entender la información que se
 		está presentando con un conocimiento técnico mínimo.
 	\item \textbf{Interactividad y personalización:} un dashboard debe permitir al usuario
 		interactuar con los datos (filtrarlos, ordenarlos, profundizar en ellos...) y ajustar
-		la información que se muestra a cada proceso o negocio que se esté evaluando.
-		Esta capacidad asegura que el dashboard se adapte tanto a las necesidades actuales
-		como a las evoluciones futuras de lo que se esté analizando.
+		la información que se muestra sobre cada proceso o negocio que se esté evaluando
+		(granularidad de la información). Esta capacidad asegura que el dashboard se adapte
+		tanto a las necesidades actuales como a las evoluciones futuras de lo que se esté analizando.
 	\item \textbf{Accesibilidad y portabilidad:} un dashboard debe ser accesible desde una
 		variedad de situaciones y dispositivos, manteniendo su funcionalidad y forma. Aunque
 		normalmente los dashboards se analizan en pantallas grandes, es importante que también
@@ -214,19 +252,19 @@ decisiones:~\cite{mier2023dashboards}
 \end{itemize}
 
 \newpage{}
-\subsection{Dashboards planteados}
+\paragraph{Dashboards planteados}
 Para el sistema que se describe, se plantean dos tipos de dashboards diferentes:
 
 \begin{itemize}
 	\item \textbf{Dashboards internos}: que reflejan el rendimiento de la plataforma en tiempo real.
+		Estos dashboards están destinados al uso interno de la empresa, y permiten a los
+		empleados monitorizar el rendimiento de la plataforma y tomar decisiones informadas
+		sobre su mantenimiento y evolución.
 	\item \textbf{Dashboards externos}: que reflejan el rendimiento de las ventas y permiten a los
-	      clientes tomar decisiones informadas sobre su negocio.
+	    clientes tomar decisiones informadas sobre su negocio. Estos dashboards están enfocados
+		a los clientes de la empresa, y permite a los mismos obtener información relevante sobre
+		su negocio que tenga Okticket.
 \end{itemize}
-
-Hay que destacar que los dashboards externos son diferentes a los dashboards de monitorización, tanto
-en el contenido que presentan como en la manera de acceder a ellos: mientras que los dashboards de
-monitorización serán de uso interno exclusivo, los dashboards externos deben estar disponibles para
-los clientes de las empresas que los contraten.
 
 % mover esta sección a la valoración de alternativas cuando se tenga
 % \section{Componentes del sistema}\label{sec:componentes}
