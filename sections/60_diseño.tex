@@ -1,6 +1,67 @@
 \chapter{Diseño del sistema}\label{chap:diseño}
 \section{Estudio de alternativas}\label{sec:estudio}
+\subsection{Herramientas de despliegue de infraestructura}\label{subsec:herdesinf}
+A la hora de desplegar la infraestructura de un proyecto, se consideran varias
+herramientas populares que permiten automatizar este proceso. Entre ellas, se
+encuentran \textit{Terraform}, \textit{AWS CloudFormation} y \textit{Ansible}.
 
+A continuación, se describen brevemente estas herramientas y se comparan sus
+características.
+
+\subsubsection{Alternativas}
+\paragraph{Terraform}
+\textit{Terraform} es una herramienta de código abierto desarrollada por
+\textit{HashiCorp} que permite definir y desplegar infraestructura de forma
+declarativa. \textit{Terraform} permite definir la infraestructura en un archivo
+de configuración JSON, que describe los recursos que se desean crear y sus
+dependencias. A partir de este archivo, \textit{Terraform} se encarga de
+desplegar los recursos en el proveedor de nube especificado, que en el caso de
+este proyecto es \textit{AWS}.
+
+\paragraph{AWS CloudFormation}
+\textit{AWS CloudFormation} es un servicio de \textit{Amazon Web Services} similar
+a \textit{Terraform} que permite definir y desplegar infraestructura en la nube
+de forma declarativa. \textit{AWS CloudFormation} permite definir la infraestructura
+o bien mediante un archivo de configuración (en formato JSON o YAML), o bien gráficamente
+mediante diagramas.
+
+\paragraph{Ansible}
+\textit{Ansible} es una herramienta multi-propósito de automatización de tareas entre
+las que se incluye el despliegue y orquestación de infraestructura. Se trata de una
+herramienta desarrollada por \textit{Red Hat} que permite definir la infraestructura
+mediante \textit{playbooks} escritos en YAML, que describen las tareas a realizar y
+los servidores en los que se deben ejecutar.
+
+\subsubsection{Comparación}
+Comenzando la comparativa por la facilidad de uso de cada herramienta, \textit{Terraform}
+es la alternativa planteada más fácil de usar, ya que permite definir la infraestructura
+en un archivo con sintaxis sencilla y desplegarla con un solo comando. Por otro lado,
+\textit{AWS CloudFormation} es un poco más complejo de usar, ya que requiere definir
+la infraestructura en un archivo de configuración o en un diagrama, y luego desplegarla
+mediante la consola de \textit{AWS}. \textit{Ansible} es más complejo de usar, ya qu
+requiere definir la infraestructura mediante \textit{playbooks} y ejecutarlos en los
+servidores, pero es más flexible y potente que las otras dos herramientas.
+
+Mientras que \textit{Terraform} y \textit{Ansible} son herramientas \textit{multi-cloud},
+lo que significa que funcionan con cualquier proveedor de nube, \textit{AWS CloudFormation}
+es una herramienta específica de \textit{AWS} y solo funciona con sus servicios, lo que
+puede suponer tanto una ventaja como una desventaja, dependiendo de las necesidades del
+proyecto. Puesto que este proyecto se despliega en \textit{AWS} sin intención de migrar a
+otra plataforma, pero a la vez no se requiere el uso de servicios específicos de \textit{AWS},
+no se considera una ventaja significativa.
+
+\subsubsection{Decisión}
+Ninguna de las alternativas consideradas es claramente superior a las demás, ya que
+se tratan de herramientas con características y funcionalidades similares y una
+amplia acogida en la industria. Sin embargo, se ha decidido utilizar \textit{Terraform}
+para el despliegue de la infraestructura de este proyecto, ya que es la herramienta
+más ``sencilla'' de utilizar, la que mejor se podría adaptar a las necesidades del
+proyecto y la única que ya se ha utilizado en proyectos anteriores dentro de la empresa.
+
+\subsection{Ingesta de datos}\label{subsec:ingesta}
+
+\newpage{}
 \section{Arquitectura del sistema}\label{sec:arquitectura}
 
+\newpage{}
 \section{Modelo de datos}\label{sec:modelo}
