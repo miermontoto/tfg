@@ -35,6 +35,61 @@ algún tipo de interés en el mismo. Las partes interesadas en este proyecto son
 \end{enumerate}
 
 \section{Alternativas existentes}\label{sec:alternativas}
+Antes de comenzar la planificación y el desarrollo del proyecto, se consideran varias opciones
+ya existentes en el mercado que podrían resolver o adaptarse a las necesidades planteadas. A
+continuación, se describen brevemente estas alternativas y se comparan sus características.
+
+Los puntos claves a considerar de cada alternativa son los siguientes:
+\begin{itemize}
+	\item \textbf{Coste:} el coste es un factor clave para evaluar las alternativas, prefiriendo
+		aquellas que sean gratuitas o cuya implementación requiera la mínima inversión posible.
+	\item \textbf{Complejidad:} al tratarse de un proyecto con poco conocimiento previo y sin
+		mucha urgencia, se prefiere una solución que sea sencilla y que no requiera demasiado
+		desarrollo.
+	\item \textbf{Rendimiento y escalabilidad:} obviamente, a la hora de manejar los volúmenes
+		de datos con los que se están tratando, el sistema debe responder positivamente tanto
+		a la ingesta, tratamiento y visualización como a la escalabilidad del mismo.
+\end{itemize}
+
+Como punto añadido, se valoran de manera positiva las alternativas \textit{open-source}, ya
+que son más flexibles y permiten personalizar el sistema a los necesidades del proyecto.
+
+\subsection{Splunk}
+Splunk es un producto de \textit{big data} que permite la recolección, el almacenamiento y la
+análisis de datos en tiempo real. Pese a que se centra en la ingesta de ``macrodatos'', no
+está enfocada a la ingesta de datos de inteligencia de negocio, sino a la ingesta de datos
+de \textit{logs} y \textit{eventos} en tiempo real con el objetivo de mejorar la respuesta
+frente a ataques y caídas de disponibilidad. Además, aunque hay versiones gratuitas, está
+enfocado principalmente a la gestión como \textit{SaaS} por precios muy elevados.
+
+
 
 \newpage{}
 \section{Descripción del proyecto}\label{sec:descripcion}
+
+% \subsection{Componentes del sistema}\label{sec:componentes}
+% En el \textit{stack} tecnológico escogido para el proyecto se manejan
+% diferentes términos y conceptos que son necesarios desarrollar para
+% entender el funcionamiento del sistema.
+
+% \paragraph{Tópico}\label{subsec:topico}
+% Un tópico es una categoría a la que se envían los mensajes a la que los consumidores están
+% \textit{suscritos}. Los consumidores pueden estar suscritos a uno o varios tópicos, y los
+% productores pueden enviar mensajes a uno o varios tópicos. Los tópicos son la unidad básica
+% de organización de los mensajes en cualquier sistema de mensajería de publicación/suscripción.
+
+% \paragraph{Productor}\label{subsec:productor}
+% El productor es el componente responsable de crear y enviar mensajes al cluster de Kafka.
+% Está separado del resto de los componentes y produce mensajes de manera asíncrona y rápida.
+
+% \paragraph{Consumidor}\label{subsec:consumidor}
+% El consumidor es el componente responsable de leer los mensajes producidos por el productor.
+% Está suscrito a un \nameref{subsec:topico} a través del broker y consume los mensajes.
+
+% \paragraph{Broker}\label{subsec:broker}
+% El broker es el componente responsable de recibir los mensajes producidos por el productor y
+% enviarlos a los consumidores. Es el intermediario entre los productores y los consumidores.
+
+% \paragraph{Zookeeper}\label{subsec:zookeeper}
+% Zookeeper es un servicio de coordinación distribuida que se utiliza para gestionar y coordinar
+% los brokers de Kafka. Se encarga de mantener la información de los brokers y de los tópicos.

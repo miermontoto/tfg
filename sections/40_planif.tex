@@ -1,7 +1,7 @@
 \chapter{Planificación del proyecto}\label{chap:planif}
 La planificación de un proyecto es fundamental para su correcto funcionamiento y desarrollo,
 dentro de los plazos y costes establecidos. Se presenta un primer apartado de metodología, un
-segundo apartado con la planificación inicial para posteriomente inferir en base a esta el
+segundo apartado con la planificación inicial para posteriormente inferir en base a esta el
 presupuesto inicial
 
 
@@ -90,10 +90,17 @@ separados.
 		Un tablero \textit{Kanban} es una herramienta visual que permite gestionar el flujo de
 		de trabajo de un proyecto por ``sprints'', dividiendo las tareas en columnas y moviéndolas
 		de una columna a otra según su estado.
-	\item Se utiliza un \textit{roadmap} de apartados de la memoria, donde se visualiza su estado
-		y sus fechas límite. Este \textit{roadmap} no está relacionado con la metodología
-		\textit{Scrum}, sino que se ha creado a propósito para facilitar la visualización del
-		progreso de cada sección y de la memoria en general.
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=\textwidth]{kanban.png}
+			\caption{Tablero \textit{Kanban} del proyecto}
+			\label{fig:kanban}
+		\end{figure}
+	\item Se utiliza un \textit{roadmap} de apartados de la memoria, separado del tablero de desarrollo
+		normal, donde se visualiza su estado y sus fechas límite. Este \textit{roadmap} no está
+		relacionado con la metodología \textit{Scrum}, sino que se ha creado a propósito para facilitar
+		la visualización del progreso de cada sección y de la memoria en general.
 
 		\begin{minipage}{\linewidth}
 			\centering
@@ -129,6 +136,59 @@ fabricación del proyecto:
 
 \newpage{}
 \section{Planificación inicial}\label{sec:planif_inicial}
+Como se ha mencionado anteriormente, se utiliza la metodología \textit{Scrum} para la planificación
+y desarrollo del proyecto. En la figura \ref{fig:backlog} se puede ver el \textit{backlog}
+de tareas que se planifican en el proyecto.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{backlog.png}
+	\caption{Planificación inicial del proyecto}
+	\label{fig:backlog}
+\end{figure}
+
+Las tareas anteriores se clasifican y categorizan según su prioridad y tamaño, haciendo uso de la
+estrategia de tallas de camiseta para esta última. En el tablero \textit{Kanban} (ver figura
+\ref{fig:kanban}) se puede ver en todo momento el estado de las tareas, su progreso y sus
+características. El listado de tareas iniciales es el siguiente:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{0.7\linewidth}|c|c|}
+		\hline
+		\textbf{Tarea} & \textbf{Prioridad} & \textbf{Tamaño} \\
+		\hline
+		\hline
+		Creación de la infraestructura base (técnica) & P0\cellcolor{red!50} & L\cellcolor{orange!50} \\
+		\hline
+		Como desarrollador de Okticket, quiero que la arquitectura se despliegue y orqueste de manera automática & P0\cellcolor{red!50} & XL\cellcolor{red!50} \\
+		\hline
+		Como desarrollador de Okticket, quiero que se ingesten de manera automática datos de la base de datos interna de MongoDB & P0\cellcolor{red!50} & M\cellcolor{yellow!50} \\
+		\hline
+		Como desarrollador de Okticket, quiero que se ingesten de manera automática datos de la base de datos interna de MySQL & P0\cellcolor{red!50} & M\cellcolor{yellow!50} \\
+		\hline
+		Como desarrollador de Okticket, quiero que los datos se limpien de manera automática & P0\cellcolor{red!50} & M\cellcolor{yellow!50} \\
+		\hline
+		Como trabajador de Okticket, quiero poder ver y consultar datos internos de la empresa & P1\cellcolor{orange!50} & L\cellcolor{orange!50} \\
+		\hline
+		Como desarrollador de Okticket, quiero que se ingesten de manera automática logs de balanceador de AWS & P1\cellcolor{orange!50} & S\cellcolor{green!25} \\
+		\hline
+		Como desarrollador de Okticket, quiero poder ver el estado general de la infraestructura & P1\cellcolor{orange!50} & L\cellcolor{orange!50} \\
+		\hline
+		Como desarrollador de Okticket, quiero que los datos contengan metadatos que faciliten su filtrado o búsqueda & P2\cellcolor{yellow!50} & S\cellcolor{green!25} \\
+		\hline
+		Como trabajador de Okticket, quiero poder ver y consultar datos de empresas cliente & P2\cellcolor{yellow!50} & M\cellcolor{yellow!50} \\
+		\hline
+		Como gestor de una empresa cliente, quiero poder ver información relevante sobre mi empresa que recoja Okticket & P2\cellcolor{yellow!50} & L\cellcolor{orange!50} \\
+		\hline
+		Como desarrollador de Okticket, quiero poder ingestar datos de APIs externas a la empresa & P2\cellcolor{yellow!50} & L\cellcolor{orange!50} \\
+		\hline
+		Como desarrollador de Okticket, quiero poder ingestar información de páginas web externas (\textit{scraping}) & P2\cellcolor{yellow!50} & XL\cellcolor{red!50} \\
+		\hline
+	\end{tabular}
+	\caption{Listado de tareas iniciales}
+	\label{tab:initial_tasks}
+\end{table}
 
 \newpage{}
 \section{Presupuesto}\label{sec:presupuesto}

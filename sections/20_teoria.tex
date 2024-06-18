@@ -30,8 +30,7 @@ El \textit{big data} es un fenómeno que ha surgido en los últimos años debido
 exponencial de los datos que se generan y almacenan en todo el mundo. Este crecimiento ha
 sido impulsado por el aumento de la conectividad y el uso de dispositivos móviles, que han
 permitido a las empresas y a los usuarios generar y almacenar grandes cantidades de datos
-de manera más eficiente.
-
+en todo el mundo.
 
 \section{Paradigmas de almacenamiento de datos}\label{sec:paradigmas}
 En el ámbito del \textit{big data}, existen diferentes paradigmas de almacenamiento de datos
@@ -140,9 +139,9 @@ Los procesos ETL se dividen en tres fases principales: \textit{(1) Extraer}, \te
 	\captionof{figure}{Fases de un proceso ETL}
 \end{minipage}
 
-Como entrada, se tienen datos presúntamente heterogéneos que no se pueden analizar de manera eficiente.
+Como entrada, se tienen datos presuntamente heterogéneos que no se pueden analizar de manera eficiente.
 Tras aplicar todos los pasos de las fases anteriores, se obtiene como salida un conjunto de
-datos homogéneos y listos para ser analizados en el destino indicado (en el caso de este proyecto,
+datos corregidos y listos para ser analizados en el destino indicado (en el caso de este proyecto,
 un \emph{data lake}).
 
 \paragraph{Extracción (1)}
@@ -154,7 +153,7 @@ La fase de extracción se puede realizar de dos formas: continua o incremental. 
 realiza de manera periódica, por ejemplo, cada hora, cada día o cada semana, y se extraen los datos
 que se han generado desde la última extracción. Esto es útil cuando los datos se generan de manera
 periódica y se necesita mantener actualizada la información. Por otro lado, en una extracción continua se
-extraen los datos entiempo real según se van generando. Esto puede ser útil para procesar datos que se generan
+extraen los datos en tiempo real según se van generando. Esto puede ser útil para procesar datos que se generan
 en tiempo real, como logs o datos de sensores.
 
 \newpage{}
@@ -166,7 +165,7 @@ de formatos, etc.
 
 Uno de los tipos de transformaciones de datos más comunes es la limpieza, que consiste en la
 revisión y corrección de los datos extraídos, para asegurar que se almacena información correcta y
-consistentes. Durante esta fase se contemplan operaciones más complejas, como pueden ser la agregación
+consistente. Durante esta fase se contemplan operaciones más complejas, como pueden ser la agregación
 de datos, la conversión de formatos, la normalización de datos, el cifrado, etc. La limpieza de datos puede
 ser una tarea muy sencilla, como la eliminación de caracteres delimitadores, o muy compleja, como la
 corrección de errores en los datos o la detección de duplicados.
@@ -269,41 +268,11 @@ Para el sistema que se describe, se plantean dos tipos de dashboards diferentes:
 
 \section{Infraestructura como código}
 La infraestructura como código (o \textit{IaaS} por sus siglas en inglés) es una práctica que consiste
-en gestionar la infraestructura de un sistema de manera automática y programática, utilizando código
-en lugar de configuraciones manuales. La infraestructura como código permite gestionar la infraestructura
-de manera eficiente y escalable, y facilita la creación y el mantenimiento de entornos de desarrollo y
-producción.
+en gestionar la infraestructura de un sistema de manera automática y programática mediante código,
+en lugar de configuraciones manuales. La infraestructura como código permite gestionar la arquitectura
+global de un sistema de manera eficiente y escalable, y facilita la creación y el mantenimiento de entornos
+de desarrollo y producción.
 
-En el ámbito de este proyecto, la infraestructura como código se utiliza para gestionar la infraestructura
-de los sistemas de almacenamiento y procesamiento de datos, como los \textit{data lakes} y los \textit{data
-warehouses}. La infraestructura como código permite gestionar la infraestructura de manera eficiente y
-escalable, y facilita la creación y el mantenimiento de entornos de desarrollo y producción.
-
-
-% mover esta sección a la valoración de alternativas cuando se tenga
-% \section{Componentes del sistema}\label{sec:componentes}
-% En el \textit{stack} tecnológico escogido para el proyecto se manejan
-% diferentes términos y conceptos que son necesarios desarrollar para
-% entender el funcionamiento del sistema.
-
-% \subsection{Tópico}\label{subsec:topico}
-% Un tópico es una categoría a la que se envían los mensajes a la que los consumidores están
-% \textit{suscritos}. Los consumidores pueden estar suscritos a uno o varios tópicos, y los
-% productores pueden enviar mensajes a uno o varios tópicos. Los tópicos son la unidad básica
-% de organización de los mensajes en cualquier sistema de mensajería de publicación/suscripción.
-
-% \subsection{Productor}\label{subsec:productor}
-% El productor es el componente responsable de crear y enviar mensajes al cluster de Kafka.
-% Está separado del resto de los componentes y produce mensajes de manera asíncrona y rápida.
-
-% \subsection{Consumidor}\label{subsec:consumidor}
-% El consumidor es el componente responsable de leer los mensajes producidos por el productor.
-% Está suscrito a un \nameref{subsec:topico} a través del broker y consume los mensajes.
-
-% \subsection{Broker}\label{subsec:broker}
-% El broker es el componente responsable de recibir los mensajes producidos por el productor y
-% enviarlos a los consumidores. Es el intermediario entre los productores y los consumidores.
-
-% \subsection{Zookeeper}\label{subsec:zookeeper}
-% Zookeeper es un servicio de coordinación distribuida que se utiliza para gestionar y coordinar
-% los brokers de Kafka. Se encarga de mantener la información de los brokers y de los tópicos.
+En el ámbito de este proyecto, la infraestructura como código se utiliza para gestionar el despliegue y
+orquestación de los servicios requeridos para el \textit{data lake}, como los servicios de ingesta o de
+visualización de datos.
