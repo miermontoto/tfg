@@ -1,66 +1,80 @@
 \chapter{Descripción general del proyecto}
-Esta sección describe el proyecto en términos generales, incluyendo una descripción de los
-problemas que se pretenden resolver, las partes interesadas en el proyecto y una valoración de
-las alternativas consideradas.
+Esta sección describe el proyecto en términos generales, incluyendo una
+descripción de los problemas que se pretenden resolver, las partes interesadas
+en el proyecto y una valoración de las alternativas consideradas.
 
 
 \section{Partes interesadas (stakeholders)}\label{sec:stakeholders}
-Las partes interesadas en el proyecto son aquellas personas o entidades que tienen un interés
-en el mismo, ya sea porque se ven afectadas por el resultado del proyecto, o porque tienen
-algún tipo de interés en el mismo. Las partes interesadas en este proyecto son las siguientes:
+Las partes interesadas en el proyecto son aquellas personas o entidades que
+tienen un interés en el mismo, ya sea porque se ven afectadas por el resultado
+del proyecto, o porque tienen algún tipo de interés en el mismo. Las partes
+interesadas en este proyecto son las siguientes:
 
 \begin{enumerate}
-	\item \textbf{Okticket}: la empresa es la principal parte interesada en el proyecto, ya que
-		es la que se beneficiará directamente de los resultados del mismo, así como de las
-		oportunidades de negocio que se abren con la explotación de los datos. Dentro de la empresa,
-		se pueden identificar dos entidades:
+	\item \textbf{Okticket}: la empresa es la principal parte interesada en el
+		proyecto, ya que es la que se beneficiará directamente de los resultados
+		del mismo, así como de las oportunidades de negocio que se abren con la
+		explotación de los datos. Dentro de la empresa, se pueden identificar
+		dos entidades:
 		\begin{itemize}
-			\item \textbf{Equipo de desarrollo de la empresa}: el equipo de desarrollo es otra parte
-				interesada en el proyecto, ya que son los encargados de llevar a cabo la implementación
-				del sistema y de garantizar su correcto funcionamiento, además de gestionar el soporte
-				de servicio a nivel técnico.
-			\item \textbf{Equipo de soporte de la empresa}: el sistema planteado ahorraría tiempo al equipo de
-				soporte, ya que les permitiría analizar los datos de forma más eficiente e identificar
-				problemas antes de que tener que resolver las peticiones de los clientes afectados a
-				nivel básico.
+			\item \textbf{Equipo de desarrollo de la empresa}: el equipo de
+				desarrollo es otra parte interesada en el proyecto, ya que son
+				los encargados de llevar a cabo la implementación del sistema y
+				de garantizar su correcto funcionamiento, además de gestionar el
+				soporte de servicio a nivel técnico.
+			\item \textbf{Equipo de soporte de la empresa}: el sistema planteado
+				ahorraría tiempo al equipo de soporte, ya que les permitiría
+				analizar los datos de forma más eficiente e identificar
+				problemas antes de que tener que resolver las peticiones de los
+				clientes afectados a nivel básico.
 		\end{itemize}
-	\item \textbf{Clientes}: los clientes de la empresa también son partes interesadas, puesto
-		que se beneficiarán de los nuevos servicios que se ofrecen, como los dashboards de
-		negocio que se han descrito anteriormente. Estos clientes no son necesariamente los
-		usuarios finales, sino los administradores y gestores de las empresas que utilizan
-		Okticket como herramienta de gestión de gastos.
-	\item \textbf{Investigador y desarrollador (\emph{\author}):} el desarrollador del
-		proyecto tiene la oportunidad de aplicar los conocimientos adquiridos en el desarrollo de un
-		proyecto real, y de adquirir nuevos conocimientos en el proceso.
+	\item \textbf{Clientes}: los clientes de la empresa también son partes
+		interesadas, puesto que se beneficiarán de los nuevos servicios que se
+		ofrecen, como los dashboards de negocio que se han descrito
+		anteriormente. Estos clientes no son necesariamente los usuarios
+		finales, sino los administradores y gestores de las empresas que
+		utilizan Okticket como herramienta de gestión de gastos.
+	\item \textbf{Investigador y desarrollador (\emph{\author}):} el
+		desarrollador del proyecto tiene la oportunidad de aplicar los
+		conocimientos adquiridos en el desarrollo de un proyecto real, y de
+		adquirir nuevos conocimientos en el proceso.
 \end{enumerate}
 
 \section{Alternativas existentes}\label{sec:alternativas}
-Antes de comenzar la planificación y el desarrollo del proyecto, se consideran varias opciones
-ya existentes en el mercado que podrían resolver o adaptarse a las necesidades planteadas. A
-continuación, se describen brevemente estas alternativas y se comparan sus características.
+Antes de comenzar la planificación y el desarrollo del proyecto, se consideran
+varias opciones ya existentes en el mercado que podrían resolver o adaptarse a
+las necesidades planteadas.
 
 Los puntos claves a considerar de cada alternativa son los siguientes:
 \begin{itemize}
-	\item \textbf{Coste:} el coste es un factor clave para evaluar las alternativas, prefiriendo
-		aquellas que sean gratuitas o cuya implementación requiera la mínima inversión posible.
-	\item \textbf{Complejidad:} al tratarse de un proyecto con poco conocimiento previo y sin
-		mucha urgencia, se prefiere una solución que sea sencilla y que no requiera demasiado
-		desarrollo.
-	\item \textbf{Rendimiento y escalabilidad:} obviamente, a la hora de manejar los volúmenes
-		de datos con los que se están tratando, el sistema debe responder positivamente tanto
-		a la ingesta, tratamiento y visualización como a la escalabilidad del mismo.
+	\item \textbf{Coste:} el coste es un factor clave para evaluar las
+		alternativas, prefiriendo aquellas que sean gratuitas o cuya
+		implementación requiera la mínima inversión posible.
+	\item \textbf{Complejidad:} al tratarse de un proyecto con poco conocimiento
+		previo y sin mucha urgencia, se prefiere una solución que sea sencilla y
+		que no requiera demasiado desarrollo.
+	\item \textbf{Rendimiento y escalabilidad:} obviamente, a la hora de manejar
+		los volúmenes de datos con los que se están tratando, el sistema debe
+		responder positivamente tanto a la ingesta, tratamiento y visualización
+		como a la escalabilidad del mismo.
 \end{itemize}
 
-Como punto añadido, se valoran de manera positiva las alternativas \textit{open-source}, ya
-que son más flexibles y permiten personalizar el sistema a los necesidades del proyecto.
+Como punto añadido, se valoran de manera positiva las alternativas
+\textit{open-source}, ya que son más flexibles y permiten personalizar el
+sistema a los necesidades del proyecto.
+
+A continuación, se describen brevemente estas alternativas y se comparan sus
+características.
 
 \subsection{Splunk}
-Splunk es un producto de \textit{big data} que permite la recolección, el almacenamiento y la
-análisis de datos en tiempo real. Pese a que se centra en la ingesta de ``macrodatos'', no
-está enfocada a la ingesta de datos de inteligencia de negocio, sino a la ingesta de datos
-de \textit{logs} y \textit{eventos} en tiempo real con el objetivo de mejorar la respuesta
-frente a ataques y caídas de disponibilidad. Además, aunque hay versiones gratuitas, está
-enfocado principalmente a la gestión como \textit{SaaS} por precios muy elevados.
+Splunk es un producto de \textit{big data} que permite la recolección, el
+almacenamiento y la análisis de datos en tiempo real. Pese a que se centra en la
+ingesta de ``macrodatos'', no está enfocada a la ingesta de datos de
+inteligencia de negocio, sino a la ingesta de datos de \textit{logs} y
+\textit{eventos} en tiempo real con el objetivo de mejorar la respuesta frente a
+ataques y caídas de disponibilidad. Además, aunque hay versiones gratuitas, está
+enfocado principalmente a la gestión como \textit{SaaS} por precios muy
+elevados.
 
 
 
