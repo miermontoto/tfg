@@ -1,5 +1,14 @@
 \chapter{Diseño del sistema}\label{chap:diseño}
 \section{Estudio de alternativas}\label{sec:estudio}
+En este apartado se explorarán las diferentes alternativas disponibles para el
+diseño del sistema. Se analizarán las características, ventajas y desventajas de
+cada opción, con el objetivo de proporcionar una visión clara y fundamentada que
+permita seleccionar la alternativa más adecuada para el proyecto. Las áreas de
+estudio incluirán tanto el despliegue de infraestructura como otros aspectos
+críticos del diseño del sistema, asegurando una evaluación integral y detallada
+de las posibles soluciones.
+
+
 \subsection{Despliegue de infraestructura}\label{subsec:herdesinf}
 A la hora de desplegar la infraestructura de un proyecto, se consideran varias
 herramientas populares que permiten automatizar este proceso. Entre todas ellas,
@@ -106,8 +115,8 @@ en la gestión de datos.
     \item \textbf{Zookeeper}: Zookeeper es un servicio separado de coordinación
 		distribuida que se utiliza para gestionar y coordinar los brokers de
 		Kafka. Se encarga de mantener la información de los brokers y de los
-		tópicos. Actualmente, es una dependencia obligatoria.
-		~\footnote{
+		tópicos. Actualmente, este servicio es una dependencia obligatoria de
+		Kafka.~\footnote{
 			Dejará de ser necesario en la versión 4.
 			\url{https://x.com/coltmcnealy/status/1801987159534264641}
 		}
@@ -176,8 +185,8 @@ inconveniente en caso de querer migrar el proyecto a otro proveedor.
 
 
 \subsubsection{Comparación y decisión}
-Desde el primer momento, desde la empresa se considera a Kafka como la opción
-más sólida junto con el \textit{stack ELK} para desarrollar el proyecto, al
+Desde el primer momento, en la empresa se considera Kafka como la opción más
+sólida junto con el \textit{stack ELK} para desarrollar el proyecto, al
 tratarse de un estándar en la industria y una solución tanto rápida y escalable
 como asequible a nivel económico. Por eso, y pese a que las otras alternativas
 son atractivas para el desarrollo de este proyecto, se decide utilizar Kafka
