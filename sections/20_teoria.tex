@@ -1,9 +1,9 @@
 \chapter{Fundamento teórico}\label{chap:teo}
 En este capítulo se presentan los conceptos y términos fundamentales que se
 utilizan en el proyecto, para proporcionar una base teórica sobre la que se
-desarrolla el trabajo. Se discuten los conceptos de \textit{data lake},
-\textit{procesos ETL} y \textit{dashboards}, que son fundamentales para el
+desarrolla el trabajo. Se discuten los conceptos fundamentales para el
 desarrollo del proyecto.
+
 
 \section{\textit{Big data}}\label{sec:bigdata}
 El término \textit{big data} se refiere a la gestión y análisis de grandes
@@ -68,11 +68,6 @@ pero las más comunes son las siguientes:
 		los datos, la precisión de los mismos, la integridad de los datos, etc.
 \end{itemize}
 
-El \textit{big data} es un fenómeno que ha surgido en los últimos años debido al
-crecimiento exponencial de los datos que se generan y almacenan en todo el
-mundo. Este crecimiento ha sido impulsado por el aumento de la conectividad y el
-uso de dispositivos móviles, que han permitido a las empresas y a los usuarios
-generar y almacenar grandes cantidades de datos en todo el mundo.
 
 \newpage{}
 \section{Paradigmas de almacenamiento de datos}\label{sec:paradigmas}
@@ -81,6 +76,7 @@ almacenamiento de datos que se utilizan para almacenar y analizar grandes
 cantidades de información. Los tres paradigmas a considerar para este proyecto
 son los \textit{data warehouses}, los \textit{data lakes} y los
 \textit{data lakehouses}.
+
 
 \subsection{Data warehouse}\label{sec:warehouse}
 Un \textit{data warehouse}\footnote{
@@ -215,6 +211,7 @@ una extracción continua se extraen los datos en tiempo real según se van
 generando. Esto puede ser útil para procesar datos que se generan en tiempo
 real, como logs o datos de sensores.
 
+
 \newpage{}
 \paragraph{Transformación (2)}
 Durante esta fase, se transforman los datos extraídos en la fase anterior,
@@ -244,6 +241,7 @@ En este proceso se vuelcan los datos transformados en el destino final.
 Frecuentemente, los datos se almacenan, dependiendo del paradigma de
 almacenamiento elegido, en una \textit{data lake}, \textit{data warehouse} o
 \textit{data lakehouse} para su posterior análisis.
+
 
 \newpage{}
 \subsection{Alternativas}
