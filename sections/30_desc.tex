@@ -46,6 +46,8 @@ Antes de comenzar la planificación y el desarrollo del proyecto, se consideran
 varias opciones ya existentes en el mercado que podrían resolver o adaptarse a
 las necesidades planteadas.
 
+\subsection{Criterios de evaluación}
+
 Los puntos claves a considerar de cada alternativa son los siguientes:
 \begin{itemize}
 	\item \textbf{Coste:} el coste es un factor clave para evaluar las
@@ -64,10 +66,11 @@ Como punto añadido, se valoran de manera positiva las alternativas
 \textit{open-source}, ya que son más flexibles y permiten personalizar el
 sistema a los necesidades del proyecto.
 
+\subsection{Alternativas consideradas}
 A continuación, se describen brevemente estas alternativas y se comparan sus
 características.
 
-\subsection{Loggly, Splunk}
+\subsubsection{Loggly, Splunk (SaaS de gestión de logs)}
 Ambas herramientas se centran en la gestión y análisis de logs basada en la nube,
 permitiendo centralizar, monitorizar y analizar datos de logs en tiempo real.
 Diseñadas para simplificar la gestión de logs, las dos alternativas ofrecen una
@@ -110,7 +113,7 @@ costes adicionales, junto con sus limitaciones en el análisis de datos de
 inteligencia de negocio, las convierten en opciones menos atractivas para el
 desarollo de este proyecto.
 
-\subsection{Loki}
+\subsubsection{Loki}
 Loki es una herramienta de gestión de logs desarrollada por Grafana Labs,
 diseñada específicamente para ser altamente eficiente y escalable. A diferencia
 de otras soluciones de gestión de datos, Loki no indexa el contenido completo de
@@ -123,7 +126,7 @@ los requisitos de almacenamiento y mejora el rendimiento.
 	\caption{Logo de Loki~®}
 \end{figure}
 
-\subsubsection{Ventajas}
+\paragraph{Ventajas}
 \begin{itemize}
     \item \textbf{Integración con Grafana:} Una de las principales ventajas de
 		Loki es su integración nativa con Grafana, una popular plataforma de
@@ -143,7 +146,7 @@ los requisitos de almacenamiento y mejora el rendimiento.
 		despliegue en entornos de producción.
 \end{itemize}
 
-\subsubsection{Desventajas}
+\paragraph{Desventajas}
 \begin{itemize}
     \item \textbf{Limitaciones en la búsqueda:} Al no indexar el contenido
 		completo de los logs, las capacidades de búsqueda de Loki son más
@@ -166,7 +169,7 @@ limitaciones en la búsqueda y su ecosistema en desarrollo son factores a
 considerar antes de su implementación.
 
 
-\subsection{Graylog + Prometheus}
+\subsubsection{Graylog + Prometheus}
 Esta combinación de herramientas es una alternativa interesante para la gestión
 de logs y métricas en entornos de producción. Graylog es una plataforma de
 gestión de logs de código abierto que permite centralizar, monitorizar y
@@ -202,6 +205,30 @@ para el equipo de desarrollo a la hora de tratar con las herramientas.
 	\includegraphics[width=0.2\textwidth]{logos/prometheus.png}
 	\caption{Logo de Prometheus~®}
 \end{figure}
+
+\subsection{Conclusiones}
+Tras evaluar las alternativas consideradas, se concluye que ninguna de ellas se
+ajusta completamente a los requisitos y necesidades del proyecto. Si bien todas
+las alternativas ofrecen capacidades de gestión de logs y métricas, ninguna de
+ellas proporciona una solución integral que cumpla con los requisitos de
+integración, visualización y análisis de datos de negocio de Okticket.
+
+Por lo tanto, se considera que la mejor opción es desarrollar una solución
+personalizada que se adapte a las necesidades específicas de la empresa. Esta
+solución permitirá a Okticket consolidar y analizar datos de múltiples fuentes,
+así como crear dashboards de negocio personalizados que faciliten la toma de
+decisiones y la identificación de oportunidades de negocio.
+
+Desde un principio, la empresa considera que el desarrollo junto a un
+\textit{stack ELK}, es decir, Elasticsearch, Logstash y Kibana, es la mejor
+opción para el desarrollo de este proyecto. Aunque se considera que la
+integración de Prometheus y Grafana es una alternativa interesante, se opta por
+la solución de \textit{stack ELK} debido a su mayor flexibilidad y capacidad de
+personalización.
+
+Además de la pila de \textit{Elastic}, se analizará más adelante la posibilidad
+de integrar otras herramientas y tecnologías que puedan mejorar la eficiencia y
+escalabilidad del sistema, como Kafka, Spark o Flink, entre otras.
 
 
 \newpage{}
