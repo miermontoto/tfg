@@ -7,28 +7,65 @@ desarrollo del proyecto.
 
 \section{\textit{Big data}}\label{sec:bigdata}
 El término \textit{big data} se refiere a la gestión y análisis de grandes
-volúmenes de datos que no pueden ser tratados de manera convencional. Estos
-datos se caracterizan por su volumen, velocidad y variedad, lo que hace que sea
-difícil procesarlos con las herramientas tradicionales de gestión de datos.
+volúmenes de datos que no pueden ser tratados de manera convencional. La
+evolución natural del progreso tecnológico, la digitalización de la sociedad y
+la aparición de nuevas tecnologías han propiciado la generación de grandes
+cantidades de datos en todo el mundo, lo que genera la necesidad de nuevas
+formas de gestionar y tratar estos datos.
 
-El \textit{big data} se caracteriza por tres características principales:
-volumen, variedad y velocidad. Estas características se conocen como las
-``tres V'' del \textit{big data}:
+El término \textit{big data} no solo se refiere a la cantidad de datos que se
+generan, sino a también otras características, a las que se refieren como ``las
+uves del big data''. La cantidad de \textit{uves} depende del autor y de la
+fuente~\cite{ishwarappa2015vs,sagiroglu2013bigdata}, variando desde 3 hasta 7,
+pero las más comunes son las siguientes:
 
 \begin{itemize}
-	\item \textbf{Volumen:} se refiere a la cantidad de datos que se generan y
+	\item \textbf{Volumen:} la más básica, la cantidad de datos que se generan y
 		almacenan en un determinado periodo de tiempo. El volumen de datos que
 		se maneja en el \textit{big data} es mucho mayor que el que se maneja en
-		los sistemas tradicionales de gestión de datos.
+		los sistemas tradicionales de gestión de datos, que además se encuentra
+		en aumento constante.
 	\item \textbf{Variedad:} se refiere a la diversidad de fuentes y formatos de
-		los datos que se manejan en el \textit{big data}. Los datos pueden
-		provenir de diferentes fuentes, como bases de datos, archivos de
-		registros y APIs, y pueden estar en diferentes formatos, como texto,
-		imágenes, audio, vídeo, etc.
-	\item \textbf{Velocidad:} se refiere a la velocidad a la que se generan y se
-		procesan los datos. En este ámbito, los datos se generan y se procesan a
-		una velocidad mucho mayor que en los sistemas tradicionales de gestión
-		de datos.
+		los datos que se manejan. Los datos pueden provenir de diversas fuentes,
+		como bases de datos, archivos de registros o APIs, pueden estar en
+		diferentes formatos o tener diferentes estructura. Se pueden clasificar
+		de la siguiente manera: \begin{itemize}
+			\item \textbf{Estructurados:} datos que se encuentran en un formato
+				estructurado, como una base de datos relacional.
+			\item \textbf{Semi-estructurados:} datos que no se encuentran en un
+				formato estructurado, pero que tienen una estructura interna
+				que permite su análisis, como un archivo XML o JSON.
+			\item \textbf{No estructurados:} datos que no tienen una estructura
+				definida, como un archivo de texto o una imagen.
+		\end{itemize}
+	\item \textbf{Velocidad:} se refiere a la frecuencia con la que se generan y
+		se procesan los datos. En este ámbito, los datos se tratan a una
+		velocidad mucho mayor que en los sistemas tradicionales de gestión de
+		datos. Dicha velocidad puede ser crítica en ámbitos como la bolsa,
+		donde la velocidad de procesamiento de los datos puede ser la
+		diferencia entre obtener beneficios o pérdidas. Según la frecuencia de
+		procesamiento de los datos, los sistemas se pueden clasificar en:
+		\begin{itemize}
+			\item \textbf{Batch (en lotes):} los datos se procesan en lotes, de
+				manera periódica, como cada hora o cada día. Este tipo de datos,
+				frecuente en aplicaciones que se tratan en Okticket como los
+				notas de viajes o las nóminas, no requieren un procesamiento
+				inmediato.
+			\item \textbf{Streaming (en tiempo real):} los datos se procesan en
+				tiempo real, a medida que se generan. Este tipo de datos, que se
+				puede encontrar en aplicaciones como los sensores o los logs,
+				requieren un procesamiento inmediato si se quiere obtener
+				información relevante sobre los mismos.
+			\item \textbf{Near real-time (casi en tiempo real):} los datos se
+				procesan con un pequeño retraso, de manera que se obtiene
+				información relevante sobre los mismos en un tiempo muy corto.
+		\end{itemize}
+	\item \textbf{Veracidad:} se refiere a la calidad de los datos que se manejan.
+		La veracidad de los datos es un factor crítico en el ámbito del \textit{big
+		data}, ya que los datos incorrectos o incompletos pueden llevar a
+		decisiones incorrectas y a problemas en la empresa. La veracidad de los
+		datos se puede ver afectada por diferentes factores, como la calidad de
+		los datos, la precisión de los mismos, la integridad de los datos, etc.
 \end{itemize}
 
 El \textit{big data} es un fenómeno que ha surgido en los últimos años debido al
@@ -37,6 +74,7 @@ mundo. Este crecimiento ha sido impulsado por el aumento de la conectividad y el
 uso de dispositivos móviles, que han permitido a las empresas y a los usuarios
 generar y almacenar grandes cantidades de datos en todo el mundo.
 
+\newpage{}
 \section{Paradigmas de almacenamiento de datos}\label{sec:paradigmas}
 En el ámbito del \textit{big data}, existen diferentes paradigmas de
 almacenamiento de datos que se utilizan para almacenar y analizar grandes
@@ -92,6 +130,7 @@ Para consultar esta gran cantidad de datos almacenados, se suelen utilizar
 técnicas de visualización de datos, como los \textit{dashboards}, herramientas
 de visualización que permiten observar los datos de manera sencilla y eficiente.
 
+
 \subsection{Data lakehouse}\label{sec:lakehouse}
 Los \textit{data lakehouses} son una combinación funcional de los dos paradigmas
 vistos anteriormente, los \textit{data lakes} y los \textit{data warehouses}.
@@ -99,6 +138,7 @@ Los \textit{data lakehouses} permiten almacenar datos tanto de manera
 estructurada como no estructurada, lo que facilita aprovechar la información al
 contar con una única estructura de bajo coste que ofrece a los usuarios que lo
 necesiten explorar y analizar los datos según sus necesidades.
+
 
 \newpage{}
 \section{Procesos ETL}\label{sec:etl}
@@ -142,7 +182,7 @@ procedente de diversas fuentes:
 		que se visualicen y analicen posteriormente sean correctos y fiables.
 \end{itemize}
 
-\newpage{}
+
 \subsection{Funcionamiento}
 Los procesos ETL se dividen en tres fases principales: \textit{(1) Extraer},
 \textit{(2) Transformar} y \textit{(3) Cargar}, como se muestra en el siguiente

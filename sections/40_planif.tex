@@ -92,7 +92,28 @@ En \textit{Scrum} se distinguen tres roles principales:
 		en su correcto funcionamiento.
 \end{itemize}
 
-\subsection{Visualización de la planificación}\label{subsec:visual_planif}
+\paragraph{Estimación}
+En la metodología \textit{Scrum} se pueden utilizar diferentes técnicas de
+estimación de tareas, como la estimación en puntos de historia, la estimación en
+horas o la estimación en tallas de camiseta. En este proyecto se ha optado por
+la estimación en tallas de camiseta, que consiste en asignar a cada tarea una
+talla que representa su complejidad y su duración. Las tallas de camiseta se
+suelen representar con letras (XS, S, M, L, XL), que se pueden traducir a puntos
+de historia siguiendo la secuencia de Fibonacci, es decir, $XS = 1$, $S = 2$,
+$M = 3$, $L = 5$, $XL = 8$.
+
+La estimación en Scrum es esencial para la planificación de los \textit{sprints}
+y para la asignación de tareas al equipo de desarrollo. La estimación en tallas
+se considera óptima para este proyecto, ya que permite una estimación rápida y
+sencilla de las tareas, al no necesitar una coordinación entre un equipo
+completo de desarrollo.
+
+Además de la estimación del tamaño de las tareas, también se realiza una
+estimación sobre la \textit{prioridad} de las mismas, que se representa con
+siguiendo el equivalente de \textit{GitHub} al sistema de colores de semáforo,
+donde el rojo (P0) es la máxima prioridad y el verde (P2) la mínima.
+
+\subsection{Visualización}\label{subsec:visual_planif}
 Para la visualización de la planificación se ha utilizado la herramienta de
 gestión de proyecto de \textit{GitHub}, que permite múltiples visualizaciones de
 tareas e \textit{issues} en tableros separados.
@@ -111,16 +132,15 @@ tareas e \textit{issues} en tableros separados.
 			\caption{Tablero \textit{Kanban} del proyecto}
 			\label{fig:kanban}
 		\end{figure}
-	\item Se utiliza un \textit{roadmap} de apartados de la memoria, separado
-		del tablero de desarrollo normal, donde se visualiza su estado y sus
-		fechas límite. Este \textit{roadmap} no está relacionado con la
-		metodología \textit{Scrum}, sino que se ha creado a propósito para
-		facilitar la visualización del progreso de cada sección y de la memoria
-		en general.
+	\item Adicionalmente, se utiliza un \textit{roadmap} de apartados de la
+		memoria, separado del tablero de desarrollo normal, donde se visualiza
+		su estado y sus fechas límite. Este \textit{roadmap} no está relacionado
+		con la metodología \textit{Scrum}, sino que se ha creado para facilitar
+		la visualización del progreso de cada sección y de la memoria en general.
 
 		\begin{minipage}{\linewidth}
 			\centering
-			\includegraphics[width=0.9\textwidth]{roadmap.png}
+			\includegraphics[width=\textwidth]{roadmap.png}
 			\captionof{figure}{Roadmap de apartados de la memoria}
 		\end{minipage}
 \end{itemize}
@@ -135,7 +155,7 @@ la comunicación con los tutores se realiza de manera remota pero igual de
 frecuente, manteniendo el contacto mediante correo electrónico y Teams para
 pedir revisiones e informar sobre el estado del trabajo en todo momento.
 
-\subsection{Plataformas de planificación}\label{subsec:plataformas}
+\subsection{Herramientas}\label{subsec:herr_planif}
 Con el objetivo de facilitar las tareas de desarrollo y cumplimentar los
 requisitos por parte de la empresa, se utilizan las siguientes plataformas y
 herramientas de desarrollo para la fabricación del proyecto:
@@ -168,10 +188,11 @@ se puede ver el \textit{backlog} de tareas que se planifican en el proyecto.
 \end{figure}
 
 Las tareas anteriores se clasifican y categorizan según su prioridad y tamaño,
-haciendo uso de la estrategia de tallas de camiseta para esta última. En el
-tablero \textit{Kanban} (ver figura \ref{fig:kanban}) se puede ver en todo
-momento el estado de las tareas, su progreso y sus características. El listado
-de tareas iniciales (ordenado según su prioridad) es el siguiente:
+haciendo uso de la estrategia de tallas de camiseta como mencionado
+anteriormente. En el tablero \textit{Kanban} (ver figura \ref{fig:kanban}) se
+puede ver en todo momento el estado de las tareas, su progreso y sus
+características. El listado de tareas iniciales (ordenado según su prioridad)
+es el siguiente:
 
 \begin{table}[H]
 	\centering
@@ -211,6 +232,9 @@ de tareas iniciales (ordenado según su prioridad) es el siguiente:
 	\label{tab:initial_tasks}
 \end{table}
 
+Siguiendo la tabla anterior, se pueden planear los \textit{sprints} y
+asignar las tareas a cada uno de ellos.
+
 \newpage{}
 \section{Presupuesto}\label{sec:presupuesto}
 Para poder llevar a cabo este proyecto, se realiza una estimación del coste
@@ -220,9 +244,123 @@ proyecto, y el coste del personal, que incluye el coste de las horas de trabajo
 del desarrollador.
 
 \subsection{Presupuesto de material}\label{subsec:pres_material}
-|TODO| descripción y tabla de presupuesto de material.
+Puesto que el proyecto se desarrolla en la empresa, se dispone de todos los
+recursos físicos necesarios para llevar a cabo el proyecto, es decir, que no se
+incluirá el coste del ordenador o de la conexión a internet en el presupuesto.
+
+Sin embargo, se incluirá el coste de las herramientas y servicios utilizados
+durante el desarrollo del proyecto, como el coste de las licencias de software,
+el coste de los servicios en la nube, el coste de las herramientas de
+desarrollo, etc.
+
+\begin{table}[h]
+	\centering
+	\small
+	\begin{tabular}{|l|l|r|r|r|}
+	\hline
+	\textbf{Categoría} & \textbf{Ítem} & \textbf{Cantidad} & \textbf{Coste unitario} & \textbf{Coste total} \\
+	\hline
+	\hline
+	AWS Compute & Fargate & 500 vCPU-h/mes & 0,04665€/vCPU-h & 23,33€ \\
+	 & & 1000 GB-h/mes & 0,00511€/GB-h & 5,11€ \\
+	\hline
+	AWS Storage & EFS & 500 GB/mes & 0,36€/GB-mes & 180,00€ \\
+	 & S3 & 250 GB/mes & 0,0245€/GB-mes & 6,13€ \\
+	\hline
+	AWS Network & VPC & 4 NAT Gateways & 0,052€/h & 149,76€ \\
+	 & ELB & 4 ALBs & 0,0243€/h & 70,00€ \\
+	\hline
+	AWS Security & IAM & - & Sin cargo & 0,00€ \\
+	 & KMS & 1 CMK & 1,00€/mes & 1,00€ \\
+	\hline
+	Stack KELK & Kafka & - & Licencia gratuita & 0,00€ \\
+	 & Elasticsearch & - & Licencia gratuita & 0,00€ \\
+	 & Logstash & - & Licencia gratuita & 0,00€ \\
+	 & Kibana & - & Licencia gratuita & 0,00€ \\
+	\hline
+	AWS Container & ECS & - & Sin cargo & 0,00€ \\
+	\hline
+	AWS Monitor & CloudWatch & 5 métricas & 0,30€/métrica-mes & 1,50€ \\
+	 & X-Ray & 50,000 trazas/mes & 4,60€/1M trazas & 0,23€ \\
+	\hline
+	AWS Manage & CloudFormation & - & Sin cargo & 0,00€ \\
+	\hline
+	Capacitación & Training & 1 curso online & 184,00€/curso & 184,00€ \\
+	\hline
+	\textbf{Subtotal} & \multicolumn{4}{|r|}{620,06€} \\
+	\hline
+	\hline
+	Otros & Support & Plan Basic & Sin cargo & 0,00€ \\
+	 & Optimización & - & 5\% del subtotal & 31,00€ \\
+	 & Contingencia & - & 10\% del subtotal & 62,00€ \\
+	\hline
+	\textbf{Total} & \multicolumn{4}{|r|}{713,06€} \\
+	\hline
+	\end{tabular}
+	\caption{Propuesta de presupuesto de materiales (AWS - Región París)}
+	\label{tab:presupuesto_material}
+\end{table}
+
 
 \subsection{Presupuesto de personal}\label{subsec:pres_personal}
-|TODO| descripción y tabla de presupuesto de personal.
+A continuación, se presenta una propuesta de presupuesto de personal para el
+desarrollo del proyecto, que incluye el coste de las horas de trabajo según
+cada rol y el coste total del personal.
+
+\begin{table}[h]
+	\centering
+	\small
+	\begin{tabular}{|l|l|r|r|r|}
+	\hline
+	\textbf{Rol} & \textbf{Descripción} & \textbf{Horas/mes} & \textbf{CU (€/h)} & \textbf{CT (€/mes)} \\
+	\hline
+	\hline
+	Arquitecto & Diseño de la arquitectura y supervisión & 40 & 60 & 2.400,00€ \\
+	\hline
+	Desarrollador & Desarrollo y mantenimiento & 160 & 45 & 7.200,00€ \\
+	\hline
+	Administrador & Gestión de sistemas y seguridad & 160 & 50 & 8.000,00€ \\
+	\hline
+	DevOps & Infraestructuras y monitorización & 80 & 55 & 4.400,00€ \\
+	\hline
+	\textbf{Subtotal} & \multicolumn{4}{|r|}{22.000,00€} \\
+	\hline
+	\hline
+	Otros & \multicolumn{3}{|l|}{IVA (21\%)} & 4.620,00€ \\
+	 & \multicolumn{3}{|l|}{Margen (5\%)} & 1.100,00€ \\
+	\hline
+	\textbf{Total} & \multicolumn{4}{|r|}{27.720,00€} \\
+	\hline
+	\end{tabular}
+	\caption{Propuesta de presupuesto de personal}
+	\label{tab:presupuesto_personal_aws}
+\end{table}
+
 
 \subsection{Presupuesto total}\label{subsec:pres_total}
+Finalmente, se presenta el presupuesto total del proyecto, que incluye el coste
+del material y el coste del personal, así como el coste total del proyecto.
+
+\begin{table}[h]
+	\centering
+	\small
+	\begin{tabular}{|l|r|}
+	\hline
+	\textbf{Concepto} & \textbf{Coste (€/mes)} \\
+	\hline
+	\hline
+	Presupuesto de Materiales & 713,06€ \\
+	\hline
+	Presupuesto de Personal & 27.720,00€ \\
+	\hline
+	\hline
+	\textbf{Subtotal} & \textbf{28.433,06€} \\
+	\hline
+	Beneficio Industrial (15\%) & 4.264,96€ \\
+	\hline
+	\textbf{Total Final} & \textbf{32.698,02€} \\
+	\hline
+	\end{tabular}
+	\caption{Costes combinados de presupuesto y materiales con beneficio industrial}
+	\label{tab:costes_combinados}
+\end{table}
