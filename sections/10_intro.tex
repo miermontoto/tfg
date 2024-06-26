@@ -1,0 +1,168 @@
+\chapter{Introducción}\label{chap:intro}
+El proyecto que se presenta en este documento tiene como objetivo la
+automatización de despliegue de la infraestructura y procesos que permitan hacer
+un análisis masivo de datos. Para conseguir este objetivo, se analizan las
+necesidades de la empresa y sus antecedentes, se valoran las tecnologías y
+herramientas disponibles y se plantea una solución que permita la integración,
+almacenamiento y análisis de grandes volúmenes de datos, provenientes de
+múltiples fuentes y en diferentes formatos.
+
+\section{Antecedentes}\label{sec:antecedentes}
+Hoy en día, nos encontramos en una era donde la generación y almacenamiento de
+datos crece exponencialmente \footnote{
+	\url{https://www.statista.com/statistics/871513/worldwide-data-created/}
+}, un hecho que se ve reflejado en el ámbito empresarial. La diversidad de
+fuentes y formatos de estos datos introduce una complejidad significativa en su
+manejo, conocida como \textit{heterogeneidad} \footnote{
+	\url{https://www.sciencedirect.com/topics/computer-science/data-heterogeneity}
+}, siendo las bases de datos, archivos de registros y APIs las fuentes más
+habituales.
+
+El término \textit{big data} describe este fenómeno de acumulación masiva de
+datos, cuya magnitud y complejidad sobrepasan las capacidades de los métodos de
+procesamiento convencionales. El \textit{big data} se caracteriza por tres
+características principales: volumen, variedad y velocidad - su adecuada gestión
+y análisis pueden otorgar ventajas competitivas significativas a las empresas,
+tales como el descubrimiento de patrones ocultos, identificación de nuevas
+oportunidades de mercado y optimización de procesos de toma de decisiones.
+
+Uno de los procesos que permite la extracción de esta información es la pirámide
+DIKW, \cite{enwiki:1211227190} es un modelo que describe la relación entre los
+datos, la información, el conocimiento y la sabiduría. Según este modelo, los
+datos son la materia prima de la información, que a su vez es la materia prima
+del conocimiento, que a su vez es la materia prima de la sabiduría. Una
+organización sin los procesos adecuados para la gestión y análisis de estos
+datos, se enfrenta a importantes desafíos, como la dificultad para identificar
+patrones y tendencias, la toma de decisiones incorrectas y la pérdida de
+oportunidades de negocio. Por otro lado, una organización que logre extraer
+información valiosa de sus datos, podrá mejorar su eficiencia, aumentar su
+competitividad y adaptarse mejor a un entorno empresarial en constante cambio.
+
+La evolución tecnológica ha propiciado el desarrollo de innovadoras herramientas
+y metodologías diseñadas para enfrentar estos desafíos. Entre ellas, los
+\textit{data lakes} (o \emph{lagos de información}) se destacan por su capacidad
+para consolidar vastos volúmenes de datos heterogéneos, facilitando su posterior
+análisis y aprovechamiento de manera más efectiva.
+
+Sin embargo, a pesar de que existen herramientas de almacenamiento, el proceso
+de integración, visualización y análisis de estos datos es una tarea desafiante,
+ya que requiere de una gran cantidad de recursos y de un tiempo de desarrollo
+considerable del que, normalmente, no se dispone en el ámbito empresarial.
+
+Con la ingesta masiva de datos, se presentan nuevos problemas a la hora de
+analizar y obtener información de ellos:
+
+\begin{itemize}
+	\item Sin la necesaria automatización y correcta aplicación de los procesos
+		ETL, al tratarse de un crecimiento exponencial de los datos y, por lo
+		tanto, de la fuerza de trabajo necesaria para manejarla, los resultados
+		del análisis pueden ser incorrectos, lo que deriva en errores y
+		decisiones de negocio equivocadas que impactan negativamente en la
+		empresa.
+	\item La heterogeneidad de los datos, tanto en formato como en origen,
+		dificulta su consolidación y análisis.
+	\item La masificación de información impide el análisis manual de los
+		mismos, requiriendo resúmenes estadísticos o representaciones gráficas
+		como \textit{dashboards} para su correcta interpretación.
+		La visualización de datos es una técnica que permite representar la
+		información de manera visual, para facilitar su análisis y comprensión,
+		una parte vital del proceso de análisis de datos, ya que permite
+		identificar patrones, tendencias y anomalías en los mismos de forma más
+		rápida y sencilla.
+\end{itemize}
+
+\newpage{}
+\section{Motivación}\label{sec:motivacion}
+Okticket, como el resto de empresas, se enfrenta a la necesidad de gestionar y
+analizar grandes volúmenes de datos, provenientes de múltiples fuentes y en
+diferentes formatos. La correcta gestión y análisis de estos datos es
+fundamental para la toma de decisiones y para la mejora de los procesos internos
+de la empresa.
+
+En la actualidad, la empresa dispone de una gran cantidad de datos que se
+encuentran en diferentes formatos y en diferentes ubicaciones, lo que dificulta
+su análisis y explotación. Por otra parte, se depende de la consulta manual o de
+servicios de terceros para poder analizar estos datos, lo que supone un coste
+adicional.
+
+El proyecto surge de la necesidad de la empresa de extraer información y
+conocimiento de las múltiples y heterogéneas fuentes de datos de las que se
+disponen, tanto internas (e.g.~bases de datos, archivos de registros, APIs,
+entre otros), como externas (e.g. APIs o datos de webs de terceros, datos de
+fuentes públicas\ldots).
+
+Además del uso interno, la empresa también quiere ofrecer a sus clientes la
+posibilidad de consultar estos datos de forma visual y sencilla, para que puedan
+analizarlos y explotarlos de forma autónoma, lo que supondría un valor añadido
+para los mismos.
+
+\newpage{}
+\section{La empresa}\label{sec:empresa}
+Okticket es una startup nacida en Gijón en 2017 cuyo producto principal es un
+servicio software que escanea automáticamente tickets y notas de gastos, lo que
+permite reducir los costes y el tiempo que invierten las empresas en
+contabilizar y manejar los gastos de viaje de los profesionales.
+
+La empresa tienen su suede principal en el Parque Tecnológico de Gijón, aunque
+cuenta con un número de sedes creciente en varios países, como Francia, Portugal
+o, más recientemente, México. En esta oficina principal se encuentran los
+departamentos de ventas y marketing, así como el equipo de desarrollo y soporte.
+
+Okticket es una de las empresas que más crecen tanto del sector como del propio
+Parque Tecnológico. Debido a este rápido crecimiento, el equipo está en
+constante desarrollo y cambio, tanto aquí en España como en el resto de sedes.
+Este crecimiento se refleja en la recepción de un gran número de galardones y
+reconocimientos.
+\footnote{\href
+	{https://www.linkedin.com/posts/okticket_okticket-en-el-especial-startups-de-forbes-activity-7140622980618903552-UGWK}
+	{Okticket en el especial startups 2023 de Forbes (LinkedIn)}
+}
+\footnote{\href
+	{https://www.elcomercio.es/economia/arcelor-okticket-premios-20230222002438-ntvo.html}
+	{Arcelor y Okticket, premios nacional de Ingeniería Informática (EL COMERCIO)}
+}
+\footnote{\href{
+	https://www.okticket.es/blog/empresa-pyme-innovadora}
+	{Okticket recibe el sello Pyme Innovadora (okticket.es)}
+}
+\footnote{\href
+	{https://www.okticket.es/blog/okticket-empresa-emergente-certificada}
+	{Okticket, empresa emergente certificada (okticket.es)}
+}
+
+La parte principal del negocio es el núcleo del software como servicio (Software
+as a Service en inglés, en adelante \textit{SaaS}), es decir, la aplicación
+completa tanto para administradores como para empleados. Este SaaS se oferta a
+empresas de cualquier tamaño, cuyo precio final varía en función del número de
+usuarios, las características e integraciones que requiera la empresa cliente y
+el soporte que se ofrezca.
+
+Recientemente se han añadido nuevas propuestas a la cartera de servicios
+ofertada por Okticket, como la OKTCard {-} una tarjeta inteligente que gestiona
+automáticamente los gastos, así como la inclusión de nuevos ``módulos'' de
+gestión de gastos y viajes.
+
+Debido a todo este crecimiento, la empresa maneja una gran cantidad de datos
+importantes que se encuentran en diferentes formatos y en diferentes
+ubicaciones, lo que dificulta su análisis y explotación. Por otra parte, se
+depende de la consulta manual o de servicios de terceros para poder analizar
+estos datos, lo que supone un coste adicional.
+
+\section{Objetivos}\label{sec:objetivos}
+El objetivo del proyecto es la creación de un proceso que permita el despliegue
+automático de una infraestructura de datos que permita la integración,
+almacenamiento y análisis de grandes volúmenes de datos, provenientes de
+múltiples fuentes y en diferentes formatos. La infraestructura de datos debe ser
+escalable, flexible y robusta, para poder adaptarse a las necesidades cambiantes
+de la empresa.
+
+La infraestructura de datos debe permitir la integración de datos de múltiples
+fuentes, tanto internas como externas, y en diferentes formatos, como bases de
+datos, archivos de registros, APIs, entre otros. La integración de datos debe
+ser automática y programable, para poder automatizar el proceso de ingestión de
+datos y reducir el tiempo y los costes asociados.
+
+Pese a que el entregable principal de este proyecto es la creación de una
+infraestructura, se esperan también otros entregables en forma de herramientas
+de software, como \textit{scripts}, que faciliten la integración y análisis de
+los datos, así como la visualización de los mismos.

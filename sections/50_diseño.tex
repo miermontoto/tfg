@@ -1,0 +1,204 @@
+\chapter{Diseño del sistema}\label{chap:diseño}
+\section{Estudio de alternativas}\label{sec:estudio}
+En este apartado se explorarán las diferentes alternativas disponibles para el
+diseño del sistema. Se analizarán las características, ventajas y desventajas de
+cada opción, con el objetivo de proporcionar una visión clara y fundamentada que
+permita seleccionar la alternativa más adecuada para el proyecto. Las áreas de
+estudio incluirán tanto el despliegue de infraestructura como otros aspectos
+críticos del diseño del sistema, asegurando una evaluación integral y detallada
+de las posibles soluciones.
+
+
+\subsection{Despliegue de infraestructura}\label{subsec:herdesinf}
+A la hora de desplegar la infraestructura de un proyecto, se consideran varias
+herramientas populares que permiten automatizar este proceso. Entre todas ellas,
+las más establecidas y atractivas son \textit{Terraform},
+\textit{AWS CloudFormation} y \textit{Ansible}.
+
+A continuación, se describen brevemente estas herramientas y se comparan sus
+características.
+
+\subsubsection{Alternativas}
+\paragraph{Terraform}
+\textit{Terraform} es una herramienta de código abierto desarrollada por
+\textit{HashiCorp} que permite definir y desplegar infraestructura de forma
+declarativa. \textit{Terraform} permite definir la infraestructura en un archivo
+de configuración JSON, que describe los recursos que se desean crear y sus
+dependencias. A partir de este archivo, \textit{Terraform} se encarga de
+desplegar los recursos en el proveedor de nube especificado, que en el caso de
+este proyecto es \textit{AWS}.
+
+\paragraph{AWS CloudFormation}
+\textit{AWS CloudFormation} es un servicio de \textit{Amazon Web Services}
+similar a \textit{Terraform} que permite definir y desplegar infraestructura en
+la nube de forma declarativa. \textit{AWS CloudFormation} permite definir la
+infraestructura o bien mediante un archivo de configuración (en formato JSON o
+YAML), o bien gráficamente mediante diagramas, un punto muy fuerte a favor de
+esta alternativa.
+
+\paragraph{Ansible}
+\textit{Ansible} es una herramienta multi-propósito de automatización de tareas
+entre las que se incluye el despliegue y orquestación de infraestructura. Se
+trata de una herramienta desarrollada por \textit{Red Hat} que permite definir
+la infraestructura mediante \textit{playbooks} escritos en YAML, que describen
+las tareas a realizar y los servidores en los que se deben ejecutar.
+
+\subsubsection{Comparación}
+Comenzando la comparativa por la facilidad de uso de cada herramienta,
+\textit{Terraform} es la alternativa planteada más fácil de usar, ya que permite
+definir la infraestructura en un archivo con sintaxis sencilla y desplegarla con
+un solo comando. Por otro lado, \textit{AWS CloudFormation} es un poco más
+complejo de usar, ya que requiere definir la infraestructura en un archivo de
+configuración o en un diagrama, y luego desplegarla mediante la consola de
+\textit{AWS}. \textit{Ansible} es más complejo de usar, ya que requiere definir
+la infraestructura mediante \textit{playbooks} y ejecutarlos en los servidores,
+pero es más flexible y potente que las otras dos herramientas.
+
+Mientras que \textit{Terraform} y \textit{Ansible} son herramientas
+\textit{multi-cloud}, lo que significa que funcionan con cualquier proveedor de
+nube, \textit{AWS CloudFormation} es una herramienta específica de \textit{AWS}
+y solo funciona con sus servicios, lo que puede suponer tanto una ventaja como
+una desventaja, dependiendo de las necesidades del proyecto. En este caso, la
+solución se va a desplegar en la nube de \textit{Amazon}, pero a la vez no se
+requiere el uso de servicios específicos de \textit{AWS}, no se considera una
+ventaja significativa.
+
+\subsubsection{Decisión}
+Ninguna de las alternativas consideradas es claramente superior a las demás, ya
+que se tratan de herramientas con características y funcionalidades similares y
+una gran popularidad en la industria. Sin embargo, se decide utilizar
+\textit{Terraform} para el despliegue de la infraestructura de este proyecto,
+ya que es la herramienta más ``sencilla'', la que mejor se podría adaptar a las
+necesidades del proyecto y la única que ya se ha usado en proyectos anteriores
+dentro de la empresa.
+
+\subsection{Ingesta de datos}\label{subsec:ingesta}
+A partir del conjunto de tecnologías seleccionadas en la descripción detallada
+del proyecto, se consdieran diversas tecnologías, como \textit{Redpanda},
+\textit{AWS Glue} y \textit{Kafka} que permitan ingestar datos de todas las
+fuentes que requieren ser procesadas.
+
+\subsubsection{Alternativas}
+\paragraph{Kafka}
+\textit{Kafka} es una plataforma de transmisión de datos distribuida y de código
+abierto que se utiliza para construir pipelines de datos en tiempo real y
+aplicaciones de streaming. Desarrollada originalmente por LinkedIn y
+posteriormente donada a la Apache Software Foundation, \textit{Kafka} se ha
+convertido en una de las tecnologías más populares para la gestión de flujos de
+datos en tiempo real.
+
+Una de las principales ventajas de \textit{Kafka} es su capacidad para manejar
+grandes volúmenes de datos con alta eficiencia y baja latencia. \textit{Kafka}
+utiliza un modelo de publicación-suscripción, donde los productores publican
+mensajes en temas y los consumidores se suscriben a estos temas para recibir
+los mensajes. Esta arquitectura permite una alta escalabilidad y flexibilidad
+en la gestión de datos.
+
+\textit{Kafka} se compone de varios componentes clave:
+
+\begin{itemize}
+    \item \textbf{Tópico}: Un tópico es una categoría a la que se envían los
+		mensajes a la que los consumidores están \textit{suscritos}. Los
+		consumidores pueden estar suscritos a uno o varios tópicos, y los
+		productores pueden enviar mensajes a uno o varios tópicos. Los tópicos
+		son la unidad básica de organización de los mensajes en cualquier
+		sistema de mensajería de publicación/suscripción.
+    \item \textbf{Productor}: El productor es el componente responsable de crear
+		y enviar mensajes al cluster de Kafka. Está separado del resto de los
+		componentes y produce mensajes de manera asíncrona y rápida.
+    \item \textbf{Consumidor}: El consumidor es el componente responsable de
+		leer los mensajes producidos por el productor. Está suscrito a un tópico
+		a través del broker y consume los mensajes.
+    \item \textbf{Broker}: El broker es el componente responsable de recibir los
+		mensajes producidos por el productor y enviarlos a los consumidores. Es
+		el intermediario entre los productores y los consumidores.
+    \item \textbf{Zookeeper}: Zookeeper es un servicio separado de coordinación
+		distribuida que se utiliza para gestionar y coordinar los brokers de
+		Kafka. Se encarga de mantener la información de los brokers y de los
+		tópicos. Actualmente, este servicio es una dependencia obligatoria de
+		Kafka.~\footnote{
+			Dejará de ser necesario en la versión 4.
+			\url{https://x.com/coltmcnealy/status/1801987159534264641}
+		}
+\end{itemize}
+
+A pesar de sus numerosas ventajas, \textit{Kafka} también presenta algunos
+desafíos. La configuración y gestión de un clúster de \textit{Kafka} puede ser
+compleja, especialmente en entornos de producción a gran escala. Además,
+\textit{Kafka} depende de \textit{Zookeeper} para la coordinación, lo que añade
+una capa adicional de complejidad en la administración del sistema.
+
+En resumen, \textit{Kafka} es una solución robusta y escalable para la
+transmisión de datos en tiempo real, ideal para aplicaciones que requieren alta
+disponibilidad y procesamiento eficiente de grandes volúmenes de datos. Sin
+embargo, su implementación y gestión requieren un conocimiento profundo de su
+arquitectura y componentes.
+
+
+\paragraph{Redpanda}
+\textit{Redpanda} es una plataforma de transmisión de datos en tiempo real que
+se destaca por su alto rendimiento y baja latencia. Diseñada como una
+alternativa moderna a \textit{Kafka}, \textit{Redpanda} ofrece una arquitectura
+simplificada que elimina la necesidad de dependencias externas como
+\textit{Zookeeper}. Esto no solo reduce la complejidad operativa, sino que
+también mejora la eficiencia y la escalabilidad del sistema. \textit{Redpanda}
+es compatible con la API de \textit{Kafka}, lo que facilita la migración de
+aplicaciones existentes sin necesidad de cambios significativos en el código.
+Además, su diseño optimizado para hardware moderno permite un procesamiento más
+rápido y un uso más eficiente de los recursos, lo que la convierte en una opción
+ideal para aplicaciones que requieren una transmisión de datos rápida y
+confiable.
+
+Sin embargo, \textit{Redpanda} también presenta algunos puntos en contra. Al ser
+una tecnología relativamente nueva, su ecosistema y comunidad de usuarios no son
+tan amplios como los de \textit{Kafka}, lo que puede limitar el acceso a
+recursos y soporte. Además, aunque la compatibilidad con la API de
+\textit{Kafka} es una ventaja, puede haber ciertas características y extensiones
+específicas de \textit{Kafka} que no estén completamente soportadas en
+\textit{Redpanda}. Finalmente, la adopción de una nueva tecnología siempre
+conlleva riesgos asociados con la estabilidad y el soporte a largo plazo,
+aspectos que deben ser considerados cuidadosamente antes de su implementación.
+
+
+\paragraph{AWS Glue}
+\textit{AWS Glue} es un servicio de integración de datos totalmente administrado
+que facilita la preparación y carga de datos para análisis. Diseñado para
+trabajar con grandes volúmenes de datos, \textit{AWS Glue} automatiza las tareas
+de descubrimiento, catalogación, limpieza, enriquecimiento y movimiento de datos
+entre diferentes almacenes de datos. Una de las principales ventajas de
+\textit{AWS Glue} es su capacidad para generar automáticamente el código
+necesario para realizar las transformaciones de datos, lo que reduce
+significativamente el tiempo y el esfuerzo requeridos para preparar los datos
+para el análisis. Además, \textit{AWS Glue} es altamente escalable y puede
+manejar tanto cargas de trabajo por lotes como en tiempo real, lo que lo
+convierte en una opción versátil para diversas necesidades de integración de
+datos.
+
+\textit{AWS Glue} es un servicio administrado, por lo que su uso puede implicar
+costes adicionales en comparación con soluciones autogestionadas. Además, aunque
+\textit{AWS Glue} ofrece una gran flexibilidad y potencia, su configuración y
+optimización pueden requerir un conocimiento profundo de los servicios de
+\textit{AWS} y de las mejores prácticas de integración de datos. Por último, la
+dependencia de \textit{AWS Glue} puede limitar la portabilidad de las soluciones
+de integración de datos a otros proveedores de nube, lo que podría ser un
+inconveniente en caso de querer migrar el proyecto a otro proveedor.
+
+
+\subsubsection{Comparación y decisión}
+Desde el primer momento, en la empresa se considera Kafka como la opción más
+sólida junto con el \textit{stack ELK} para desarrollar el proyecto, al
+tratarse de un estándar en la industria y una solución tanto rápida y escalable
+como asequible a nivel económico. Por eso, y pese a que las otras alternativas
+son atractivas para el desarrollo de este proyecto, se decide utilizar Kafka
+como servicio de ingesta de datos, en consonancia con \textit{Logstash}.
+
+
+\newpage{}
+\section{Arquitectura del sistema}\label{sec:arquitectura}
+Tras toda la definción de los requisitos y la valoración de las alternativas
+disponibles, se plantea la siguiente arquitectura:
+
+
+
+\newpage{}
+\section{Modelo de datos}\label{sec:modelo}

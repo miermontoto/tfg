@@ -1,0 +1,177 @@
+\chapter{Descripción general del proyecto}
+Esta sección describe el proyecto en términos generales, incluyendo una
+descripción de los problemas que se pretenden resolver, las partes interesadas
+en el proyecto y una valoración de las alternativas consideradas.
+
+
+\section{Partes interesadas (stakeholders)}\label{sec:stakeholders}
+Las partes interesadas en el proyecto son aquellas personas o entidades que
+tienen un interés en el mismo, ya sea porque se ven afectadas por el resultado
+del proyecto, o porque tienen algún tipo de interés en el mismo. Las partes
+interesadas en este proyecto son las siguientes:
+
+\begin{enumerate}
+	\item \textbf{Okticket}: la empresa es la principal parte interesada en el
+		proyecto, ya que es la que se beneficiará directamente de los resultados
+		del mismo, así como de las oportunidades de negocio que se abren con la
+		explotación de los datos. Dentro de la empresa, se pueden identificar
+		dos entidades:
+		\begin{itemize}
+			\item \textbf{Equipo de desarrollo de la empresa}: el equipo de
+				desarrollo es otra parte interesada en el proyecto, ya que son
+				los encargados de llevar a cabo la implementación del sistema y
+				de garantizar su correcto funcionamiento, además de gestionar el
+				soporte de servicio a nivel técnico.
+			\item \textbf{Equipo de soporte de la empresa}: el sistema planteado
+				ahorraría tiempo al equipo de soporte, ya que les permitiría
+				analizar los datos de forma más eficiente e identificar
+				problemas antes de que tener que resolver las peticiones de los
+				clientes afectados a nivel básico.
+		\end{itemize}
+	\item \textbf{Clientes}: los clientes de la empresa también son partes
+		interesadas, puesto que se beneficiarán de los nuevos servicios que se
+		ofrecen, como los dashboards de negocio que se han descrito
+		anteriormente. Estos clientes no son necesariamente los usuarios
+		finales, sino los administradores y gestores de las empresas que
+		utilizan Okticket como herramienta de gestión de gastos.
+	\item \textbf{Investigador y desarrollador (\emph{\author}):} el
+		desarrollador del proyecto tiene la oportunidad de aplicar los
+		conocimientos adquiridos en el desarrollo de un proyecto real, y de
+		adquirir nuevos conocimientos en el proceso.
+\end{enumerate}
+
+\section{Alternativas existentes}\label{sec:alternativas}
+Antes de comenzar la planificación y el desarrollo del proyecto, se consideran
+varias opciones ya existentes en el mercado que podrían resolver o adaptarse a
+las necesidades planteadas.
+
+Los puntos claves a considerar de cada alternativa son los siguientes:
+\begin{itemize}
+	\item \textbf{Coste:} el coste es un factor clave para evaluar las
+		alternativas, prefiriendo aquellas que sean gratuitas o cuya
+		implementación requiera la mínima inversión posible.
+	\item \textbf{Complejidad:} al tratarse de un proyecto con poco conocimiento
+		previo y sin mucha urgencia, se prefiere una solución que sea sencilla y
+		que no requiera demasiado desarrollo.
+	\item \textbf{Rendimiento y escalabilidad:} obviamente, a la hora de manejar
+		los volúmenes de datos con los que se están tratando, el sistema debe
+		responder positivamente tanto a la ingesta, tratamiento y visualización
+		como a la escalabilidad del mismo.
+\end{itemize}
+
+Como punto añadido, se valoran de manera positiva las alternativas
+\textit{open-source}, ya que son más flexibles y permiten personalizar el
+sistema a los necesidades del proyecto.
+
+A continuación, se describen brevemente estas alternativas y se comparan sus
+características.
+
+\subsection{Loggly, Splunk}
+Ambas herramientas se centran en la gestión y análisis de logs basada en la nube,
+permitiendo centralizar, monitorizar y analizar datos de logs en tiempo real.
+Diseñadas para simplificar la gestión de logs, las dos alternativas ofrecen una
+interfaz intuitiva y potentes capacidades de búsqueda y visualización que
+facilitan la identificación y resolución de problemas en los sistemas y
+aplicaciones.
+
+Una de las principales ventajas de este tipo de herramientas es su capacidad
+para integrarse con una amplia variedad de servicios y plataformas, lo que
+permite a las empresas consolidar sus datos de logs en un único lugar. Además,
+suelen ofrecer algún sistema de alertas en tiempo real y paneles de control
+personalizables, lo que encaja muy bien con algunos de los requisitos de este
+proyecto.
+
+Sin embargo, también presentan algunas desventajas que entran en conflicto con
+los intereses descritos anteriormente. En primer lugar, al tratarse de
+servicios enfocados en el tratamiento exclusivo de logs, podrían no acomodar
+algunos de los requisitos esenciales, como la ingesta de las bases de datos
+propias de la empresa.
+
+Otra posible limitación es su sistema de precios; estas herramientas cuentan con
+una jerarquía de suscripciones que limita mucho su escalabilidad y aumentaría
+rápidamente los costes de su uso en caso de llegar a depender de ellas.
+
+En resumen, aunque tanto Loggly como Splunk como cualquier otro SaaS por el
+son soluciones robustas y eficientes para la gestión de logs, sus posibles
+costes adicionales, junto con sus limitaciones en el análisis de datos de
+inteligencia de negocio, las convierten en opciones menos atractivas para el
+desarollo de este proyecto.
+
+\subsection{Loki}
+Loki es una herramienta de gestión de logs desarrollada por Grafana Labs,
+diseñada específicamente para ser altamente eficiente y escalable. A diferencia
+de otras soluciones de gestión de datos, Loki no indexa el contenido completo de
+estos, sino que se centra en los metadatos, lo que reduce significativamente
+los requisitos de almacenamiento y mejora el rendimiento.
+
+\subsubsection{Ventajas}
+\begin{itemize}
+    \item \textbf{Integración con Grafana:} Una de las principales ventajas de
+		Loki es su integración nativa con Grafana, una popular plataforma de
+			visualización de datos. Esto permite a los usuarios crear paneles de
+			control y alertas basados en los datos de logs de manera sencilla y
+			eficiente.
+    \item \textbf{Eficiencia en el almacenamiento:} Al no indexar el contenido
+		completo de los logs, Loki reduce significativamente los requisitos de
+		almacenamiento. Esto lo hace una opción más económica y eficiente en
+		comparación con otras soluciones.
+    \item \textbf{Escalabilidad:} Loki está diseñado para ser altamente
+		escalable, lo que permite manejar grandes volúmenes de datos de logs sin
+		comprometer el rendimiento.
+    \item \textbf{Simplicidad en la configuración:} La configuración de Loki es
+		relativamente sencilla, especialmente para aquellos que ya están
+		familiarizados con Grafana y Prometheus. Esto facilita su adopción y
+		despliegue en entornos de producción.
+\end{itemize}
+
+\subsubsection{Desventajas}
+\begin{itemize}
+    \item \textbf{Limitaciones en la búsqueda:} Al no indexar el contenido
+		completo de los logs, las capacidades de búsqueda de Loki son más
+		limitadas en comparación con otras herramientas como Elasticsearch.
+		Esto puede ser una desventaja en caso de necesitar realizar búsquedas
+		complejas y detalladas.
+    \item \textbf{Ecosistema en desarrollo:} Aunque Loki ha ganado popularidad
+		rápidamente, su ecosistema y comunidad de usuarios aún están en
+		desarrollo. Esto puede limitar el acceso a recursos y soporte en
+		comparación con soluciones más maduras.
+    \item \textbf{Dependencia de Grafana:} Si bien la integración con Grafana es
+		una ventaja, es un factor limitante para aquellos que no utilicen
+		Grafana, como es el caso de Okticket, al tener que adaptarse a un
+		ecosistema diferente.
+\end{itemize}
+
+En resumen, Loki es una solución eficiente y escalable para la gestión de datos,
+especialmente adecuada para aquellos que ya utilizan Grafana. Sin embargo, sus
+limitaciones en la búsqueda y su ecosistema en desarrollo son factores a
+considerar antes de su implementación.
+
+
+\subsection{Graylog + Prometheus}
+Esta combinación de herramientas es una alternativa interesante para la gestión
+de logs y métricas en entornos de producción. Graylog es una plataforma de
+gestión de logs de código abierto que permite centralizar, monitorizar y
+analizar logs de diferentes fuentes. Por otro lado, Prometheus es un sistema de
+monitorización y alertas de código abierto que se centra en la recopilación de
+métricas de sistemas y aplicaciones.
+
+En este documento se tratan de manera combinada porque, aunque son herramientas
+independientes, su integración es una solución completa que se está volviendo
+popular en el sector. Graylog se encarga de la gestión de logs, mientras que
+Prometheus se encarga de la recopilación de métricas y alertas.
+
+La combinación de Graylog y Prometheus ofrece varios beneficios, como la
+centralización de logs y métricas que facilita un análisis más integral y
+eficiente de los datos. Además, la mejora en la monitorización a través de las
+capacidades avanzadas de Prometheus, integradas con Graylog, mejora la detección
+de problemas y la respuesta a incidentes en tiempo real. Esta integración
+también proporciona flexibilidad y escalabilidad, adaptándose a las necesidades
+específicas de cada entorno de producción. Sin embargo, existen desventajas como
+la complejidad de configuración al integrar dos sistemas independientes, lo que
+puede resultar en un mayor esfuerzo en mantenimiento y gestión. Además, al
+tratarse de herramientas novedosas, supondría una mayor curva de aprendizaje
+para el equipo de desarrollo a la hora de tratar con las herramientas.
+
+
+\newpage{}
+\section{Descripción del proyecto}\label{sec:descripcion}
