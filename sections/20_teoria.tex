@@ -194,7 +194,8 @@ Como entrada, se tienen datos presuntamente heterogéneos que no se pueden
 analizar de manera eficiente. Tras aplicar todos los pasos de las fases
 anteriores, se obtiene como salida un conjunto de datos corregidos y listos para
 ser analizados en el destino indicado (en el caso de este proyecto, un
-\emph{data lake}).
+\emph{data lake}). % Estás adelantando que va a ser un data lake sin haber dado contexto, 
+% opciones y descrito las necesidades en detalle, igual mejor no referirse aún a datalake como solución elegida
 
 \paragraph{Extracción (1)}
 En este proceso se obtienen los datos de las fuentes de datos, que pueden ser
@@ -242,13 +243,16 @@ Frecuentemente, los datos se almacenan, dependiendo del paradigma de
 almacenamiento elegido, en una \textit{data lake}, \textit{data warehouse} o
 \textit{data lakehouse} para su posterior análisis.
 
+% Aquí se podría añadir algo de chicha, ¿qué tipos de almacenamiento hay?, ¿enciptar datos?...
+% no se si son temas comunes pero es algo que podría ser interesante.
+
 
 \newpage{}
 \subsection{Alternativas}
 Aunque lo más común es el flujo anteriormente explicado de \textit{extracción},
 \textit{transformación} y \textit{carga}, existen algunos flujos y procesos
 alternativos que evitan algunos de estos pasos, normalmente en casos específicos
-que se beneficien del cambio:
+que se beneficien del cambio: % No acabo de entender del todo esta frase :pensador:
 
 \begin{itemize}
 	\item \textbf{Virtualización de datos:} capa virtual de abstracción que
@@ -281,6 +285,9 @@ que se beneficien del cambio:
 \newpage{}
 \section{Cuadros de mandos (\textit{dashboards})}\label{sec:dashboards}
 \paragraph{Definición}
+% Los cuadros de mandos , .. , es un termino
+% igual mejor en vez de *es un termino ..* poner algo del estilo *son una solución ..*
+% o al revés; *dashboard, es un térmio ..*
 Los cuadros de mandos, en adelante \textit{dashboards},
 es un término que se utiliza para referirse a cualquier interfaz gráfica que
 muestre información relevante de manera visual sobre un proceso o negocio.
@@ -325,7 +332,8 @@ para la toma de decisiones:~\cite{mier2023dashboards}
 
 
 \newpage{}
-\paragraph{Dashboards planteados}
+\paragraph{Dashboards planteados} 
+% ¿esto es realmente parte de la sección teórica? igual estaría mejor en la sección de descripción
 Para el sistema que se describe, se plantean dos tipos de dashboards diferentes:
 
 \begin{itemize}
@@ -353,6 +361,9 @@ de entornos de desarrollo y producción.
 En el ámbito de este proyecto, la infraestructura como código se utiliza para
 gestionar el despliegue y orquestación de los servicios requeridos para el
 \textit{data lake}, como los servicios de ingesta o de visualización de datos.
+% Lo mismo que lo comentado en la linea 187:
+% Estás adelantando que va a ser un data lake sin haber dado contexto, 
+% opciones y descrito las necesidades en detalle, igual mejor no referirse aún a datalake como solución elegida.
 
 La infraestructura como código es la parte más importante del desarrollo de este
 proyecto, ya que una buena configuración y toma de decisiones a la hora de
