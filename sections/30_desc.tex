@@ -112,8 +112,8 @@ una jerarquía de suscripciones que limita mucho su escalabilidad y aumentaría
 rápidamente los costes de su uso en caso de llegar a depender de ellas.
 
 \newpage{}
-En resumen, aunque tanto Loggly como Splunk como cualquier otro SaaS por el % por el ¿?
-son soluciones robustas y eficientes para la gestión de logs, sus posibles
+En resumen, aunque tanto Loggly como Splunk o cualquier otro SaaS similar
+sean soluciones robustas y eficientes para la gestión de logs, sus posibles
 costes adicionales, junto con sus limitaciones en el análisis de datos de
 inteligencia de negocio, las convierten en opciones menos atractivas para el
 desarollo de este proyecto.
@@ -212,29 +212,69 @@ para el equipo de desarrollo a la hora de tratar con las herramientas.
 	\caption{Logo de Prometheus~®}
 \end{figure}
 
-\subsection{Conclusiones}
-Tras evaluar las alternativas consideradas, se concluye que ninguna de ellas se
-ajusta completamente a los requisitos y necesidades del proyecto. Si bien todas
-las alternativas ofrecen capacidades de gestión de logs y métricas, ninguna de
-ellas proporciona una solución integral que cumpla con los requisitos de
-integración, visualización y análisis de datos de negocio de Okticket.
+\subsubsection{Elasticsearch, Logstash, Kibana (ELK)}
+La pila ELK es una solución de código abierto que combina tres herramientas
+diferentes: \textit{Elasticsearch}, \textit{Logstash} y \textit{Kibana}.
 
-% Aquí eliges una opción que no has tenido en cuenta o descrito anteriormente, igual deberías
-% incluir una sección "handmade" ELK para poder comparar sus ventajas y desventajas como haces con el resto
-% así luego en las conclusiones enfrentarías alternativas comerciales, que se descartan,
-% frente a ELK que requiere montarla y personalizarla (desventaja) pero que aporta mucho más a nivel de uso tanto desde la propia solución como por sus múltiples posible integraciones
-Por lo tanto, se considera que la mejor opción es desarrollar una solución 
+\paragraph{Elasticsearch} es un motor de búsqueda y análisis de código abierto
+que permite almacenar, buscar y analizar grandes volúmenes de datos de forma
+rápida y eficiente.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.2\textwidth]{logos/elastic.png}
+	\caption{Logo de Elasticsearch~®}
+\end{figure}
+
+\paragraph{Logstash} es una herramienta de procesamiento de logs que permite
+recopilar, transformar y enviar logs de diferentes fuentes a Elasticsearch para
+su análisis.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.2\textwidth]{logos/logstash.png}
+	\caption{Logo de Logstash~®}
+\end{figure}
+
+\paragraph{Kibana} es una plataforma de visualización de datos que permite
+crear dashboards interactivos y visualizaciones de datos a partir de los datos
+almacenados en Elasticsearch.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.2\textwidth]{logos/kibana.png}
+	\caption{Logo de Kibana~®}
+\end{figure}
+
+Juntas, estas herramientas forman una solución integral para la
+gestión de logs y métricas, que permite a las empresas consolidar, monitorizar y
+analizar datos de diferentes fuentes en tiempo real.
+
+La principal ventaja de esta solución es su flexibilidad y capacidad de
+personalización, que permite adaptarla a las necesidades específicas de cada
+empresa. Además, al tratarse de herramientas de código abierto, la pila ELK es
+una opción asequible y escalable que se adapta a las necesidades de la empresa.
+
+
+\subsection{Conclusiones}
+Tras evaluar las alternativas consideradas, se concluye que ninguna de las
+alternativas comerciales se ajusta completamente a los requisitos y necesidades
+del proyecto. Si bien todas ellas ofrecen capacidades de gestión de logs y
+métricas, ninguna de ellas proporciona una solución integral que cumpla con los
+requisitos de integración, visualización y análisis de datos de negocio de
+Okticket.
+
+Por lo tanto, se considera que la mejor opción es desarrollar una solución
 personalizada que se adapte a las necesidades específicas de la empresa. Esta
 solución permitirá a Okticket consolidar y analizar datos de múltiples fuentes,
 así como crear dashboards de negocio personalizados que faciliten la toma de
 decisiones y la identificación de oportunidades de negocio.
 
 Desde un principio, la empresa considera que el desarrollo junto a un
-\textit{stack ELK}, es decir, Elasticsearch, Logstash y Kibana, es la mejor
-opción para el desarrollo de este proyecto. Aunque se considera que la
-integración de Prometheus y Grafana es una alternativa interesante, se opta por
-la solución de \textit{stack ELK} debido a su mayor flexibilidad y capacidad de
-personalización.
+\textit{stack ELK} es la mejor opción para el desarrollo de este proyecto.
+Aunque se considera que la integración de Prometheus y Grafana es una
+alternativa interesante, se opta por la solución de \textit{stack ELK} debido a
+su mayor flexibilidad y capacidad de personalización.
 
 Además de la pila de \textit{Elastic}, se analizará más adelante la posibilidad
 de integrar otras herramientas y tecnologías que puedan mejorar la eficiencia y
@@ -243,3 +283,18 @@ escalabilidad del sistema, como Kafka, Spark o Flink, entre otras.
 
 \newpage{}
 \section{Descripción del proyecto}\label{sec:descripcion}
+\subsection{Dashboards planteados}
+Para el sistema que se describe, se plantean dos tipos de dashboards diferentes:
+
+\begin{itemize}
+	\item \textbf{Dashboards internos:} que reflejan el rendimiento de la
+		plataforma en tiempo real. Estos dashboards están destinados al uso
+		interno de la empresa, y permiten a los empleados monitorizar el
+		rendimiento de la plataforma y tomar decisiones informadas sobre su
+		mantenimiento y evolución.
+	\item \textbf{Dashboards externos:} que reflejan el rendimiento de las
+		ventas y permiten a los clientes tomar decisiones informadas sobre su
+		negocio. Estos dashboards están enfocados a los clientes de la empresa,
+		y permite a los mismos obtener información relevante sobre su negocio
+		que tenga Okticket.
+\end{itemize}

@@ -52,22 +52,21 @@ considerable del que, normalmente, no se dispone en el ámbito empresarial.
 Con la ingesta masiva de datos, se presentan nuevos problemas a la hora de
 analizar y obtener información de ellos:
 
-% Aquí personalmente expondría en primer lugar el problema. Ejemplo para el primer item:
-%  - Decisiones de negocio erróneas debidas a un mal tratamiento de los datos:
-%		Sin la necesaria automatización...
-
-% Aparte de lo anterior ¿qué es ETL? es la primera mención del tema en el texto y no lo ví en el glosario.
-
 \begin{itemize}
-	\item Sin la necesaria automatización y correcta aplicación de los procesos
-		ETL, al tratarse de un crecimiento exponencial de los datos y, por lo
+	\item \textbf{Decisiones de negocio erróneas debidas a un mal tratamiento:}
+		sin la necesaria automatización y correcta aplicación de los procesos
+		ETL~(ver \ref{sec:etl}), al tratarse de un crecimiento exponencial de los datos y, por lo
 		tanto, de la fuerza de trabajo necesaria para manejarla, los resultados
 		del análisis pueden ser incorrectos, lo que deriva en errores y
 		decisiones de negocio equivocadas que impactan negativamente en la
-		empresa. 
-	\item La heterogeneidad de los datos, tanto en formato como en origen,
-		dificulta su consolidación y análisis.
-	\item La masificación de información impide el análisis manual de los
+		empresa.
+	\item \textbf{Heterogeneidad de los datos:}
+		la heterogeneidad de los datos, tanto en formato como en origen,
+		dificulta su consolidación y análisis, ya que requiere de un proceso de
+		integración y transformación previo para homogeneizarlos y poder
+		analizarlos de forma conjunta.
+	\item \textbf{Grandes cantidades de información:}
+		la masificación de información impide el análisis manual de los
 		mismos, requiriendo resúmenes estadísticos o representaciones gráficas
 		como \textit{dashboards} para su correcta interpretación.
 		La visualización de datos es una técnica que permite representar la
@@ -105,7 +104,7 @@ para los mismos.
 \newpage{}
 \section{La empresa}\label{sec:empresa}
 Okticket es una startup nacida en Gijón en 2017 cuyo producto principal es un
-servicio software que escanea automáticamente tickets y facilita su gestión usando conceptos 
+servicio software que escanea automáticamente tickets y facilita su gestión usando conceptos
 contables como notas de gastos, anticipos y más. Esto
 permite reducir los costes y el tiempo que invierten las empresas en
 contabilizar y manejar los gastos de viaje profesionales.
@@ -149,16 +148,13 @@ ofertada por Okticket, como la OKTCard {-} una tarjeta inteligente que gestiona
 automáticamente los gastos, así como la inclusión de nuevos ``módulos'' de
 gestión de gastos y viajes.
 
-% Similar o duplicado de la linea 87, aquí yo comentaría que el crecimiento acelerado de la
-% empresa ha generado muchos silos de información que deben ser unificados. Varias soluciones de 
-% gestión contable, ventas, consultoría así como en los propios datos que genera Okticket a nivel de solución SaaS 
-% (holded, hubspot, pantadoc, freshdesk, bases de datos propias, logs ...)
-% (por si no me explico bien; aquí profundizaría en el problema y enfatizaría lo tedioso que es ir a cada fuente para obtener una pequeña parte de la información)
-Debido a todo este crecimiento, la empresa maneja una gran cantidad de datos
-importantes que se encuentran en diferentes formatos y en diferentes
-ubicaciones, lo que dificulta su análisis y explotación. Por otra parte, se
-depende de la consulta manual o de servicios de terceros para poder analizar
-estos datos, lo que supone un coste adicional.
+Debido al crecimiento acelerado de Okticket, la empresa maneja una gran cantidad
+de datos de diversos tipos y almacenados en diferentes silos (programas de
+gestión contable, ventas, consultoría, así como los datos que genera el SaaS),
+que deben ser unificados para poder ser analizados y explotados de forma eficiente.
+Por otra parte, actualmente se depende de la consulta manual o de servicios de
+terceros para poder analizar estos datos, lo que es costoso, tedioso y muy
+poco eficiente.
 
 \section{Objetivos}\label{sec:objetivos}
 El objetivo del proyecto es la creación de un proceso que permita el despliegue

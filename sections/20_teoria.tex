@@ -193,9 +193,8 @@ diagrama:
 Como entrada, se tienen datos presuntamente heterogéneos que no se pueden
 analizar de manera eficiente. Tras aplicar todos los pasos de las fases
 anteriores, se obtiene como salida un conjunto de datos corregidos y listos para
-ser analizados en el destino indicado (en el caso de este proyecto, un
-\emph{data lake}). % Estás adelantando que va a ser un data lake sin haber dado contexto, 
-% opciones y descrito las necesidades en detalle, igual mejor no referirse aún a datalake como solución elegida
+ser analizados en el destino indicado, sea cual sea el paradigma de
+almacenamiento de datos elegido.
 
 \paragraph{Extracción (1)}
 En este proceso se obtienen los datos de las fuentes de datos, que pueden ser
@@ -232,8 +231,8 @@ detección de duplicados.
 
 Estos procesos de transformación son vitales cuando el sistema maneja una gran
 cantidad de datos heterogéneos de múltiples fuentes de manera simultánea, como
-puede ser el caso de un \textit{data lake} o un \textit{data
-warehouse}. En el caso del primero, no es necesaria la transformación de los
+puede ser el caso de un \textit{data lake} o un \textit{data warehouse}.
+En el caso del primero, no es necesaria la transformación de los
 datos a un formato común, pero si otros procesos clave como la limpieza y la
 normalización de los datos, entre otros.
 
@@ -243,16 +242,21 @@ Frecuentemente, los datos se almacenan, dependiendo del paradigma de
 almacenamiento elegido, en una \textit{data lake}, \textit{data warehouse} o
 \textit{data lakehouse} para su posterior análisis.
 
-% Aquí se podría añadir algo de chicha, ¿qué tipos de almacenamiento hay?, ¿enciptar datos?...
-% no se si son temas comunes pero es algo que podría ser interesante.
+Las características de la carga de datos varían dependiendo de la arquitectura
+de datos que se esté utilizando. Por ejemplo, en ciertos sistemas puede ser
+necesario cifrar los datos antes de cargarlos en el destino, o puede ser
+necesario realizar una carga incremental para mantener actualizada la información
+en el destino. En otros casos, puede ser necesario realizar una carga masiva
+para cargar grandes cantidades de datos en el destino de una sola vez. La
+periodicidad de la carga es una característica clave del \textit{big data}, como
+se ha mencionado anteriormente~(ver \fullref{sec:bigdata}).
 
 
 \newpage{}
 \subsection{Alternativas}
 Aunque lo más común es el flujo anteriormente explicado de \textit{extracción},
-\textit{transformación} y \textit{carga}, existen algunos flujos y procesos
-alternativos que evitan algunos de estos pasos, normalmente en casos específicos
-que se beneficien del cambio: % No acabo de entender del todo esta frase :pensador:
+\textit{transformación} y \textit{carga}, existen algunos flujos alternativos
+que son útiles para ciertos procesos diferentes:
 
 \begin{itemize}
 	\item \textbf{Virtualización de datos:} capa virtual de abstracción que
@@ -285,16 +289,12 @@ que se beneficien del cambio: % No acabo de entender del todo esta frase :pensad
 \newpage{}
 \section{Cuadros de mandos (\textit{dashboards})}\label{sec:dashboards}
 \paragraph{Definición}
-% Los cuadros de mandos , .. , es un termino
-% igual mejor en vez de *es un termino ..* poner algo del estilo *son una solución ..*
-% o al revés; *dashboard, es un térmio ..*
-Los cuadros de mandos, en adelante \textit{dashboards},
-es un término que se utiliza para referirse a cualquier interfaz gráfica que
-muestre información relevante de manera visual sobre un proceso o negocio.
-Aunque el término se utiliza en muchos ámbitos: indicadores comerciales, de
-producción, de marketing, de calidad, de recursos humanos\ldots, en este
-proyecto se utilizará en el ámbito de la monitorización de sistemas y procesos
-de negocio.
+Los cuadros de mandos, en adelante \textit{dashboards}, son soluciones en forma
+de interfaz gráfica que muestran información relevante de manera visual sobre un
+proceso o negocio. Aunque el término se utiliza en muchos ámbitos (indicadores
+comerciales, de producción, de marketing, de calidad, de recursos humanos\ldots)
+en este proyecto se utilizará en el ámbito de la monitorización de sistemas y
+procesos de negocio.
 
 En el ámbito de deste proyecto, los dashboards reflejan en tiempo real el
 rendimiento de actividades o procesos de negocio, y se utilizan para tomar
@@ -332,24 +332,6 @@ para la toma de decisiones:~\cite{mier2023dashboards}
 
 
 \newpage{}
-\paragraph{Dashboards planteados} 
-% ¿esto es realmente parte de la sección teórica? igual estaría mejor en la sección de descripción
-Para el sistema que se describe, se plantean dos tipos de dashboards diferentes:
-
-\begin{itemize}
-	\item \textbf{Dashboards internos}: que reflejan el rendimiento de la
-		plataforma en tiempo real. Estos dashboards están destinados al uso
-		interno de la empresa, y permiten a los empleados monitorizar el
-		rendimiento de la plataforma y tomar decisiones informadas sobre su
-		mantenimiento y evolución.
-	\item \textbf{Dashboards externos}: que reflejan el rendimiento de las
-		ventas y permiten a los clientes tomar decisiones informadas sobre su
-		negocio. Estos dashboards están enfocados a los clientes de la empresa,
-		y permite a los mismos obtener información relevante sobre su negocio
-		que tenga Okticket.
-\end{itemize}
-
-
 \section{Infraestructura como código}
 La infraestructura como código (o \textit{IaaS} por sus siglas en inglés) es una
 práctica que consiste en gestionar la infraestructura de un sistema de manera
@@ -358,12 +340,10 @@ La infraestructura como código permite gestionar la arquitectura global de un
 sistema de manera eficiente y escalable, y facilita la creación y el mantenimiento
 de entornos de desarrollo y producción.
 
-En el ámbito de este proyecto, la infraestructura como código se utiliza para
+En el ámbito de este proyecto, la infraestructura como código se utilizará para
 gestionar el despliegue y orquestación de los servicios requeridos para el
-\textit{data lake}, como los servicios de ingesta o de visualización de datos.
-% Lo mismo que lo comentado en la linea 187:
-% Estás adelantando que va a ser un data lake sin haber dado contexto, 
-% opciones y descrito las necesidades en detalle, igual mejor no referirse aún a datalake como solución elegida.
+paradigma de almacenamiento que se escoja, como los servicios de ingesta o de
+visualización de datos.
 
 La infraestructura como código es la parte más importante del desarrollo de este
 proyecto, ya que una buena configuración y toma de decisiones a la hora de
