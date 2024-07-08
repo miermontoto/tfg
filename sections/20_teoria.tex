@@ -1,8 +1,7 @@
 \chapter{Fundamento teórico}\label{chap:teo}
 En este capítulo se presentan los conceptos y términos fundamentales que se
-utilizan en el proyecto, para proporcionar una base teórica sobre la que se
-desarrolla el trabajo. Se discuten los conceptos fundamentales para el
-desarrollo del proyecto.
+utilizan en el proyecto para proporcionar una base teórica sobre la que se
+desarrolle. Se discuten los conceptos fundamentales.
 
 
 \section{\textit{Big data}}\label{sec:bigdata}
@@ -20,11 +19,11 @@ fuente~\cite{ishwarappa2015vs,sagiroglu2013bigdata}, variando desde 3 hasta 7,
 pero las más comunes son las siguientes:
 
 \begin{itemize}
-	\item \textbf{Volumen:} la más básica, la cantidad de datos que se generan y
-		almacenan en un determinado periodo de tiempo. El volumen de datos que
-		se maneja en el \textit{big data} es mucho mayor que el que se maneja en
-		los sistemas tradicionales de gestión de datos, que además se encuentra
-		en aumento constante.
+	\item \textbf{Volumen:} la cantidad de datos que se generan y almacenan en
+		un determinado periodo de tiempo. El volumen de datos que se maneja en
+		el \textit{big data} es mucho mayor que el que se maneja en los sistemas
+		tradicionales de gestión de datos, que además se encuentra en aumento
+		constante.
 	\item \textbf{Variedad:} se refiere a la diversidad de fuentes y formatos de
 		los datos que se manejan. Los datos pueden provenir de diversas fuentes,
 		como bases de datos, archivos de registros o APIs, pueden estar en
@@ -118,9 +117,9 @@ esquema de antemano, lo que puede ser útil en aquellos casos en los que no se
 conoce la estructura de los datos que se van a almacenar.
 
 Estas características de los \textit{data lakes} hacen que sean más atractivos
-en el sector empresarial de cara al análisis de información, en contraste con
-las estructuras planteadas normalmente en el campo de la investigación
-académica.
+en el sector empresarial puesto que implica la gestión de un solo \textit{stack}
+tecnológico que contiene toda la información, en contraste con las estructuras
+planteadas normalmente en el campo de la investigación académica.
 
 Para consultar esta gran cantidad de datos almacenados, se suelen utilizar
 técnicas de visualización de datos, como los \textit{dashboards}, herramientas
@@ -226,8 +225,10 @@ se almacena información correcta y consistente. Durante esta fase se contemplan
 operaciones más complejas, como pueden ser la agregación de datos, la conversión
 de formatos, la normalización de datos, el cifrado, etc. La limpieza de datos
 puede ser una tarea muy sencilla, como la eliminación de caracteres
-delimitadores, o muy compleja, como la corrección de errores en los datos o la
-detección de duplicados.
+delimitadores, o muy compleja, como la corrección de errores en los datos, la
+detección de duplicados o la minimización~\cite{mezmir2020qualitative} y/o
+compresión~\cite{lelewer1987data} de datos (eliminación de información no
+relevante o redundante).
 
 Estos procesos de transformación son vitales cuando el sistema maneja una gran
 cantidad de datos heterogéneos de múltiples fuentes de manera simultánea, como
@@ -333,19 +334,23 @@ para la toma de decisiones:~\cite{mier2023dashboards}
 
 \newpage{}
 \section{Infraestructura como código}
-La infraestructura como código (o \textit{IaaS} por sus siglas en inglés) es una
+La infraestructura como código (o \textit{IaC} por sus siglas en inglés) es una
 práctica que consiste en gestionar la infraestructura de un sistema de manera
 automática y programática mediante código, en lugar de configuraciones manuales.
+
 La infraestructura como código permite gestionar la arquitectura global de un
 sistema de manera eficiente y escalable, y facilita la creación y el mantenimiento
-de entornos de desarrollo y producción.
+de entornos de desarrollo y producción, lo que elimina la necesidad de realizar
+tareas repeititivas~\cite{beyer2016site} (\textit{TOIL} por sus siglas en
+inglés), reduce la posibilidad de errores humanos y favorece la replicabilidad
+de los procesos.
 
 En el ámbito de este proyecto, la infraestructura como código se utilizará para
 gestionar el despliegue y orquestación de los servicios requeridos para el
 paradigma de almacenamiento que se escoja, como los servicios de ingesta o de
 visualización de datos.
 
-La infraestructura como código es la parte más importante del desarrollo de este
-proyecto, ya que una buena configuración y toma de decisiones a la hora de
-desplegar un proyecto de este calibre es vital para el correcto funcionamiento
-posterior a la hora de ingestar y tratar con datos heterogéneos.
+% La infraestructura como código es la parte más importante del desarrollo de este
+% proyecto, ya que una buena configuración y toma de decisiones a la hora de
+% desplegar un proyecto de este calibre es vital para el correcto funcionamiento
+% posterior a la hora de ingestar y tratar con datos heterogéneos.
