@@ -140,6 +140,30 @@ embargo, una vez superada esta curva, la pila ELK ofrece una solución potente y
 flexible para la gestión de información.
 
 
+\subsubsection{Elasticsearch, Fluentd, Kibana (EFK)}
+La pila EFK es una alternativa a la pila ELK que sustituye Logstash por
+\textit{Fluentd}, una herramienta de código abierto para la recopilación y
+procesamiento de logs. Al igual que Logstash, Fluentd permite recopilar logs de
+diferentes fuentes y enviarlos a Elasticsearch para su análisis.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.2\textwidth]{logos/fluentd.png}
+	\caption{Logo de Fluentd~\textregistered}
+\end{figure}
+
+Este \textit{stack} de tecnologías es muy similar a la alternativa anterior con
+la diferencia de que está enfocado a su ejecución en entornos
+\textit{Kubernetes}\footnote{\href
+	{https://medium.com/@tech_18484/simplifying-kubernetes-logging-with-efk-stack-158da47ce982}
+	{Simplifying Kubernetes Logging with EFK Stack}
+} \footnote{\href
+	{https://www.digitalocean.com/community/tutorials/how-to-set-up-an-elasticsearch-fluentd-and-kibana-efk-logging-stack-on-kubernetes}
+	{How To Set Up an Elasticsearch, Fluentd and Kibana (EFK) Logging Stack on Kubernetes}
+}, lo que puede ser incompatible con las necesidades de este
+proyecto.
+
+
 \newpage{}
 \subsubsection{Graylog + Prometheus}
 Esta combinación de herramientas es una alternativa interesante para la gestión

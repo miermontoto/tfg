@@ -18,9 +18,8 @@ las más establecidas y atractivas son \textit{Terraform},
 A continuación, se describen brevemente estas herramientas y se comparan sus
 características.
 
-\subsubsection{Alternativas}
-\paragraph{Terraform}
-\textit{Terraform} es una herramienta de código abierto desarrollada por
+\paragraph{Alternativas}
+\subparagraph{Terraform} es una herramienta de código abierto desarrollada por
 \textit{HashiCorp} que permite definir y desplegar infraestructura de forma
 declarativa. \textit{Terraform} permite definir la infraestructura en un archivo
 de configuración JSON, que describe los recursos que se desean crear y sus
@@ -35,8 +34,7 @@ este proyecto es \textit{AWS}.
 	\label{fig:terraform}
 \end{figure}
 
-\paragraph{AWS CloudFormation}
-\textit{AWS CloudFormation} es un servicio de \textit{Amazon Web Services}
+\subparagraph{AWS CloudFormation} es un servicio de \textit{Amazon Web Services}
 similar a \textit{Terraform} que permite definir y desplegar infraestructura en
 la nube de forma declarativa. \textit{AWS CloudFormation} permite definir la
 infraestructura o bien mediante un archivo de configuración (en formato JSON o
@@ -50,8 +48,7 @@ esta alternativa.
 	\label{fig:cloudformation}
 \end{figure}
 
-\paragraph{Ansible}
-\textit{Ansible} es una herramienta multi-propósito de automatización de tareas
+\subparagraph{Ansible} es una herramienta multi-propósito de automatización de tareas
 entre las que se incluye el despliegue y orquestación de infraestructura. Se
 trata de una herramienta desarrollada por \textit{Red Hat} que permite definir
 la infraestructura mediante \textit{playbooks} escritos en YAML, que describen
@@ -64,7 +61,7 @@ las tareas a realizar y los servidores en los que se deben ejecutar.
 	\label{fig:ansible}
 \end{figure}
 
-\subsubsection{Comparación}
+\paragraph{Comparación}
 Comenzando la comparativa por la facilidad de uso de cada herramienta,
 \textit{Terraform} es la alternativa planteada más fácil de usar, ya que permite
 definir la infraestructura en un archivo con sintaxis sencilla y desplegarla con
@@ -84,7 +81,7 @@ solución se va a desplegar en la nube de \textit{Amazon}, pero a la vez no se
 requiere el uso de servicios específicos de \textit{AWS}, no se considera una
 ventaja significativa.
 
-\subsubsection{Decisión}
+\paragraph{Decisión}
 Ninguna de las alternativas consideradas es claramente superior a las demás, ya
 que se tratan de herramientas con características y funcionalidades similares y
 una gran popularidad en la industria. Sin embargo, se decide utilizar
@@ -99,10 +96,9 @@ del proyecto, se consdieran diversas tecnologías, como \textit{Redpanda},
 \textit{AWS Glue} y \textit{Kafka} que permitan ingestar datos de todas las
 fuentes que requieren ser procesadas.
 
-\subsubsection{Alternativas}
-\paragraph{Kafka}
-\textit{Kafka} es una plataforma de transmisión de datos distribuida y de código
-abierto que se utiliza para construir pipelines de datos en tiempo real y
+\paragraph{Alternativas}
+\subparagraph{Kafka} es una plataforma de transmisión de datos distribuida y de
+código abierto que se utiliza para construir pipelines de datos en tiempo real y
 aplicaciones de streaming. Desarrollada originalmente por LinkedIn y
 posteriormente donada a la Apache Software Foundation, \textit{Kafka} se ha
 convertido en una de las tecnologías más populares para la gestión de flujos de
@@ -163,9 +159,8 @@ embargo, su implementación y gestión requieren un conocimiento profundo de su
 arquitectura y componentes.
 
 
-\paragraph{Redpanda}
-\textit{Redpanda} es una plataforma de transmisión de datos en tiempo real que
-se destaca por su alto rendimiento y baja latencia. Diseñada como una
+\subparagraph{Redpanda} es una plataforma de transmisión de datos en tiempo real
+que se destaca por su alto rendimiento y baja latencia. Diseñada como una
 alternativa moderna a \textit{Kafka}, \textit{Redpanda} ofrece una arquitectura
 simplificada que elimina la necesidad de dependencias externas como
 \textit{Zookeeper}. Esto no solo reduce la complejidad operativa, sino que
@@ -188,19 +183,18 @@ conlleva riesgos asociados con la estabilidad y el soporte a largo plazo,
 aspectos que deben ser considerados cuidadosamente antes de su implementación.
 
 
-\paragraph{AWS Glue}
-\textit{AWS Glue} es un servicio de integración de datos totalmente administrado
-que facilita la preparación y carga de datos para análisis. Diseñado para
-trabajar con grandes volúmenes de datos, \textit{AWS Glue} automatiza las tareas
-de descubrimiento, catalogación, limpieza, enriquecimiento y movimiento de datos
-entre diferentes almacenes de datos. Una de las principales ventajas de
-\textit{AWS Glue} es su capacidad para generar automáticamente el código
-necesario para realizar las transformaciones de datos, lo que reduce
-significativamente el tiempo y el esfuerzo requeridos para preparar los datos
-para el análisis. Además, \textit{AWS Glue} es altamente escalable y puede
-manejar tanto cargas de trabajo por lotes como en tiempo real, lo que lo
-convierte en una opción versátil para diversas necesidades de integración de
-datos.
+\subparagraph{AWS Glue} es un servicio de integración de datos totalmente
+administrado que facilita la preparación y carga de datos para análisis.
+Diseñado para trabajar con grandes volúmenes de datos, \textit{AWS Glue}
+automatiza las tareas de descubrimiento, catalogación, limpieza, enriquecimiento
+y movimiento de datos entre diferentes almacenes de datos. Una de las
+principales ventajas de \textit{AWS Glue} es su capacidad para generar
+automáticamente el código necesario para realizar las transformaciones de datos,
+lo que reduce significativamente el tiempo y el esfuerzo requeridos para
+preparar los datos para el análisis. Además, \textit{AWS Glue} es altamente
+escalable y puede manejar tanto cargas de trabajo por lotes como en tiempo real,
+lo que lo convierte en una opción versátil para diversas necesidades de
+integración de datos.
 
 \textit{AWS Glue} es un servicio administrado, por lo que su uso puede implicar
 costes adicionales en comparación con soluciones autogestionadas. Además, aunque
@@ -212,7 +206,7 @@ de integración de datos a otros proveedores de nube, lo que podría ser un
 inconveniente en caso de querer migrar el proyecto a otro proveedor.
 
 
-\subsubsection{Comparación y decisión}
+\paragraph{Comparación y decisión}
 Desde el primer momento, en la empresa se considera Kafka como la opción más
 sólida junto con el \textit{stack ELK} para desarrollar el proyecto, al
 tratarse de un estándar en la industria y una solución tanto rápida y escalable
@@ -225,7 +219,6 @@ como servicio de ingesta de datos, en consonancia con \textit{Logstash}.
 \section{Arquitectura del sistema}\label{sec:arquitectura}
 Tras toda la definción de los requisitos y la valoración de las alternativas
 disponibles, en este apartado se plantea la arquitectura completa del sistema.
-
 
 
 \newpage{}
