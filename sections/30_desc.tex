@@ -15,30 +15,29 @@ interesadas en este proyecto son las siguientes:
 		proyecto, ya que es la que se beneficiará directamente de los resultados
 		del mismo, así como de las oportunidades de negocio que se abren con la
 		explotación de los datos. Dentro de la empresa, se pueden identificar
-		dos entidades:
+		varias entidades afectadas:
 		\begin{itemize}
-			\item \textbf{Equipo de desarrollo de la empresa:} el equipo de
-				desarrollo es otra parte interesada en el proyecto, ya que son
-				los encargados de llevar a cabo la implementación del sistema y
-				de garantizar su correcto funcionamiento, además de gestionar el
+			\item \textbf{Equipo de desarrollo:} son los
+				encargados de llevar a cabo la implementación del sistema y de
+				garantizar su correcto funcionamiento, además de gestionar el
 				soporte de servicio a nivel técnico.
-			\item \textbf{Equipo de soporte de la empresa:} el sistema planteado
+			\item \textbf{Equipo de soporte:} el sistema planteado
 				ahorraría tiempo al equipo de soporte, ya que les permitiría
 				analizar los datos de forma más eficiente e identificar
 				problemas antes de que tener que resolver las peticiones de los
 				clientes afectados a nivel básico.
-			% \item \textbf{Negocio:} afectado porque permitirá tomar mejores
-			% 	decisiones estratégicas, definir y seguir métricas de
-			% 	seguimiento de los objetivos.
-			% \item \textbf{Éxito de clientes:} afectado porque le
-			% 	permitirá evaluar mejor a qué clientes dar seguimiento, mejorar
-			% 	el seguimiento, identificar oportunidades de \textit{upselling}
-			% 	\ldots
-			% \item \textbf{Operaciones:} afectado porque les permitirá hacer un
-			% 	mejor seguimiento de las operaciones y procesos de la empresa.
+			\item \textbf{Equipo de negocio:} afectado porque permitirá tomar
+				mejores decisiones estratégicas, definir y seguir métricas de
+				seguimiento de los objetivos.
+			\item \textbf{Éxito de clientes:} afectado porque le
+				permitirá evaluar mejor a qué clientes dar seguimiento, mejorar
+				el seguimiento, identificar oportunidades de \textit{upselling}
+				\ldots
+			\item \textbf{Equipo de operaciones:} afectado porque les permitirá
+				hacer un mejor seguimiento de las operaciones y procesos de la
+				empresa.
 		\end{itemize}
-	\item \textbf{Clientes}: los clientes de la empresa también son partes
-		interesadas, puesto que se beneficiarán de los nuevos servicios que se
+	\item \textbf{Clientes}: se beneficiarán de los nuevos servicios que se
 		ofrecen, como los dashboards de negocio que se han descrito
 		anteriormente. Estos clientes no son necesariamente los usuarios
 		finales, sino los administradores y gestores de las empresas que
@@ -55,74 +54,126 @@ Antes de comenzar la planificación y el desarrollo del proyecto, se consideran
 varias opciones ya existentes en el mercado que podrían resolver o adaptarse a
 las necesidades planteadas.
 
+
 \subsection{Criterios de evaluación}
 Los puntos claves a considerar de cada alternativa son los siguientes:
 
 \begin{itemize}
 	\item \textbf{Coste:} se dará prioridad a alternativas gratuitas, siempre
 		que su coste de operación y mantenimiento no sea excesivo.
-	\item \textbf{Complejidad:} al tratarse de un proyecto con poco conocimiento
-		previo y sin mucha urgencia, se priorizarán aquellas alternativas que
-		sean sencillas y no requieran demasiado desarrollo.
+	\item \textbf{Complejidad:} se priorizarán aquellas alternativas que
+		sean sencillas y no requieran una curva de aprendizaje excesiva para
+		su implementación y uso.
 	\item \textbf{Rendimiento y escalabilidad:} a la hora de manejar los
 		volúmenes de datos con los que se están tratando, el sistema debe
 		responder positivamente tanto a la ingesta, tratamiento y visualización
 		como a la escalabilidad del mismo.
+	\item \textbf{Licencias:} se priorizará el software de código abierto con el
+		el objetivo de reducir el \textit{vendor lock-in} y permitir una mayor
+		flexibilidad y personalización del sistema sin coste de uso.
 \end{itemize}
 
-Como punto añadido, se valoran de manera positiva las alternativas
-\textit{open-source}, ya que son más flexibles y permiten personalizar el
-sistema a los necesidades del proyecto.
 
 \newpage{}
 \subsection{Alternativas consideradas}
-A continuación, se describen brevemente estas alternativas y se comparan sus
-características.
+Para este proyecto, el análisis de alternativas se realiza en torno a las
+herramientas y tecnologías disponibles en el mercado para la gestión de datos en
+base a los criterios establecidos anteriormente. A continuación, se describen
+las alternativas consideradas destacando puntos a favor, en contra y unas
+breves conclusiones, además de una valoración final de las mismas.
 
-\subsubsection{Loggly, Splunk (SaaS de gestión de logs)}
-Ambas herramientas se centran en la gestión y análisis de logs basada en la nube,
-permitiendo centralizar, monitorizar y analizar datos de logs en tiempo real.
-Diseñadas para simplificar la gestión de logs, las dos alternativas ofrecen una
-interfaz intuitiva y potentes capacidades de búsqueda y visualización que
-facilitan la identificación y resolución de problemas en los sistemas y
-aplicaciones.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.2\textwidth]{logos/loggly.png}
-	\caption{Logo de Loggly~®}
-\end{figure}
+\subsubsection{Elasticsearch, Logstash, Kibana (ELK)}
+La pila ELK es una solución de código abierto que combina tres herramientas
+diferentes: \textit{Elasticsearch}, \textit{Logstash} y \textit{Kibana}. Este
+\textit{stack} tecnológico es ampliamente utilizado en la industria para la
+gestión de logs y métricas, y ofrece una solución integral para la recopilación,
+almacenamiento, búsqueda y visualización de datos.
 
-Una de las principales ventajas de este tipo de herramientas es su capacidad
-para integrarse con una amplia variedad de servicios y plataformas, lo que
-permite a las empresas consolidar sus datos de logs en un único lugar. Además,
-suelen ofrecer algún sistema de alertas en tiempo real y paneles de control
-personalizables, lo que encaja muy bien con algunos de los requisitos de este
-proyecto.
-
-Sin embargo, también presentan algunas desventajas que entran en conflicto con
-los intereses descritos anteriormente. En primer lugar, al tratarse de
-servicios enfocados en el tratamiento exclusivo de logs, podrían no acomodar
-algunos de los requisitos esenciales, como la ingesta de las bases de datos
-propias de la empresa.
+\paragraph{Elasticsearch} es un motor de búsqueda y análisis de código abierto
+que permite almacenar, buscar y analizar grandes volúmenes de datos de forma
+rápida y eficiente.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.2\textwidth]{logos/splunk.png}
-	\caption{Logo de Splunk~®}
+	\includegraphics[width=0.2\textwidth]{logos/elastic.png}
+	\caption{Logo de Elasticsearch~\textregistered}
 \end{figure}
 
-Otra posible limitación es su sistema de precios; estas herramientas cuentan con
-una jerarquía de suscripciones que limita mucho su escalabilidad y aumentaría
-rápidamente los costes de su uso en caso de llegar a depender de ellas.
+\paragraph{Logstash} es una herramienta de procesamiento de logs que permite
+recopilar, transformar y enviar logs de diferentes fuentes a Elasticsearch para
+su análisis.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.2\textwidth]{logos/logstash.png}
+	\caption{Logo de Logstash~\textregistered}
+\end{figure}
+
+\paragraph{Kibana} es una plataforma de visualización de datos que permite
+crear dashboards interactivos y visualizaciones de datos a partir de los datos
+almacenados en Elasticsearch.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.2\textwidth]{logos/kibana.png}
+	\caption{Logo de Kibana~\textregistered}
+\end{figure}
+
+Juntas, estas herramientas forman una solución integral para la
+gestión de logs y métricas, que permite a las empresas consolidar, monitorizar y
+analizar datos de diferentes fuentes en tiempo real.
+
+La principal ventaja de esta solución es su flexibilidad y capacidad de
+personalización, que permite adaptarla a las necesidades específicas de cada
+empresa. Además, al tratarse de herramientas de código abierto, la pila ELK es
+una opción asequible y escalable que se adapta a las necesidades de la empresa.
+
+En cuestión a la complejidad, la pila ELK puede resultar más compleja de
+configurar y mantener en comparación con otras soluciones al requerir múltiples
+componentes y una configuración detallada. Sin embargo, la comunidad activa y
+los recursos disponibles pueden ayudar a superar estos desafíos.
+
+Una desventaja de la pila ELK es su curva de aprendizaje, que puede ser
+pronunciada para aquellos que no están familiarizados con las herramientas. Sin
+embargo, una vez superada esta curva, la pila ELK ofrece una solución potente y
+flexible para la gestión de información.
+
 
 \newpage{}
-En resumen, aunque tanto Loggly como Splunk o cualquier otro SaaS similar
-sean soluciones robustas y eficientes para la gestión de logs, sus posibles
-costes adicionales, junto con sus limitaciones en el análisis de datos de
-inteligencia de negocio, las convierten en opciones menos atractivas para el
-desarollo de este proyecto.
+\subsubsection{Graylog + Prometheus}
+Esta combinación de herramientas es una alternativa interesante para la gestión
+de datos en entornos de producción. Graylog es una plataforma de
+gestión de logs de código abierto que permite centralizar, monitorizar y
+analizar logs de diferentes fuentes. Por otro lado, Prometheus es un sistema de
+monitorización y alertas de código abierto que se centra en la recopilación de
+métricas de sistemas y aplicaciones.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.2\textwidth]{logos/graylog.png}
+	\caption{Logo de Graylog~\textregistered}
+\end{figure}
+
+En este documento se tratan de manera combinada porque, aunque son herramientas
+independientes, su integración es una solución completa que se está volviendo
+popular en el sector. Graylog se encarga de la gestión de logs, mientras que
+Prometheus se encarga de la recopilación de métricas y alertas.
+
+La combinación de Graylog y Prometheus ofrece varios beneficios, como la
+centralización de información que facilita un análisis más integral y
+eficiente de los datos. Además, la mejora en la monitorización a través de las
+capacidades avanzadas de Prometheus, integradas con Graylog, mejora la detección
+de problemas y la respuesta a incidentes en tiempo real. Esta integración
+también proporciona flexibilidad y escalabilidad, adaptándose a las necesidades
+específicas de cada entorno de producción. Sin embargo, existen desventajas como
+la complejidad de configuración al integrar dos sistemas independientes, lo que
+puede resultar en un mayor esfuerzo en mantenimiento y gestión. Además, al
+tratarse de herramientas novedosas, supondría una mayor curva de aprendizaje
+para el equipo de desarrollo a la hora de tratar con las herramientas.
+
+
+\newpage{}
 \subsubsection{Loki}
 Loki es una herramienta de gestión de logs desarrollada por Grafana Labs,
 diseñada específicamente para ser altamente eficiente y escalable. A diferencia
@@ -130,10 +181,15 @@ de otras soluciones de gestión de datos, Loki no indexa el contenido completo d
 estos, sino que se centra en los metadatos, lo que reduce significativamente
 los requisitos de almacenamiento y mejora el rendimiento.
 
+Al estar creado por Grafana Labs, Loki se integra de forma nativa con Grafana,
+lo que facilita la visualización y análisis de los datos de logs en tiempo real.
+Además, está inspirado en Prometheus y pensado para utilizar con
+\textit{Kubernetes}.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.2\textwidth]{logos/loki.png}
-	\caption{Logo de Loki~®}
+	\caption{Logo de Loki~\textregistered}
 \end{figure}
 
 \paragraph{Ventajas}
@@ -156,7 +212,6 @@ los requisitos de almacenamiento y mejora el rendimiento.
 		despliegue en entornos de producción.
 \end{itemize}
 
-\newpage{}
 \paragraph{Desventajas}
 \begin{itemize}
     \item \textbf{Limitaciones en la búsqueda:} Al no indexar el contenido
@@ -179,86 +234,57 @@ especialmente adecuada para aquellos que ya utilizan Grafana. Sin embargo, sus
 limitaciones en la búsqueda y su ecosistema en desarrollo son factores a
 considerar antes de su implementación.
 
-
-\subsubsection{Graylog + Prometheus}
-Esta combinación de herramientas es una alternativa interesante para la gestión
-de logs y métricas en entornos de producción. Graylog es una plataforma de
-gestión de logs de código abierto que permite centralizar, monitorizar y
-analizar logs de diferentes fuentes. Por otro lado, Prometheus es un sistema de
-monitorización y alertas de código abierto que se centra en la recopilación de
-métricas de sistemas y aplicaciones.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.2\textwidth]{logos/graylog.png}
-	\caption{Logo de Graylog~®}
-\end{figure}
-
-En este documento se tratan de manera combinada porque, aunque son herramientas
-independientes, su integración es una solución completa que se está volviendo
-popular en el sector. Graylog se encarga de la gestión de logs, mientras que
-Prometheus se encarga de la recopilación de métricas y alertas.
-
-La combinación de Graylog y Prometheus ofrece varios beneficios, como la
-centralización de logs y métricas que facilita un análisis más integral y
-eficiente de los datos. Además, la mejora en la monitorización a través de las
-capacidades avanzadas de Prometheus, integradas con Graylog, mejora la detección
-de problemas y la respuesta a incidentes en tiempo real. Esta integración
-también proporciona flexibilidad y escalabilidad, adaptándose a las necesidades
-específicas de cada entorno de producción. Sin embargo, existen desventajas como
-la complejidad de configuración al integrar dos sistemas independientes, lo que
-puede resultar en un mayor esfuerzo en mantenimiento y gestión. Además, al
-tratarse de herramientas novedosas, supondría una mayor curva de aprendizaje
-para el equipo de desarrollo a la hora de tratar con las herramientas.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.2\textwidth]{logos/prometheus.png}
-	\caption{Logo de Prometheus~®}
+	\caption{Logo de Prometheus~\textregistered}
 \end{figure}
 
-\subsubsection{Elasticsearch, Logstash, Kibana (ELK)}
-La pila ELK es una solución de código abierto que combina tres herramientas
-diferentes: \textit{Elasticsearch}, \textit{Logstash} y \textit{Kibana}.
 
-\paragraph{Elasticsearch} es un motor de búsqueda y análisis de código abierto
-que permite almacenar, buscar y analizar grandes volúmenes de datos de forma
-rápida y eficiente.
+\newpage
+\subsubsection{Loggly, Splunk (SaaS de gestión de logs)}
+Ambas herramientas se centran en la gestión y análisis de logs basada en la nube,
+permitiendo centralizar, monitorizar y analizar datos de logs en tiempo real.
+Diseñadas para simplificar la gestión de logs, las dos alternativas ofrecen una
+interfaz intuitiva y potentes capacidades de búsqueda y visualización que
+facilitan la identificación y resolución de problemas en los sistemas y
+aplicaciones.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.2\textwidth]{logos/elastic.png}
-	\caption{Logo de Elasticsearch~®}
+	\includegraphics[width=0.2\textwidth]{logos/loggly.png}
+	\caption{Logo de Loggly~\textregistered}
 \end{figure}
 
-\paragraph{Logstash} es una herramienta de procesamiento de logs que permite
-recopilar, transformar y enviar logs de diferentes fuentes a Elasticsearch para
-su análisis.
+Una de las principales ventajas de este tipo de herramientas es su capacidad
+para integrarse con una amplia variedad de servicios y plataformas, lo que
+permite a las empresas consolidar sus datos de logs en un único lugar. Además,
+suelen ofrecer algún sistema de alertas en tiempo real y paneles de control
+personalizables, lo que encaja muy bien con algunos de los requisitos de este
+proyecto.
+
+Sin embargo, también presentan algunas desventajas que entran en conflicto con
+los intereses descritos anteriormente. En primer lugar, al tratarse de
+servicios enfocados en el tratamiento exclusivo de logs, podrían no acomodar
+algunos de los requisitos esenciales, como la ingesta de las bases de datos
+propias de la empresa.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.2\textwidth]{logos/logstash.png}
-	\caption{Logo de Logstash~®}
+	\includegraphics[width=0.2\textwidth]{logos/splunk.png}
+	\caption{Logo de Splunk~\textregistered}
 \end{figure}
 
-\paragraph{Kibana} es una plataforma de visualización de datos que permite
-crear dashboards interactivos y visualizaciones de datos a partir de los datos
-almacenados en Elasticsearch.
+Otra posible limitación es su sistema de precios; estas herramientas cuentan con
+una jerarquía de suscripciones que limita mucho su escalabilidad y aumentaría
+rápidamente los costes de su uso en caso de llegar a depender de ellas.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.2\textwidth]{logos/kibana.png}
-	\caption{Logo de Kibana~®}
-\end{figure}
-
-Juntas, estas herramientas forman una solución integral para la
-gestión de logs y métricas, que permite a las empresas consolidar, monitorizar y
-analizar datos de diferentes fuentes en tiempo real.
-
-La principal ventaja de esta solución es su flexibilidad y capacidad de
-personalización, que permite adaptarla a las necesidades específicas de cada
-empresa. Además, al tratarse de herramientas de código abierto, la pila ELK es
-una opción asequible y escalable que se adapta a las necesidades de la empresa.
+\newpage{}
+En resumen, aunque tanto Loggly como Splunk o cualquier otro SaaS similar
+sean soluciones robustas y eficientes para la gestión de logs, sus posibles
+costes adicionales, junto con sus limitaciones en el análisis de datos de
+inteligencia de negocio, las convierten en opciones menos atractivas para el
+desarollo de este proyecto.
 
 
 \subsection{Conclusiones}

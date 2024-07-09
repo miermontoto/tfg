@@ -6,11 +6,15 @@ análisis del contexto y se realiza un diseño para, posteriormente, implementar
 una solución que permita la integración, almacenamiento y análisis de grandes
 volúmenes de datos, provenientes de múltiples fuentes y en diferentes formatos.
 
+
 \section{Antecedentes}\label{sec:antecedentes}
-Hoy en día, nos encontramos en una era donde la generación y almacenamiento de
-datos crece exponencialmente \footnote{
+Hoy en día, el crecimiento de la cantidad de dispositivos conectados a Internet
+(teléfonos móviles, dispositivos \textit{IoT}\ldots) ha provocado un aumento
+exponencial de la cantidad de datos que se manejan \footnote{
 	\url{https://www.statista.com/statistics/871513/worldwide-data-created/}
-}, un hecho que se ve reflejado en el ámbito empresarial. La diversidad de
+}, un hecho que se ve reflejado en el ámbito empresarial. Dicha cantidad de
+datos genera una necesidad de análisis y tratamiento que las tecnologías
+tradicionales de datos (bases de datos) no pueden suplir. La diversidad de
 fuentes y formatos de estos datos introduce una complejidad significativa en su
 manejo, conocida como \textit{heterogeneidad} \footnote{
 	\url{https://www.sciencedirect.com/topics/computer-science/data-heterogeneity}
@@ -33,7 +37,7 @@ del conocimiento, que a su vez es la materia prima de la sabiduría. Una
 organización sin los procesos adecuados para la gestión y análisis de estos
 datos, se enfrenta a importantes desafíos, como la dificultad para identificar
 patrones y tendencias, la toma de decisiones incorrectas y la pérdida de
-oportunidades de negocio. Por otro lado, una organización que logre extraer
+oportunidades de negocio. Por otrº lado, una organización que logre extraer
 información valiosa de sus datos, podrá mejorar su eficiencia, aumentar su
 competitividad y adaptarse mejor a un entorno empresarial en constante cambio.
 
@@ -52,18 +56,6 @@ Con la ingesta masiva de datos, se presentan nuevos problemas a la hora de
 analizar y obtener información de ellos:
 
 \begin{itemize}
-	\item \textbf{Decisiones de negocio erróneas debidas a un mal tratamiento:}
-		sin la necesaria automatización y correcta aplicación de los procesos
-		ETL~(ver \ref{sec:etl}), al tratarse de un crecimiento exponencial de los datos y, por lo
-		tanto, de la fuerza de trabajo necesaria para manejarla, los resultados
-		del análisis pueden ser incorrectos, lo que deriva en errores y
-		decisiones de negocio equivocadas que impactan negativamente en la
-		empresa.
-	\item \textbf{Heterogeneidad de los datos:}
-		la heterogeneidad de los datos, tanto en formato como en origen,
-		dificulta su consolidación y análisis, ya que requiere de un proceso de
-		integración y transformación previo para homogeneizarlos y poder
-		analizarlos de forma conjunta.
 	\item \textbf{Grandes cantidades de información:}
 		la masificación de información impide el análisis manual de los
 		mismos, requiriendo resúmenes estadísticos o representaciones gráficas
@@ -73,21 +65,33 @@ analizar y obtener información de ellos:
 		una parte vital del proceso de análisis de datos, ya que permite
 		identificar patrones, tendencias y anomalías en los mismos de forma más
 		rápida y sencilla.
+	\item \textbf{Heterogeneidad de los datos:}
+		la heterogeneidad de los datos, tanto en formato como en origen,
+		dificulta su consolidación y análisis, ya que requiere de un proceso de
+		integración y transformación previo para homogeneizarlos y poder
+		analizarlos de forma conjunta.
+	\item \textbf{Decisiones de negocio erróneas debidas a un mal tratamiento:}
+		sin la necesaria automatización y correcta aplicación de los procesos
+		ETL~(ver \ref{sec:etl}), al tratarse de un crecimiento exponencial de
+		los datos y, por lo tanto, de la fuerza de trabajo necesaria para
+		manejarla, los resultados del análisis pueden ser incorrectos, lo que
+		deriva en errores y decisiones de negocio equivocadas que impactan
+		negativamente en la empresa.
 \end{itemize}
 
 \newpage{}
 \section{Motivación}\label{sec:motivacion}
-Okticket, como el resto de empresas, se enfrenta a la necesidad de unificar, gestionar y
-analizar grandes volúmenes de datos, provenientes de múltiples fuentes y en
-diferentes formatos. La correcta gestión y análisis de estos datos es
-fundamental para la toma de decisiones y para la mejora de los procesos internos
-de la empresa.
+Actualmente, las empresas (especialmente aquellas en el sector IT), se enfrentan
+a la necesidad de unificar, gestionar y analizar grandes volúmenes de datos,
+provenientes de múltiples fuentes y en diferentes formatos. La correcta gestión
+y análisis de estos datos es fundamental para la toma de decisiones y para la
+mejora de los procesos internos de la empresa.
 
-En la actualidad, la empresa dispone de una gran cantidad de datos que se
-encuentran en diferentes formatos y en diferentes ubicaciones, lo que dificulta
-su análisis y explotación. Por otra parte, se depende de la consulta manual o de
-servicios de terceros para poder analizar estos datos, lo que supone un coste
-adicional.
+En la actualidad, Okticket (en adelante la empresa) dispone de una gran cantidad
+de datos que se encuentran en diferentes formatos y en diferentes ubicaciones,
+lo que dificulta su análisis y explotación. Por otra parte, se depende de la
+consulta manual o de servicios de terceros para poder analizar estos datos, lo
+que supone un coste adicional.
 
 El proyecto surge de la necesidad de la empresa de extraer información y
 conocimiento de las múltiples y heterogéneas fuentes de datos de las que se
@@ -161,15 +165,11 @@ automático de una infraestructura de datos que permita la integración,
 almacenamiento y análisis de grandes volúmenes de datos, provenientes de
 múltiples fuentes y en diferentes formatos. La infraestructura de datos debe ser
 escalable, flexible y robusta, para poder adaptarse a las necesidades cambiantes
-de la empresa.
+de la empresa. La integración de datos debe ser automática y programable, para
+poder automatizar el proceso de ingestión de datos y reducir el tiempo y los
+costes asociados.
 
-La infraestructura de datos debe permitir la integración de datos de múltiples
-fuentes, tanto internas como externas, y en diferentes formatos, como bases de
-datos, archivos de registros, APIs, entre otros. La integración de datos debe
-ser automática y programable, para poder automatizar el proceso de ingestión de
-datos y reducir el tiempo y los costes asociados.
-
-Pese a que el entregable principal de este proyecto es la creación de una
-infraestructura, se esperan también otros entregables en forma de herramientas
-de software, como \textit{scripts}, que faciliten la integración y análisis de
-los datos, así como la visualización de los mismos.
+El resultado final del proyecto será la plataforma en sí, es decir, la
+infraestructura automatizada que integre y almacene los datos. El entregable
+final será la colección de ficheros y \textit{scripts} necesarios para el
+despliegue de la infraestructura y el tratamiento de la información.
