@@ -12,19 +12,19 @@
 
 % Formateo de los nombres de los apartados:
 \titleformat{\chapter}[block]
-  {\normalfont\Huge\bfseries\singlespacing}{\thechapter.}{1em}{\Huge}
+{\normalfont\Huge\bfseries\singlespacing}{\thechapter.}{1em}{\Huge}
 \titlespacing*{\chapter}{0pt}{-62pt}{0pt}
 
 \titleformat{\section}[block]
-  {\normalfont\Large\bfseries}{\thesection.}{4pt}{\Large}
+{\normalfont\Large\bfseries}{\thesection.}{4pt}{\Large}
 \titlespacing*{\section}{0pt}{\baselineskip}{0pt}
 
 \titleformat{\subsection}[block]
-  {\normalfont\large\bfseries}{\thesubsection.}{4pt}{\normalsize\large}
+{\normalfont\large\bfseries}{\thesubsection.}{4pt}{\normalsize\large}
 \titlespacing*{\subsection}{0pt}{0pt}{0pt}
 
 \titleformat{\subsubsection}[block]
-  {\normalfont\normalsize\bfseries}{\thesubsubsection.}{4pt}{\normalsize}
+{\normalfont\normalsize\bfseries}{\thesubsubsection.}{4pt}{\normalsize}
 \titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
 
 \def\tablename{Tabla}
@@ -46,6 +46,7 @@
 \def\ORG{\expandafter\MakeUppercase\expandafter{\org}}
 \def\AREA{\expandafter\MakeUppercase\expandafter{\area}}
 \def\SUBJECT{\expandafter\MakeUppercase\expandafter{\subject}}
+
 
 \captionsetup{justification=centering}
 \setlength{\headheight}{65pt}
@@ -79,3 +80,27 @@
 \pagestyle{fancy}
 
 \restylefloat{table}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{yaml}{
+  basicstyle=\ttfamily\footnotesize\color{blue}\bfseries,
+  rulecolor=\color{black},
+  string=[s]{'}{'},
+  stringstyle=\color{blue},
+  comment=[l]{:},
+  commentstyle=\color{black},
+  morecomment=[l]{-},
+  numbers=left,
+  numbersep=5pt,
+  numberstyle=\tiny\color{black},
+  backgroundcolor=\color{backcolour},
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2,
+  breakatwhitespace=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}

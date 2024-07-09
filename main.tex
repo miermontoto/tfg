@@ -10,6 +10,7 @@
 \usepackage[a4paper,top=30mm,left=30mm,right=25mm,bottom=25mm,headheight=20mm]{geometry} % Configuración de los margenes de la página
 
 % Paquetes para que funcione el formato.
+\usepackage[toc,page]{appendix}
 \usepackage{titlesec}
 \usepackage{multirow}
 \usepackage{setspace}
@@ -25,6 +26,7 @@
 \usepackage{caption}
 \usepackage{fancyvrb}
 \usepackage{textcomp}
+\usepackage{listings}
 \usepackage[table]{xcolor}
 \usepackage{hyperref} % Paquete para que las referencias funcionen, y permite introducir links
 \usepackage{xcolor} % Paquete para trabajar con colores (fondo de celdas, color del texto...)
@@ -68,8 +70,12 @@
 \include{sections/50_diseño.tex}
 \include{sections/60_impl.tex}
 \include{sections/70_manual.tex}
-\include{sections/80_resultados.tex}
 \include{sections/concl.tex}
+
+%% Anexos
+\appendix
+\addcontentsline{toc}{chapter}{Anexos} % Añade la referencia al índice de contenido
+\include{sections/a1_local.tex}
 
 %% Esto incluirá la bibliografía correctamente en nuestro trabajo
 \newpage % En una nueva página

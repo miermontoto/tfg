@@ -215,11 +215,162 @@ son atractivas para el desarrollo de este proyecto, se decide utilizar Kafka
 como servicio de ingesta de datos, en consonancia con \textit{Logstash}.
 
 
+\subsection{Sistemas de ejecución y servicios}\label{subsec:servicios}
+Okticket y el equipo de desarrollo utiliza \textit{Amazon Web Services} (AWS)
+como proveedor de nube preferido para desplegar sus servicios y aplicaciones.
+AWS ofrece una amplia gama de servicios y herramientas que permiten a las
+empresas construir, desplegar y escalar aplicaciones en la nube de forma rápida
+y eficiente. Dentro de la plataforma de AWS, existen varios servicios que pueden
+ser utilizados para implementar las funcionalidades requeridas por el proyecto.
+
+
+\paragraph{Alternativas}
+\subparagraph{Amazon EC2} es el servicio de computación tradicional de AWS, que
+permite lanzar máquinas virtuales con arquitecturas comunes de manera rápida.
+Al tratarse de un sistema normal de máquinas virtuales, EC2 no es totalmente
+compatible con el modelo de microservicios y contenedores, lo que puede limitar
+su escalabilidad y flexibilidad en entornos de producción a gran escala.
+
+\subparagraph{Amazon ECS} es un servicio de orquestación de contenedores que
+permite ejecutar y escalar contenedores de Docker en la nube de AWS. ECS es
+totalmente compatible con Docker y proporciona una interfaz sencilla para
+gestionar contenedores en entornos de producción. Sin embargo, ECS puede ser
+complicado de configurar y gestionar, especialmente en entornos de gran escala.
+
+\subparagraph{Amazon EKS} es un servicio de orquestación de contenedores basado
+en Kubernetes que permite ejecutar y escalar contenedores de Docker en la nube
+de AWS. EKS es totalmente compatible con Kubernetes y proporciona una interfaz
+sencilla para gestionar clústeres de Kubernetes en entornos de producción. EKS
+es una opción popular para empresas que ya utilizan Kubernetes y desean
+aprovechar las ventajas de la nube de AWS. Sin embargo, esto supondría plantear
+todo el desarrollo desde cero en Kubernetes, un sistema que no se ha utilizado
+en la empresa hasta la fecha y que requeriría una curva de aprendizaje
+significativa.
+
+
 \newpage{}
 \section{Arquitectura del sistema}\label{sec:arquitectura}
-Tras toda la definción de los requisitos y la valoración de las alternativas
-disponibles, en este apartado se plantea la arquitectura completa del sistema.
+Tras la definción de los requisitos y la valoración de las alternativas
+disponibles, en este apartado se plantea la arquitectura completa del sistema
+en la nube, tomando como proveedor a \textit{Amazon Web Services} (AWS), ya que
+es el proveedor de nube preferido por la empresa.
+
+La arquitectura definida a continuación deberá ser definida y desplegada de
+manera automatizada mediante \textit{Terraform} contando con la mínima
+intervención posible por parte de los operadores del sistema, y hará uso de
+\textit{Amazon ECS} como servicio de orquestación de contenedores.
+
+Además de \textit{ECS}, se utilizarán otros servicios de AWS necesarios para el
+planteamiento de una arquitectura completa y funcional, como \textit{VPC},
+\textit{IAM}, \textit{EFS}, \textit{S3}, \textit{SG}, entre otros. A
+continuación, se detallan los servicios y componentes que formarán parte de la
+arquitectura del sistema.
+
+\begin{itemize}
+	\item \textbf{IAM:} \textit{Identity and Access Management} es un servicio
+		que permite gestionar el acceso a los recursos de AWS de forma segura.
+		En este caso, se crearán roles y políticas de IAM para controlar el
+		acceso a los servicios del sistema y garantizar la seguridad de los
+		datos.
+	\item \textbf{ALB/NLB:} Los \textit{Application} o \textit{Network Load
+		Balancers} son servicios de balanceo de carga que permiten distribuir
+		el tráfico entre los contenedores del sistema. En este caso, se
+		configurará un ALB o NLB para equilibrar la carga entre los contenedores
+		del sistema y garantizar la disponibilidad y la escalabilidad de los
+		servicios. \begin{itemize}
+			\item Los balanceadores de carga cuentan a su vez con varios
+				componentes como \textit{Target Groups} y \textit{Listeners} que
+				permiten configurar las reglas de enrutamiento y el tráfico de red.
+			\item La diferencia entre ALB y NLB radica en el nivel de la capa
+				de red en la que operan, siendo ALB más adecuado para
+				aplicaciones web y NLB para aplicaciones de red de capa 4.
+				Puesto que hay ciertos servicios que operan mediante el
+				protocolo TCP y no HTTP, se utilizará un NLB para garantizar
+				la conectividad de dichos servicios. Sin embargo, el uso de un
+				NLB conlleva mayor complejidad de configuración y mayor uso,
+				además de limitar la capacidad de integración con otros
+				servicios de AWS como el sistema de logs.
+		\end{itemize}
+	\item \textbf{Componentes de red:} Se configurarán varios componentes de
+		red, como \textit{VPC}, \textit{Subnets}, \textit{Route Tables},
+		\textit{Internet Gateways}, \textit{NAT Gateways}\ldots, para garantizar
+		la conectividad y la seguridad de los servicios del sistema.
+		% TODO: Añadir más detalles sobre los componentes de red.
+	\item \textbf{EFS:} \textit{Elastic File System} es un servicio de
+		almacenamiento de archivos que permite compartir archivos entre los
+		contenedores del sistema. En este caso, se utilizará EFS para almacenar
+		los datos y configuraciones compartidas entre los contenedores.
+	\item \textbf{S3:} \textit{Simple Storage Service} es un servicio de
+		almacenamiento de objetos que permite almacenar y recuperar grandes
+		volúmenes de datos de forma segura y escalable. En este caso, se
+		utilizará S3 para almacenar los datos de los servicios del sistema y
+		garantizar su disponibilidad y durabilidad.
+	\item \textbf{CloudWatch:} \textit{CloudWatch} es un servicio de
+		monitorización y gestión de logs que permite supervisar y analizar los
+		recursos de AWS en tiempo real. En este caso, se utilizará CloudWatch
+		durante el periodo de desarrollo de la infraestructura, cuando la
+		ingesta de datos no esté completamente implementada.
+	\item \textbf{SG:} Los \textit{Security Groups} son reglas de seguridad que
+		definen qué tráfico está permitido o denegado en los recursos de AWS.
+		En este caso, se configurarán SG para controlar el tráfico entre los
+		contenedores del sistema y garantizar la seguridad de los datos.
+	\item \textbf{ECS:} Dentro de \textit{Elastic Container Service}, se
+		configurarán los \underline{clústeres}, \underline{servicios},
+		\underline{tareas} y \underline{contenedores} necesarios para
+		ejecutar los servicios del sistema.
+	\item \textbf{Route 53:} \textit{Route 53} es un servicio de DNS que permite
+		rastrear y redirigir el tráfico de red a los recursos de AWS. En este
+		caso, se utilizará Route 53 para gestionar los nombres de dominio de la
+		empresa y redirigir el tráfico a los servicios del sistema.
+	\item \textbf{Secret Manager:} \textit{Secrets Manager} es un servicio de
+		gestión de secretos que permite almacenar y recuperar información
+		sensible de forma segura. En este caso, se utilizará Secret Manager para
+		gestionar las credenciales y claves de acceso de los servicios del
+		sistema.
+\end{itemize}
+
+A continuación, se presentan los diagramas de la arquitectura del sistema en AWS
+para cada una de las áreas de estudio: infraestructura, seguridad y redes.
 
 
 \newpage{}
-\section{Modelo de datos}\label{sec:modelo}
+\subsection{Infraestructura}
+Para la infraestructura del sistema, se utilizará un clúster de \textit{ECS} con
+cuatro servicios en total: uno dedicado a \textit{Elasticsearch}, otro para
+\textit{Kibana}, un tercero para \textit{Logstash} y por último un servicio que
+recoja \textit{Kafka} y, su dependencia, \textit{Zookeeper}. Cada uno de estos
+servicios estará compuesto por tantas tareas como se requieran para garantizar
+la disponibilidad y escalabilidad de los servicios, aunque inicialmente solo se
+desplegará una tarea por servicio. Dentro de cada tarea se podrán encontrar los
+correspondientes contenedores, que son, en esencia, imágenes de Docker que
+contienen el código y las dependencias necesarias para ejecutar los servicios.
+
+Cada uno de los servicios estará detrás de un \textit{ALB} o \textit{NLB} que se
+encargará de distribuir el tráfico entre las tareas del servicio, garantizando
+la disponibilidad y escalabilidad de los servicios.
+
+\begin{figure}[H]
+	\centerline{\includegraphics[width=1.3\textwidth]{aws_infra.png}}
+	\caption{Diagrama inicial de la infraestructura en AWS}
+	\label{fig:aws_infra}
+\end{figure}
+
+
+\subsection{Seguridad}
+\begin{figure}[H]
+	\centerline{\includegraphics[width=1.3\textwidth]{aws_seguridad.png}}
+	\caption{Diagrama incial de la seguridad en AWS}
+	\label{fig:aws_seguridad}
+\end{figure}
+
+
+\subsection{Redes}
+\begin{figure}[H]
+	\centerline{\includegraphics[width=1.3\textwidth]{aws_redes.png}}
+	\caption{Diagrama incial de las redes en AWS}
+	\label{fig:aws_redes}
+\end{figure}
+
+
+\newpage{}
+\section{Modelos de datos}\label{sec:modelo}
