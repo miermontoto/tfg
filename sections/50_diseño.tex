@@ -1,4 +1,11 @@
 \chapter{Diseño del sistema}\label{chap:diseño}
+Previo al desarrollo y la implementación del proyecto, es necesario realizar un
+diseño detallado del sistema que permita definir la arquitectura, los modelos de
+datos y las tecnologías a utilizar. En este capítulo se estudiarán las
+alternativas disponibles, se definirá la arquitectura del sistema en la nube y
+se establecerán los modelos de datos necesarios para el desarrollo del proyecto.
+
+
 \section{Estudio de alternativas}\label{sec:estudio}
 En este apartado se explorarán las diferentes alternativas disponibles para el
 diseño del sistema. Se analizarán las características, ventajas y desventajas de
@@ -90,6 +97,7 @@ ya que es la herramienta más ``sencilla'', la que mejor se podría adaptar a la
 necesidades del proyecto y la única que ya se ha usado en proyectos anteriores
 dentro de la empresa.
 
+
 \subsection{Ingesta de datos}\label{subsec:ingesta}
 A partir del conjunto de tecnologías seleccionadas en la descripción detallada
 del proyecto, se consdieran diversas tecnologías, como \textit{Redpanda},
@@ -158,7 +166,7 @@ disponibilidad y procesamiento eficiente de grandes volúmenes de datos. Sin
 embargo, su implementación y gestión requieren un conocimiento profundo de su
 arquitectura y componentes.
 
-
+\newpage{}
 \subparagraph{Redpanda} es una plataforma de transmisión de datos en tiempo real
 que se destaca por su alto rendimiento y baja latencia. Diseñada como una
 alternativa moderna a \textit{Kafka}, \textit{Redpanda} ofrece una arquitectura
@@ -182,28 +190,24 @@ específicas de \textit{Kafka} que no estén completamente soportadas en
 conlleva riesgos asociados con la estabilidad y el soporte a largo plazo,
 aspectos que deben ser considerados cuidadosamente antes de su implementación.
 
-
 \subparagraph{AWS Glue} es un servicio de integración de datos totalmente
 administrado que facilita la preparación y carga de datos para análisis.
-Diseñado para trabajar con grandes volúmenes de datos, \textit{AWS Glue}
+Diseñado para trabajar con grandes volúmenes de datos, este servicio
 automatiza las tareas de descubrimiento, catalogación, limpieza, enriquecimiento
-y movimiento de datos entre diferentes almacenes de datos. Una de las
-principales ventajas de \textit{AWS Glue} es su capacidad para generar
+y movimiento de datos entre diferentes almacenes de datos.
+
+Una de las principales ventajas de Glue es su capacidad para generar
 automáticamente el código necesario para realizar las transformaciones de datos,
-lo que reduce significativamente el tiempo y el esfuerzo requeridos para
-preparar los datos para el análisis. Además, \textit{AWS Glue} es altamente
-escalable y puede manejar tanto cargas de trabajo por lotes como en tiempo real,
-lo que lo convierte en una opción versátil para diversas necesidades de
-integración de datos.
+lo que reduce significativamente el tiempo y el esfuerzo requeridos. Además, es
+altamente escalable y puede manejar tanto cargas de trabajo por lotes como en
+tiempo real, lo que lo convierte en una opción muy versátil.
 
 \textit{AWS Glue} es un servicio administrado, por lo que su uso puede implicar
-costes adicionales en comparación con soluciones autogestionadas. Además, aunque
-\textit{AWS Glue} ofrece una gran flexibilidad y potencia, su configuración y
-optimización pueden requerir un conocimiento profundo de los servicios de
-\textit{AWS} y de las mejores prácticas de integración de datos. Por último, la
-dependencia de \textit{AWS Glue} puede limitar la portabilidad de las soluciones
-de integración de datos a otros proveedores de nube, lo que podría ser un
-inconveniente en caso de querer migrar el proyecto a otro proveedor.
+costes adicionales en comparación con soluciones autogestionadas e introducir
+\textit{vendor lock-in}. Además, aunque ofrece una gran flexibilidad y potencia,
+su configuración y optimización pueden requerir un conocimiento profundo de los
+servicios de la nube de Amazon y las correspondientes prácticas de integración
+de datos.
 
 
 \paragraph{Comparación y decisión}
@@ -213,6 +217,50 @@ tratarse de un estándar en la industria y una solución tanto rápida y escalab
 como asequible a nivel económico. Por eso, y pese a que las otras alternativas
 son atractivas para el desarrollo de este proyecto, se decide utilizar Kafka
 como servicio de ingesta de datos, en consonancia con \textit{Logstash}.
+
+
+\subsection{Proveedor de nube}\label{subsec:proveedor}
+En cuanto a la elección del proveedor de nube, existen actualmente tres
+grandes alternativas en el mercado: \textit{Amazon Web Services} (AWS),
+\textit{Microsoft Azure} y \textit{Google Cloud Platform} (GCP). Cada uno de
+estos proveedores ofrece una amplia gama de servicios y herramientas que
+permiten a las empresas construir, desplegar y escalar aplicaciones en la nube
+de forma rápida y eficiente.
+
+\begin{itemize}
+	\item \textbf{Amazon Web Services (AWS)} es el proveedor de nube más grande y
+		popular del mundo, con una amplia gama de servicios y herramientas que
+		permiten a las empresas construir, desplegar y escalar aplicaciones en
+		la nube de forma rápida y eficiente. AWS ofrece una infraestructura
+		global con centros de datos en todo el mundo, lo que garantiza una alta
+		disponibilidad y rendimiento de los servicios. Además, AWS cuenta con
+		una amplia comunidad de usuarios y desarrolladores, lo que facilita la
+		integración y el soporte de las aplicaciones en la nube.
+	\item \textbf{Microsoft Azure} es otro proveedor de nube líder en el mercado
+		conocido por su integración con las herramientas y servicios de
+		Microsoft. El hecho de formar parte de las soluciones de Microsoft puede
+		ser una ventaja para las empresas que ya utilizan sus productos, como es
+		el caso de la Universidad de Oviedo.
+	\item \textbf{Google Cloud Platform (GCP)} es el proveedor de nube de Google
+		y, al igual que AWS y Azure, ofrece una amplia gama de servicios y
+		herramientas para construir, desplegar y escalar aplicaciones en la nube.
+		GCP es conocido por su enfoque en la innovación y la tecnología de
+		vanguardia, lo que puede ser atractivo para empresas que buscan
+		soluciones avanzadas y de alto rendimiento. Sin embargo, es la opción
+		menos utilizada de las tres y ha tenido escándalos recientes de
+		preservación de la información.\footnote{\href
+			{https://www.business-standard.com/world-news/google-cloud-accidentally-deletes-125-billion-australian-pension-fund-124051800606_1.html}
+			{Google Cloud accidentally deletes \$1.25 billion Australian pension fund}
+		}
+\end{itemize}
+
+Pese a que las tres alternativas son válidas y ofrecen una amplia gama de
+servicios y herramientas, la empresa ya utiliza la nube de Amazon para todas sus
+aplicaciones y servicios, por lo que es la opción más lógica y coherente para
+este proyecto. Además, AWS cuenta con servicios específicos referentes a
+\textit{contenedores} que facilitarán el despliegue de la infraestructura y la
+gestión de los servicios en la nube.
+
 
 
 \subsection{Sistemas de ejecución y servicios}\label{subsec:servicios}
@@ -246,6 +294,7 @@ aprovechar las ventajas de la nube de AWS. Sin embargo, esto supondría plantear
 todo el desarrollo desde cero en Kubernetes, un sistema que no se ha utilizado
 en la empresa hasta la fecha y que requeriría una curva de aprendizaje
 significativa.
+
 
 
 \newpage{}
@@ -342,12 +391,12 @@ recoja \textit{Kafka} y, su dependencia, \textit{Zookeeper}. Cada uno de estos
 servicios estará compuesto por tantas tareas como se requieran para garantizar
 la disponibilidad y escalabilidad de los servicios, aunque inicialmente solo se
 desplegará una tarea por servicio. Dentro de cada tarea se podrán encontrar los
-correspondientes contenedores, que son, en esencia, imágenes de Docker que
-contienen el código y las dependencias necesarias para ejecutar los servicios.
+correspondientes contenedores - imágenes de Docker que contienen el código y las
+dependencias necesarias para ejecutar los servicios.
 
 Cada uno de los servicios estará detrás de un \textit{ALB} o \textit{NLB} que se
-encargará de distribuir el tráfico entre las tareas del servicio, garantizando
-la disponibilidad y escalabilidad de los servicios.
+encargará de distribuir el tráfico entre las tareas, garantizando la
+disponibilidad y escalabilidad de los servicios.
 
 \begin{figure}[H]
 	\centerline{\includegraphics[width=1.3\textwidth]{aws_infra.png}}
@@ -355,21 +404,55 @@ la disponibilidad y escalabilidad de los servicios.
 	\label{fig:aws_infra}
 \end{figure}
 
+Los \textit{ALB} están conectados directamente a un ``caldero'' \textit{S3} que
+almacena los logs de los servicios (\textit{NLB} no soporta esta funcionalidad).
+Además, los servicios que necesiten almacenar datos de forma persistente (todos
+menos Kafka) estarán conectados a un sistema de archivos \textit{EFS} que
+permitirá compartir datos y configuraciones entre los contenedores del sistema.
+
 
 \subsection{Seguridad}
+A nivel de seguridad, se debe garantizar la protección de los datos y la
+confidencialidad de la información. Para ello, se utilizarán varios servicios de
+AWS, como \textit{IAM} para la gestión de roles y políticas de seguridad, o
+\textit{grupos de seguridad} que permiten controlar el tráfico de red entre los
+contenedores del sistema.
+
+Cada uno de los componentes del \textit{clúster} de \textit{ECS} tendrá su
+propio grupo de seguridad que permitirá controlar el tráfico de red según los
+puertos y protocolos permitidos. Además, se deberán utilizar tan solo las
+políticas y roles necesarios para garantizar la seguridad de los datos.
+
 \begin{figure}[H]
 	\centerline{\includegraphics[width=1.3\textwidth]{aws_seguridad.png}}
 	\caption{Diagrama incial de la seguridad en AWS}
 	\label{fig:aws_seguridad}
 \end{figure}
 
+Además de los componentes de seguridad de AWS, se utilizarán protocolos seguros
+como \textit{HTTPS} para la comunicación entre los servicios y se cifrará la
+información sensible en reposo y en tránsito haciendo uso de
+\textit{Secret Manager} para cargar y guardar las claves sensibles.
+
 
 \subsection{Redes}
+A nivel de configuración de redes, se establecen tres subredes: dos públicas y
+otra privada, estando las públicas en zonas de disponibilidad diferentes. La
+subred pública estará conectada a internet a través de un
+\textit{Internet Gateway}, mientras que la subred privada estará conectada a
+internet a través de un \textit{NAT Gateway}. Ambas subredes estarán conectadas
+a una \textit{VPC} que permitirá la comunicación entre los servicios del
+sistema.
+
 \begin{figure}[H]
 	\centerline{\includegraphics[width=1.3\textwidth]{aws_redes.png}}
 	\caption{Diagrama incial de las redes en AWS}
 	\label{fig:aws_redes}
 \end{figure}
+
+Además de los componentes planteados en el esquema anterior, se configurarán
+\textit{rutas} y \textit{tablas de rutas} para garantizar la conectividad y la
+seguridad de los servicios del sistema.
 
 
 \newpage{}
