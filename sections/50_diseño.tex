@@ -15,8 +15,28 @@ estudio incluirán tanto el despliegue de infraestructura como otros aspectos
 críticos del diseño del sistema, asegurando una evaluación integral y detallada
 de las posibles soluciones.
 
+Los criterios de evaluación en líneas generales son los ya vistos en la sección
+\fullref{sec:alternativas}, es decir:
 
-\subsection{Despliegue de infraestructura}\label{subsec:herdesinf}
+\begin{itemize}
+	\item \textbf{Coste}
+	\item \textbf{Complejidad}
+	\item \textbf{Rendimiento y escalabilidad}
+	\item \textbf{Licencias} (o, más bien, la ausencia de ellas)
+\end{itemize}
+
+En esta sección se estudiarán las alternativas referentes a:
+
+\begin{itemize}
+	\item \textbf{\nameref{subsec:alt_despliegue}}
+	\item \textbf{\nameref{subsec:alt_ingesta}}
+	\item \textbf{\nameref{subsec:alt_proveedor}}
+	\item \textbf{\nameref{subsec:alt_servicios}}
+\end{itemize}
+
+
+\newpage{}
+\subsection{Despliegue de infraestructura}\label{subsec:alt_despliegue}
 A la hora de desplegar la infraestructura de un proyecto, se consideran varias
 herramientas populares que permiten automatizar este proceso. Entre todas ellas,
 las más establecidas y atractivas son \textit{Terraform},
@@ -98,7 +118,8 @@ necesidades del proyecto y la única que ya se ha usado en proyectos anteriores
 dentro de la empresa.
 
 
-\subsection{Ingesta de datos}\label{subsec:ingesta}
+\newpage{}
+\subsection{Ingesta de datos}\label{subsec:alt_ingesta}
 A partir del conjunto de tecnologías seleccionadas en la descripción detallada
 del proyecto, se consdieran diversas tecnologías, como \textit{Redpanda},
 \textit{AWS Glue} y \textit{Kafka} que permitan ingestar datos de todas las
@@ -166,7 +187,6 @@ disponibilidad y procesamiento eficiente de grandes volúmenes de datos. Sin
 embargo, su implementación y gestión requieren un conocimiento profundo de su
 arquitectura y componentes.
 
-\newpage{}
 \subparagraph{Redpanda} es una plataforma de transmisión de datos en tiempo real
 que se destaca por su alto rendimiento y baja latencia. Diseñada como una
 alternativa moderna a \textit{Kafka}, \textit{Redpanda} ofrece una arquitectura
@@ -219,7 +239,9 @@ son atractivas para el desarrollo de este proyecto, se decide utilizar Kafka
 como servicio de ingesta de datos, en consonancia con \textit{Logstash}.
 
 
-\subsection{Proveedor de nube}\label{subsec:proveedor}
+
+\newpage{}
+\subsection{Proveedor de nube}\label{subsec:alt_proveedor}
 En cuanto a la elección del proveedor de nube, existen actualmente tres
 grandes alternativas en el mercado: \textit{Amazon Web Services} (AWS),
 \textit{Microsoft Azure} y \textit{Google Cloud Platform} (GCP). Cada uno de
@@ -263,7 +285,8 @@ gestión de los servicios en la nube.
 
 
 
-\subsection{Sistemas de ejecución y servicios}\label{subsec:servicios}
+\newpage{}
+\subsection{Sistemas de ejecución y servicios}\label{subsec:alt_servicios}
 Okticket y el equipo de desarrollo utiliza \textit{Amazon Web Services} (AWS)
 como proveedor de nube preferido para desplegar sus servicios y aplicaciones.
 AWS ofrece una amplia gama de servicios y herramientas que permiten a las
@@ -271,21 +294,19 @@ empresas construir, desplegar y escalar aplicaciones en la nube de forma rápida
 y eficiente. Dentro de la plataforma de AWS, existen varios servicios que pueden
 ser utilizados para implementar las funcionalidades requeridas por el proyecto.
 
-
-\paragraph{Alternativas}
-\subparagraph{Amazon EC2} es el servicio de computación tradicional de AWS, que
+\paragraph{Amazon EC2} es el servicio de computación tradicional de AWS, que
 permite lanzar máquinas virtuales con arquitecturas comunes de manera rápida.
 Al tratarse de un sistema normal de máquinas virtuales, EC2 no es totalmente
 compatible con el modelo de microservicios y contenedores, lo que puede limitar
 su escalabilidad y flexibilidad en entornos de producción a gran escala.
 
-\subparagraph{Amazon ECS} es un servicio de orquestación de contenedores que
+\paragraph{Amazon ECS} es un servicio de orquestación de contenedores que
 permite ejecutar y escalar contenedores de Docker en la nube de AWS. ECS es
 totalmente compatible con Docker y proporciona una interfaz sencilla para
 gestionar contenedores en entornos de producción. Sin embargo, ECS puede ser
 complicado de configurar y gestionar, especialmente en entornos de gran escala.
 
-\subparagraph{Amazon EKS} es un servicio de orquestación de contenedores basado
+\paragraph{Amazon EKS} es un servicio de orquestación de contenedores basado
 en Kubernetes que permite ejecutar y escalar contenedores de Docker en la nube
 de AWS. EKS es totalmente compatible con Kubernetes y proporciona una interfaz
 sencilla para gestionar clústeres de Kubernetes en entornos de producción. EKS
@@ -294,6 +315,12 @@ aprovechar las ventajas de la nube de AWS. Sin embargo, esto supondría plantear
 todo el desarrollo desde cero en Kubernetes, un sistema que no se ha utilizado
 en la empresa hasta la fecha y que requeriría una curva de aprendizaje
 significativa.
+
+Para este proyecto, se valoran positivamente las opciones más ``novedosas'' pero
+también se ha de tener en cuenta las limitaciones de tiempo y recursos, por lo
+que se decide utilizar \textit{Amazon ECS} como servicio de orquestación de
+contenedores, ya que es el servicio más sencillo y fácil de configurar de los
+tres, y el que mejor se adapta a las necesidades del proyecto.
 
 
 
