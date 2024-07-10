@@ -31,8 +31,8 @@
 \usepackage{hyperref} % Paquete para que las referencias funcionen, y permite introducir links
 \usepackage{xcolor} % Paquete para trabajar con colores (fondo de celdas, color del texto...)
 \usepackage[inkscapeformat=png]{svg}
-\input{config.tex}
 
+\input{config.tex}
 
 \begin{document}
 
@@ -73,10 +73,10 @@
 \include{sections/concl.tex}
 
 %% Anexos
-\addcontentsline{toc}{chapter}{Anexos} % Añade la referencia al índice de contenido
-\hypertarget{anexos}{}
+% \addcontentsline{toc}{chapter}{Anexos}
 \appendix % Inicia los anexos
 \include{sections/a1_local.tex}
+\include{sections/a2_certificados.tex}
 
 %% Esto incluirá la bibliografía correctamente en nuestro trabajo
 \newpage % En una nueva página
