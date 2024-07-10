@@ -4,3 +4,4 @@ main.*
 *.aux
 .vscode
 *.fls
+indent.log

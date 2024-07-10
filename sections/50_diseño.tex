@@ -488,3 +488,30 @@ seguridad de los servicios del sistema.
 
 \newpage{}
 \section{Modelos de datos}\label{sec:modelo}
+Los modelos de datos son una representación estructurada de la información
+almacenada que se utiliza para almacenar, recuperar y manipular los datos de
+forma eficiente. En este caso, se definirán los modelos de datos que se
+ingestarán en el sistema, así como las relaciones entre ellos y las
+características de cada uno.
+
+\subsection{Registros y logs}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{uml/logs_elb.png}
+	\caption{Modelo de datos de los logs de un balanceador de carga de AWS}
+	\label{fig:logs_elb}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{uml/logs_sql.png}
+	\caption{Modelo de datos de los logs de una base de datos SQL}
+	\label{fig:logs_sql}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{uml/logs_mongo.png}
+	\caption{Modelo de datos de los logs de una base de datos MongoDB}
+	\label{fig:logs_mongo}
+\end{figure}

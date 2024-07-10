@@ -9,7 +9,12 @@
 \graphicspath{ {images/} } % Ruta para buscar las imágenes
 \usepackage[a4paper,top=30mm,left=30mm,right=25mm,bottom=25mm,headheight=20mm]{geometry} % Configuración de los margenes de la página
 
+\PassOptionsToPackage{table}{xcolor}
+
 % Paquetes para que funcione el formato.
+\usepackage{xcolor}
+\usepackage{plantuml}
+\usepackage{tikz}
 \usepackage[toc,page]{appendix}
 \usepackage{titlesec}
 \usepackage{multirow}
@@ -27,10 +32,6 @@
 \usepackage{fancyvrb}
 \usepackage{textcomp}
 \usepackage{listings}
-\usepackage[table]{xcolor}
-\usepackage{hyperref} % Paquete para que las referencias funcionen, y permite introducir links
-\usepackage{xcolor} % Paquete para trabajar con colores (fondo de celdas, color del texto...)
-\usepackage[inkscapeformat=png]{svg}
 \input{config.tex}
 
 
