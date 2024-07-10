@@ -46,7 +46,7 @@ peticiones a través de las direcciones \texttt{localhost:9092},
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{local1.png}
+	\includegraphics[width=\textwidth]{impl/local1.png}
 	\caption{Inicio de sesión en Kibana}
 	\label{fig:kibana_login}
 \end{figure}
@@ -56,14 +56,16 @@ definidas en el archivo \texttt{.env} para el usuario \texttt{elastic}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{local2.png}
+	\includegraphics[width=\textwidth]{impl/local2.png}
 	\caption{Página de inicio de Kibana}
 	\label{fig:kibana_start}
 \end{figure}
 
-Una vez aquí, se puede hacer click en la opción \textit{Try sample data} para
+Una vez aquí, se puede hacer click en la opción \texttt{Try sample data} para
 cargar un conjunto de datos de ejemplo y probar la funcionalidad de Kibana con
-Elasticsearch.
+Elasticsearch. Por supuesto, también se pueden probar la ingesta de datos a
+través de Logstash y Kafka o, si así se desea, a través de los \textit{Beats}
+especializados de ingesta directa de Elastic.
 
 El código de despliegue local se encuentra en \fullref{anexo:local}. El
 manual de uso del sistema se encuentra en \fullref{sec:manual_usuario}.
@@ -71,11 +73,45 @@ manual de uso del sistema se encuentra en \fullref{sec:manual_usuario}.
 
 \newpage{}
 \section{Despliegue \textit{cloud}}\label{sec:impl_cloud}
+El desarrollo principal del despliegue en la nube se concentra en la creación
+de los scripts de \textit{Terraform} necesarios para la implementación de la
+infraestructura planteada en el apartado \fullref{sec:arquitectura}. Para ello,
+se divide el proyecto en scripts separados de manera que se puedan gestionar
+los recursos y los servicios de manera independiente.
+
+El diseño de una infraestructura base y el desarrollo de un prototipo de manera
+local permiten tener una idea clara de los recursos necesarios y de las
+características específicas de cada servicio, facilitándo la tarea de
+desarrollo.
+
+% TODO: desarrollar
+
+Para el desarollo, se hace uso de un repositorio privado en \textit{Bitbucket}
+para el control de versiones y facilitar a la empresa la revisión y uso del
+código.
+
 
 
 \newpage{}
 \section{Ingesta de datos}\label{sec:impl_ingesta}
+Tras la creación y el despliegue de la infraestructura base, se procede a la
+creación de los scripts de ingesta de datos, de manera escalonada y siguiendo
+la prioridad de las fuentes de datos.
+
+Puesto que se ha decidido utilizar Kafka como sistema de mensajería, se
+desarrollan los scripts de ingesta de datos para que los datos se envíen a
+Kafka y se procesen mediante Logstash y Elasticsearch.
+
+Para la ingesta de datos, se han desarrollado scripts de Python que se encargan
+de la lectura de los datos de las fuentes, su transformación y su envío a Kafka.
+Estos scripts se ejecutan mediante un \textit{cron} que se encarga de la
+ejecución periódica de los mismos.
 
 
 \newpage{}
 \section{Visualización de datos}\label{sec:impl_visualizacion}
+Una vez se cuentan con datos en Elasticsearch, se puede comenzar el desarrollo
+de la visualización de los mismos mediante Kibana. Para ello, se han desarrollado
+paneles de visualización que permiten la monitorización de los datos en tiempo
+real y la creación de informes y \textit{dashboards} personalizados para cada
+modelo de datos contemplado.
