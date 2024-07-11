@@ -16,14 +16,9 @@ críticos del diseño del sistema, asegurando una evaluación integral y detalla
 de las posibles soluciones.
 
 Los criterios de evaluación en líneas generales son los ya vistos en la sección
-\fullref{sec:alternativas}, es decir:
-
-\begin{itemize}
-	\item \textbf{Coste}
-	\item \textbf{Complejidad}
-	\item \textbf{Rendimiento y escalabilidad}
-	\item \textbf{Licencias} (o, más bien, la ausencia de ellas)
-\end{itemize}
+\fullref{sec:alternativas}, es decir: \textbf{coste}, \textbf{complejidad},
+\textbf{rendimiento y escalabilidad} y \textbf{licencias} (o, más bien, la
+ausencia de ellas).
 
 En esta sección se estudiarán las alternativas referentes a:
 
@@ -32,7 +27,13 @@ En esta sección se estudiarán las alternativas referentes a:
 	\item \textbf{\nameref{subsec:alt_ingesta}}
 	\item \textbf{\nameref{subsec:alt_proveedor}}
 	\item \textbf{\nameref{subsec:alt_servicios}}
+	\item \textbf{\nameref{subsec:alt_maquinas}}
 \end{itemize}
+
+El orden de estudio de las alternativas no es casual, sino que sigue un orden
+lógico \textit{top-down} en el desarrollo del proyecto, comenzando por la
+herramienta de despliegue y los componentes para centrarse posteriormente en
+proveedores, servicios, etc.
 
 
 \newpage{}
@@ -323,6 +324,52 @@ contenedores, ya que es el servicio más sencillo y fácil de configurar de los
 tres, y el que mejor se adapta a las necesidades del proyecto.
 
 
+\newpage{}
+\subsection{Tipos de máquinas}\label{subsec:alt_maquinas}
+Una vez seleccionado el proveedor de nube y el servicio de orquestación, en
+este caso \textit{Amazon ECS}, existen dos tipos de máquinas virtuales que se
+pueden utilizar para desplegar los contenedores: \textit{EC2} y \textit{Fargate}.
+
+\paragraph{Amazon EC2}, como ya se ha comentado, es el servicio de computación
+tradicional de AWS que permite lanzar máquinas virtuales con arquitecturas
+comunes de manera rápida. Al escoger esta opción, se tendría que gestionar el
+\textit{tipo de instancia}\footnote{\url{
+	https://aws.amazon.com/es/ec2/instance-types/
+}} y la \textit{capacidad} de las máquinas, lo que puede acarrear más tiempo de
+análisis y configuración.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.1\textwidth]{logos/ec2.png}
+	\caption{Logo de Amazon EC2~\textregistered}
+	\label{fig:ec2}
+\end{figure}
+
+\paragraph{AWS Fargate}\footnote{\url{https://aws.amazon.com/es/fargate/}} es un
+servicio de contenedores de AWS con un enfoque más moderno que EC2, ya que
+permite ejecutar contenedores sin necesidad de gestionar las máquinas
+subyacentes. Fargate se encarga de aprovisionar y escalar la infraestructura
+necesaria para ejecutar los contenedores en base a los recursos definidos en la
+configuración. Aunque Fargate es más sencillo de usar y configurar que EC2,
+también puede ser más costoso y menos flexible, ya que no es posible acceder
+directamente a las máquinas subyacentes de manera sencilla o personalizar la
+configuración de las instancias.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.1\textwidth]{logos/fargate.png}
+	\caption{Logo de AWS Fargate~\textregistered}
+	\label{fig:fargate}
+\end{figure}
+
+\paragraph{Decisión}
+Dado que el proyecto no requiere una configuración específica de las máquinas
+subyacentes y se busca una solución sencilla y rápida de desplegar, se decide
+utilizar \textit{AWS Fargate} como servicio de contenedores para ejecutar los
+servicios del sistema. Fargate es una opción más moderna y sencilla que EC2, y
+permite centrarse en el desarrollo de las aplicaciones sin tener que preocuparse
+por la gestión de la infraestructura subyacente.
+
 
 \newpage{}
 \section{Arquitectura del sistema}\label{sec:arquitectura}
@@ -356,40 +403,43 @@ arquitectura del sistema.
 		servicios. \begin{itemize}
 			\item Los balanceadores de carga cuentan a su vez con varios
 				componentes como \textit{Target Groups} y \textit{Listeners} que
-				permiten configurar las reglas de enrutamiento y el tráfico de red.
-			\item La diferencia entre ALB y NLB radica en el nivel de la capa
-				de red en la que operan, siendo ALB más adecuado para
-				aplicaciones web y NLB para aplicaciones de red de capa 4.
-				Puesto que hay ciertos servicios que operan mediante el
-				protocolo TCP y no HTTP, se utilizará un NLB para garantizar
-				la conectividad de dichos servicios. Sin embargo, el uso de un
-				NLB conlleva mayor complejidad de configuración y mayor uso,
-				además de limitar la capacidad de integración con otros
-				servicios de AWS como el sistema de logs.
+				permiten configurar las reglas de enrutamiento y el tráfico de
+				red.
+			\item La diferencia entre ALB y NLB\footnote{\url{
+					https://aws.amazon.com/es/compare/the-difference-between-the-difference-between-application-network-and-gateway-load-balancing/?nc1=h_ls
+				}} radica en el nivel de la capa de red en la que operan, siendo
+				ALB adecuado para aplicaciones web y NLB para aplicaciones de
+				red de capa 4. Puesto que se usan servicios que operan
+				mediante el protocolo TCP y no HTTP, se utilizará un NLB para
+				garantizar la conectividad de dichos servicios. Sin embargo, el
+				uso de un NLB conlleva mayor complejidad de configuración y
+				mayores costes, además de limitar la capacidad de integración
+				con otros servicios de AWS como el sistema de logs.
 		\end{itemize}
 	\item \textbf{Componentes de red:} Se configurarán varios componentes de
-		red, como \textit{VPC}, \textit{Subnets}, \textit{Route Tables},
+		red, como \textit{VPC}\footnote{\url{
+			https://docs.aws.amazon.com/es_es/vpc/latest/userguide/what-is-amazon-vpc.html
+		}}, \textit{Subnets}, \textit{Route Tables},
 		\textit{Internet Gateways}, \textit{NAT Gateways}\ldots, para garantizar
 		la conectividad y la seguridad de los servicios del sistema.
 		% TODO: Añadir más detalles sobre los componentes de red.
 	\item \textbf{EFS:} \textit{Elastic File System} es un servicio de
 		almacenamiento de archivos que permite compartir archivos entre los
-		contenedores del sistema. En este caso, se utilizará EFS para almacenar
-		los datos y configuraciones compartidas entre los contenedores.
+		contenedores del sistema. EFS es vital para almacenar los datos y
+		configuraciones de manera compartida entre los contenedores.
 	\item \textbf{S3:} \textit{Simple Storage Service} es un servicio de
 		almacenamiento de objetos que permite almacenar y recuperar grandes
-		volúmenes de datos de forma segura y escalable. En este caso, se
-		utilizará S3 para almacenar los datos de los servicios del sistema y
-		garantizar su disponibilidad y durabilidad.
+		volúmenes de datos de forma segura y escalable. Se usará S3 para
+		almacenar los datos de los servicios del sistema.
 	\item \textbf{CloudWatch:} \textit{CloudWatch} es un servicio de
 		monitorización y gestión de logs que permite supervisar y analizar los
-		recursos de AWS en tiempo real. En este caso, se utilizará CloudWatch
-		durante el periodo de desarrollo de la infraestructura, cuando la
-		ingesta de datos no esté completamente implementada.
+		recursos de AWS en tiempo real. Este servicio se utilizará durante el
+		periodo de desarrollo de la infraestructura, cuando la ingesta de datos
+		no esté completamente implementada.
 	\item \textbf{SG:} Los \textit{Security Groups} son reglas de seguridad que
 		definen qué tráfico está permitido o denegado en los recursos de AWS.
-		En este caso, se configurarán SG para controlar el tráfico entre los
-		contenedores del sistema y garantizar la seguridad de los datos.
+		Se tendrán que configurar grupos de seguridad para controlar el tráfico
+		desde y hacia los servicios del sistema.
 	\item \textbf{ECS:} Dentro de \textit{Elastic Container Service}, se
 		configurarán los \underline{clústeres}, \underline{servicios},
 		\underline{tareas} y \underline{contenedores} necesarios para
@@ -400,17 +450,20 @@ arquitectura del sistema.
 		empresa y redirigir el tráfico a los servicios del sistema.
 	\item \textbf{Secret Manager:} \textit{Secrets Manager} es un servicio de
 		gestión de secretos que permite almacenar y recuperar información
-		sensible de forma segura. En este caso, se utilizará Secret Manager para
+		sensible de forma segura. Se utilizará Secret Manager para
 		gestionar las credenciales y claves de acceso de los servicios del
 		sistema.
 	\item \textbf{ACM:} \textit{Certificate Manager} es un servicio de gestión
 		de certificados SSL/TLS que permite proteger las conexiones seguras
-		entre los servicios del sistema. En este caso, se utilizará ACM para
-		gestionar los certificados SSL/TLS de los servicios del sistema.
+		entre los servicios del sistema. ACM gestionará los certificados SSL/TLS
+		de los recursos de AWS.
 \end{itemize}
 
 A continuación, se presentan los diagramas de la arquitectura del sistema en AWS
-para cada una de las áreas de estudio: infraestructura, seguridad y redes.
+para cada una de las áreas de estudio: infraestructura, seguridad y redes. En
+todos los diagramas se resaltan en morado (con líneas intermitentes) la región y
+en verde la nube virtual privada (\textit{VPC}) en la que se desplegarán los
+servicios del sistema.
 
 
 \newpage{}
@@ -429,17 +482,18 @@ Cada uno de los servicios estará detrás de un \textit{ALB} o \textit{NLB} que 
 encargará de distribuir el tráfico entre las tareas, garantizando la
 disponibilidad y escalabilidad de los servicios.
 
-\begin{figure}[H]
-	\centerline{\includegraphics[width=1.3\textwidth]{infra/aws_infra.png}}
-	\caption{Diagrama inicial de la infraestructura en AWS}
-	\label{fig:aws_infra}
-\end{figure}
-
-Los \textit{ALB} están conectados directamente a un ``caldero'' \textit{S3} que
+Los \textit{ALB} están conectados directamente a un \textit{bucket} S3 que
 almacena los logs de los servicios (\textit{NLB} no soporta esta funcionalidad).
 Además, los servicios que necesiten almacenar datos de forma persistente (todos
 menos Kafka) estarán conectados a un sistema de archivos \textit{EFS} que
 permitirá compartir datos y configuraciones entre los contenedores del sistema.
+
+\begin{figure}[H]
+	\centerline{\includegraphics[width=1.3\textwidth]{infra/aws_infra.png}}
+	\caption{Diagrama inicial de la infraestructura en AWS}
+
+	\label{fig:aws_infra}
+\end{figure}
 
 
 \subsection{Seguridad}
@@ -454,17 +508,21 @@ propio grupo de seguridad que permitirá controlar el tráfico de red según los
 puertos y protocolos permitidos. Además, se deberán utilizar tan solo las
 políticas y roles necesarios para garantizar la seguridad de los datos.
 
+Además de los componentes de seguridad de AWS, se utilizarán protocolos seguros
+como \textit{HTTPS} para la comunicación entre los servicios y se cifrará la
+información haciendo uso de \textit{Secret Manager} para cargar y guardar las
+claves necesarias.
+
+
 \begin{figure}[H]
 	\centerline{\includegraphics[width=1.3\textwidth]{infra/aws_seguridad.png}}
 	\caption{Diagrama incial de la seguridad en AWS}
 	\label{fig:aws_seguridad}
 \end{figure}
 
-Además de los componentes de seguridad de AWS, se utilizarán protocolos seguros
-como \textit{HTTPS} para la comunicación entre los servicios y se cifrará la
-información sensible en reposo y en tránsito haciendo uso de
-\textit{Secret Manager} para cargar y guardar las claves sensibles.
-
+En el diagrama anterior, se pueden observar los grupos de seguridad (resaltados
+en azul) que engloban a los componentes, mientras que todos ellos se encuentran
+dentro de una \textit{VPC}.
 
 \subsection{Redes}
 A nivel de configuración de redes, se establecen tres subredes: dos públicas y
@@ -481,6 +539,12 @@ sistema.
 	\label{fig:aws_redes}
 \end{figure}
 
+En el diagrama se pueden observar las subredes (resaltadas en naranja con líneas
+intermitentes), siendo las dos inferiores subredes públicas en diferentes zonas
+de disponibilidad conectadas a un \textit{Internet Gateway} y la subred superior
+una privada donde se encuentran los servicios junto con el \textit{NAT Gateway}
+necesario para la conexión a Internet.
+
 Además de los componentes planteados en el esquema anterior, se configurarán
 \textit{rutas} y \textit{tablas de rutas} para garantizar la conectividad y la
 seguridad de los servicios del sistema.
@@ -494,7 +558,6 @@ forma eficiente. En este caso, se definirán los modelos de datos que se
 ingestarán en el sistema, así como las relaciones entre ellos y las
 características de cada uno.
 
-\subsection{Registros y logs}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{uml/logs_elb.png}

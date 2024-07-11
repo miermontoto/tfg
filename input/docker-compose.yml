@@ -1,11 +1,11 @@
 version: '3'
 
 volumes:
-  esdata01:
-  kibana-data:
-  elastic-data:
-  logstash-data:
-  kafka-data:
+  es01data:
+  kibanadata:
+  elasticdata:
+  logstashdata:
+  kafkadata:
   certs:
 
 networks:

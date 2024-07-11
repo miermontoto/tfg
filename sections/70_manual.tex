@@ -93,8 +93,8 @@ para que Terraform pueda acceder a ellos.
 
 \subsection{Despliegue}
 Una vez cumplidos los requisitos previos, se puede proceder al despliegue de
-la infraestructura base. Para ello, se deben ejecutar los siguientes pasos desde
-la carpeta de los scripts de Terraform a través de la terminal de comandos:
+la infraestructura base. Para ello, se deben ejecutar los siguientes comandos
+desde la carpeta de scripts de Terraform a través de la terminal del sistema:
 
 \begin{lstlisting}
 terraform init  # Necesario solo la primera ejecucion
@@ -117,4 +117,16 @@ herramienta de AWS CLI.
 Una vez ejecutado el comando, se mostrará un resumen de los recursos que se
 van a crear y se pedirá confirmación para proceder con el despliegue. Para
 confirmar, se debe introducir \texttt{yes} y pulsar la tecla \texttt{Enter}.
-Una vez confirmado, Terraform procederá a la creación de los recursos.
+Una vez confirmado, Terraform procederá a la creación de los recursos de manera
+automatizada.
+
+Una vez concluido el despliegue, se mostrará un mensaje de éxito y se devolverán
+algunos datos relevantes sobre los recursos creados, como direcciones URL,
+identificadores o contraseñas de acceso creadas de manera aleatoria.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{manual/terraform_output.png}
+	\caption{Despliegue exitoso de la infraestructura base}
+	\label{fig:terraform_output}
+\end{figure}

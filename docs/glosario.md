@@ -4,3 +4,4 @@
 - **heterogeneidad:** característica de los datos que provienen de diferentes fuentes y que no siguen un formato común.
 - **procesos ETL:** conjunto de procesos que permiten extraer, transformar y cargar datos de una fuente a un destino.
 - **el proyecto:** conjunto de actividades temporales que tienen como objetivo alcanzar un resultado específico. (no "el trabajo")
+- **script:** archivo que contiene un conjunto de instrucciones que se ejecutan en un programa o sistema.

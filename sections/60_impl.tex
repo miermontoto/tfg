@@ -35,6 +35,295 @@ Los contenedores cuentan con comprobaciones de salud (o \textit{health-checks})
 básicas para asegurar que los servicios se han arrancado correctamente y están
 funcionando.
 
+\newpage{}
+\subsection{Explicación del código}
+El código de despliegue local se encuentra en \fullref{anexo:local}.
+
+A nivel de configuración, se definen variables de entorno para cada contenedor
+mediante el uso de la palabra clave \texttt{environment} y las claves definidas
+por cada imagen. Para cada contenedor, se define además información adicional
+dependiendo de las características del servicio, como la dependencia en otras
+imágenes, los límites de recursos o los puertos de escucha.
+
+Para evitar el ruido excesivo por consola una vez arrancado los servicios, se
+reduce el nivel de \textit{logging} a \textit{WARN} en los servicios que lo
+soporten.
+
+Al comienzo del archivo \texttt{docker-compose.yml}, se definen los volúmenes y
+las redes necesarias para el correcto funcionamiento de los servicios.
+
+\begin{lstlisting}[style=yaml, caption={Definición de volúmenes y redes en Docker Compose}]
+volumes:
+	es01data:
+	kibanadata:
+	elasticdata:
+	logstashdata:
+	kafkadata:
+	certs:
+
+networks:
+	default:
+		driver: bridge
+\end{lstlisting}
+
+A continuación, se definen los servicios necesarios para el proyecto, comenzando
+por el contenedor de preparación de credenciales y usuarios. Se utiliza una
+imagen de Elasticsearch para la creación de las credenciales, y se monta un
+volumen para la persistencia de las mismas.
+
+\begin{lstlisting}[style=yaml, caption={Definición del servicio de preparación}]
+setup:
+	image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+	volumes:
+		- certs:/usr/share/elasticsearch/config/certs
+	user: root
+	container_name: setup
+	command: >
+		bash -c '
+			if [ x${ELASTIC_PASSWORD} == x ]; then
+			echo "Set the ELASTIC_PASSWORD environment variable in the .env file";
+			exit 1;
+			elif [ x${KIBANA_PASSWORD} == x ]; then
+			echo "Set the KIBANA_PASSWORD environment variable in the .env file";
+			exit 1;
+			fi;
+			if [ ! -f config/certs/ca.zip ]; then
+			echo "Creating CA";
+			bin/elasticsearch-certutil ca --silent --pem -out config/certs/ca.zip;
+			unzip config/certs/ca.zip -d config/certs;
+			fi;
+			if [ ! -f config/certs/certs.zip ]; then
+			echo "Creating certs";
+			echo -ne \
+			"instances:\n"\
+			"  - name: es01\n"\
+			"    dns:\n"\
+			"      - es01\n"\
+			"      - localhost\n"\
+			"    ip:\n"\
+			"      - 127.0.0.1\n"\
+			"  - name: kibana\n"\
+			"    dns:\n"\
+			"      - kibana\n"\
+			"      - localhost\n"\
+			"    ip:\n"\
+			"      - 127.0.0.1\n"\
+			> config/certs/instances.yml;
+			bin/elasticsearch-certutil cert --silent --pem -out config/certs/certs.zip --in config/certs/instances.yml --ca-cert config/certs/ca/ca.crt --ca-key config/certs/ca/ca.key;
+			unzip config/certs/certs.zip -d config/certs;
+			fi;
+			echo "Setting file permissions"
+			chown -R root:root config/certs;
+			find . -type d -exec chmod 750 \{\} \;;
+			find . -type f -exec chmod 640 \{\} \;;
+			echo "Waiting for Elasticsearch availability";
+			until curl -s --cacert config/certs/ca/ca.crt https://es01:9200 | grep -q "missing authentication credentials"; do sleep 1; done;
+			echo "Setting kibana_system password";
+			until curl -s -X POST --cacert config/certs/ca/ca.crt -u "elastic:${ELASTIC_PASSWORD}" -H "Content-Type: application/json" https://es01:9200/_security/user/kibana_system/_password -d "{\"password\":\"${KIBANA_PASSWORD}\"}" | grep -q "^{}"; do sleep 10; done;
+			echo "All done!";
+		''
+
+	healthcheck:
+		test: [ "CMD-SHELL", "[ -f config/certs/es01/es01.crt ]" ]
+		interval: 5s
+		timeout: 10s
+		retries: 10
+\end{lstlisting}
+
+El servicio de preparación necesita tener una comprobación de salud, puesto que
+el resto de contenedores lo tienen marcado como dependencia para su arranque. En
+este caso, la comprobación consiste en la existencia de un archivo de
+certificado.
+
+Una vez definido el servicio de preparación, se definen los servicios de
+\textit{Kafka} y \textit{Zookeeper}, que se basan en imágenes oficiales de
+\textit{Confluent}.
+
+\begin{lstlisting}[style=yaml, caption={Definición de los servicios de Kafka}]
+zookeeper:
+	container_name: zookeeper
+	image: confluentinc/cp-zookeeper:latest
+	environment:
+	ZOOKEEPER_CLIENT_PORT: 2181
+	ZOOKEEPER_TICK_TIME: 2000
+	ZOO_LOG4J_PROP: WARN,CONSOLE
+	ports:
+	- 2181:2181
+
+kafka:
+	container_name: kafka
+	image: confluentinc/cp-kafka:latest
+	depends_on:
+		- zookeeper
+		- es01
+	ports:
+		- 9092:9092
+		- 29092:29092
+	environment:
+		KAFKA_BROKER_ID: 1
+		KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+		KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka:29092,LISTENER_DOCKER_EXTERNAL://localhost:9092
+		KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
+		KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
+		KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+		KAFKA_LOG4J_ROOT_LOGLEVEL: WARN
+		KAFKA_TOOLS_LOG4J_LOGLEVEL: ERROR
+		KAFKA_LOG4J_LOGGERS: 'kafka=WARN,kafka.controller=WARN,kafka.log.LogCleaner=WARN,state.change.logger=WARN,kafka.producer.async.DefaultEventHandler=WARN'
+\end{lstlisting}
+
+Ambos servicios cuentan con una serie de variables de entorno que definen su
+configuración, como el puerto de escucha, el \textit{broker ID} o la dirección
+de \textit{Zookeeper}.
+
+Una vez definidos los servicios de Kafka, se define el servicio más crítico, el
+contenedor de Elasticsearch, del que depende el funcionamiento de todo el
+sistema.
+
+\begin{lstlisting}[style=yaml, caption={Definición del servicio de Elasticsearch}]
+es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    container_name: es01
+    restart: unless-stopped
+    depends_on:
+      - setup
+    environment:
+      - node.name=es01
+      - cluster.name=${CLUSTER_NAME}
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - logger.level=WARN
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=true
+      - xpack.security.http.ssl.key=certs/es01/es01.key
+      - xpack.security.http.ssl.certificate=certs/es01/es01.crt
+      - xpack.security.http.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.key=certs/es01/es01.key
+      - xpack.security.transport.ssl.certificate=certs/es01/es01.crt
+      - xpack.security.transport.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.transport.ssl.verification_mode=certificate
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add:
+      - IPC_LOCK
+    labels:
+      co.elastic.logs/module: elasticsearch
+      co.elastic.metrics/module: elasticsearch
+    volumes:
+      - es01data:/usr/share/elasticsearch/data
+      - certs:/usr/share/elasticsearch/config/certs
+    ports:
+      - 9200:9200
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s --cacert config/certs/ca/ca.crt https://localhost:9200 | grep -q 'missing authentication credentials'"
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+\end{lstlisting}
+
+Debido a que se trata del servicio más importante y grande, se requieren muchas
+opciones de configuración, como la limitación de recursos, la persistencia de
+datos o la configuración de seguridad. Como en el resto de servicios, se define
+una comprobación de salud que se encarga de comprobar que el servicio está
+disponible.
+
+Para simplificar lo máximo posible la arquitectura de este prototipo, tan solo
+se define un nodo de Elasticsearch, aunque la configuración de escalabilidad
+sería sencilla gracias al diseño de Docker.
+
+Por último, se definen los servicios de Kibana y Logstash, que dependen de
+Elastic.
+
+\begin{lstlisting}[style=yaml, caption={Definición de los servicios de Kibana}]
+kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
+    restart: unless-stopped
+    volumes:
+      - kibanadata:/usr/share/kibana/data
+      - certs:/usr/share/kibana/config/certs
+    environment:
+      SERVER_NAME: kibana
+      SERVER_PORT: 5601
+      SERVER_HOST: 0.0.0.0
+      ELASTICSEARCH_HOSTS: https://es01:9200
+      ELASTICSEARCH_USERNAME: kibana_system
+      ELASTICSEARCH_PASSWORD: ${KIBANA_PASSWORD}
+      ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES: config/certs/ca/ca.crt
+      LOGGING_ROOT_LEVEL: warn
+      XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY: ${KEY}
+      XPACK_REPORTING_ENCRYPTIONKEY: ${KEY}
+      XPACK_SECURITY_ENCRYPTIONKEY: ${KEY}
+    links:
+      - es01
+    depends_on:
+      - setup
+      - es01
+    labels:
+      co.elastic.logs/module: kibana
+      co.elastic.metrics/module: kibana
+    ports:
+      - 5601:5601
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s -I http://localhost:5601 | grep -q 'HTTP/1.1 302 Found'"
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+\end{lstlisting}
+
+\begin{lstlisting}[style=yaml, caption={Definición de los servicios de Logstash}]
+logstash:
+    container_name: logstash
+    image: docker.elastic.co/logstash/logstash:${STACK_VERSION}
+    restart: unless-stopped
+    user: root
+    volumes:
+      - logstashdata:/usr/share/logstash/data
+      - certs:/usr/share/logstash/certs
+    environment:
+      - ELASTIC_HOSTS="https://es01:9200"
+      - ELASTIC_USER="elastic"
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - log.level=warn
+      - xpack.monitoring.enabled=false
+    command: >
+      bash -c "echo 'input { kafka { bootstrap_servers => \"kafka:29092\" topics => [\"laravel-logs\"] } } output { elasticsearch { hosts => [\"https://es01:9200\"] user => \"elastic\" password => \"${ELASTIC_PASSWORD}\" ssl => true cacert => \"certs/ca/ca.crt\" } }' > /usr/share/logstash/pipeline/logstash.conf; bin/logstash -f /usr/share/logstash/pipeline/logstash.conf"
+    ports:
+      - 5000:5000
+    depends_on:
+      - es01
+      - kafka
+      - setup
+    labels:
+      co.elastic.logs/module: logstash
+      co.elastic.metrics/module: logstash
+    links:
+      - es01
+      - kibana
+\end{lstlisting}
+
+Se hace uso de la red interna de Docker para facilitar la comunicación entre los
+contenedores, y se definen comprobaciones de salud para asegurar que los
+servicios se han arrancado correctamente. Para Logstash, se define un script de
+lanzamiento que genera el archivo de configuración y ejecuta el servicio, aunque
+podría montarse un volumen con el archivo de configuración ya generado.
+
+\newpage{}
+\subsection{Uso del sistema}
 Una vez arrancados los contenedores mediante el comando
 \texttt{docker compose up}, se puede acceder a los servicios a través de la
 dirección local \texttt{localhost}. En el caso de Kibana, se puede acceder a
@@ -67,9 +356,7 @@ Elasticsearch. Por supuesto, también se pueden probar la ingesta de datos a
 través de Logstash y Kafka o, si así se desea, a través de los \textit{Beats}
 especializados de ingesta directa de Elastic.
 
-El código de despliegue local se encuentra en \fullref{anexo:local}. El
-manual de uso del sistema se encuentra en \fullref{sec:manual_usuario}.
-
+El manual de uso del sistema se encuentra en \fullref{sec:manual_usuario}.
 
 \newpage{}
 \section{Despliegue \textit{cloud}}\label{sec:impl_cloud}
@@ -85,6 +372,11 @@ características específicas de cada servicio, facilitándo la tarea de
 desarrollo.
 
 % TODO: desarrollar
+% Aquí podría estar bien poner un diagrama de despliegue. Pero que se vea en el
+% modelo que ese diagrama de despliegue no es el despliegue de tu proyecto.
+% Es decir, el proyecto es crear un proceso de despliegue que hace un despliegue.
+% Entonces que se vea que hay ese proceso y luego el diagrama de despliegue de lo
+% que el proyecto permite desplegar
 
 Para el desarollo, se hace uso de un repositorio privado en \textit{Bitbucket}
 para el control de versiones y facilitar a la empresa la revisión y uso del
