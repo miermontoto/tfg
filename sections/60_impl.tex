@@ -35,6 +35,26 @@ Los contenedores cuentan con comprobaciones de salud (o \textit{health-checks})
 básicas para asegurar que los servicios se han arrancado correctamente y están
 funcionando.
 
+Esta sección de la documentación documenta el desarrollo de la historia de
+usuario inicial, de acuerdo con lo establecio en la sección \ref{sec:planif_inicial}:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{0.7\linewidth}|c|c|}
+		\hline
+		\textbf{Nombre} & \textbf{Prioridad} & \textbf{Tamaño} \\
+		\hline
+		\hline
+		Creación de la infraestructura base (técnica) & P0\cellcolor{red!50} & L\cellcolor{orange!50} \\
+		\hline
+  	\end{tabular}
+  	\caption{Lista de HUs cumplimentadas con el despliegue local}
+  	\label{tab:impl_local}
+\end{table}
+
+
+
+
 \newpage{}
 \subsection{Explicación del código}
 El código de despliegue local se encuentra en \fullref{anexo:local}.
@@ -358,6 +378,34 @@ especializados de ingesta directa de Elastic.
 
 El manual de uso del sistema se encuentra en \fullref{sec:manual_usuario}.
 
+
+\newpage{}
+\subsection{Proceso de desarrollo}\label{subsec:impl_local_desarrollo}
+Para el desarrollo del sistema, se ha seguido un proceso iterativo, comenzando
+a partir del ejemplo oficial de Elastic para \textit{Docker Compose}\footnote{
+  \url{https://www.elastic.co/blog/getting-started-with-the-elastic-stack-and-docker-compose}
+}. A partir de este ejemplo, se añaden progresivamente configuraciones y
+servicios, y se prueban las funcionalidades de cada uno de ellos, actualizando
+con regularidad el código en el repositorio privado establecido.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{impl/commits.png}
+  \caption{Ejemplo de commits en el repositorio privado}
+  \label{fig:commits}
+\end{figure}
+
+Inicialmente, se prueban los servicios mínimos (Kibana y Elasticsearch) sin
+HTTPS para comprobar su correcto funcionamiento. Una vez se ha comprobado que
+los servicios funcionan correctamente, se añade la configuración de seguridad
+y se prueban los servicios con HTTPS, ajustando más configuraciones como el
+nivel de registro de logs o las comprobaciones de salud de los contenedores.
+
+Una vez se ha comprobado que los servicios funcionan correctamente, se añaden
+los servicios de Kafka, Zookeeper y Logstash, y se prueban las conexiones entre
+los servicios, ajustando las configuraciones necesarias para que los servicios
+se comuniquen correctamente.
+
 \newpage{}
 \section{Despliegue \textit{cloud}}\label{sec:impl_cloud}
 El desarrollo principal del despliegue en la nube se concentra en la creación
@@ -371,6 +419,52 @@ local permiten tener una idea clara de los recursos necesarios y de las
 características específicas de cada servicio, facilitándo la tarea de
 desarrollo.
 
+Para el desarollo, se hace uso de un repositorio privado en \textit{Bitbucket}
+para el control de versiones y facilitar a la empresa la revisión y uso del
+código. El código completo se encuentra en \fullref{anexo:cloud}.
+
+\subsection{Proceso de desarrollo}\label{subsec:impl_cloud_desarrollo}
+El proceso de desarrollo de los scripts de \textit{Terraform} parte de la
+implementación original de la infraestructura en local, y se va adaptando a
+las necesidades de la infraestructura en la nube, puesto que ambos comparten
+similaridades (como la mayoría de la configuración de los servicios, la
+estructura general de los mismos, las imágenes y versiones utilizadas, etc.).
+
+Al igual que con el desarrollo local, se sigue un proceso iterativo, comenzando
+por la creación de un solo servicio, en este caso Kafka, y continuando con el
+resto de la arquitectura. Los primeros despliegues son tan solo pruebas de
+concepto, con el objetivo de adaptarse a la infraestructura de la nube, el
+funcionamiento de Terraform y la configuración de AWS.
+
+Pese a que Terraform suele encargarse de la creación, modificación y destrucción
+de los recursos de manera automática, existen casos en los que es necesaria la
+intervención manual, como en la destrucción de los contenedores de
+\textit{Secret Manager} o en la actualización de algunas configuraciones de los
+recursos. Estos casos ocurrirán solo durante la fase de desarrollo, puesto que
+se espera que, en la fase de producción, no sea necesario la reconfiguración de
+los recursos y servicios.
+
+La definición de las tareas de ECS durante el desarrollo queda registrado en la
+sección correspondiente de AWS, cuyo código y configuraciones se puede consultar
+si así se desea.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{impl/definitions.png}
+	\caption{Ejemplo de definciones de tareas de ECS en AWS}
+	\label{fig:definitions}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{impl/ejemplo_definition.png}
+	\caption{Ejemplo de definción de tarea (Kafka)}
+	\label{fig:definition}
+\end{figure}
+
+
+\newpage{}
+\subsection{Despliegue de la infraestructura}\label{subsec:impl_cloud_despliegue}
 % TODO: desarrollar
 % Aquí podría estar bien poner un diagrama de despliegue. Pero que se vea en el
 % modelo que ese diagrama de despliegue no es el despliegue de tu proyecto.
@@ -378,9 +472,13 @@ desarrollo.
 % Entonces que se vea que hay ese proceso y luego el diagrama de despliegue de lo
 % que el proyecto permite desplegar
 
-Para el desarollo, se hace uso de un repositorio privado en \textit{Bitbucket}
-para el control de versiones y facilitar a la empresa la revisión y uso del
-código.
+
+\newpage{}
+\subsection{Explicación del código}\label{sec:impl_configuracion}
+Los scripts de Terraform se dividen en varios archivos, cada uno de ellos con
+una función específica, con el objetivo de facilitar la gestión y configuración
+de los recursos y servicios. A continuación, se detallan dichos archivos y su
+función en el proyecto.
 
 
 \newpage{}
