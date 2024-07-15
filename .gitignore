@@ -6,3 +6,4 @@ main.*
 *.fls
 indent.log
 *pyg*
+!main.tf

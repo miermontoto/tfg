@@ -251,6 +251,9 @@ material, que incluye el coste de los recursos necesarios para el desarrollo del
 proyecto, y el coste del personal, que incluye el coste de las horas de trabajo
 del desarrollador.
 
+Se estima un horizonte de desarrollo de 3 meses, que es el tiempo estimado y
+disponible para el desarrollo del proyecto.
+
 
 \subsection{Presupuesto de material}\label{subsec:pres_material}
 Puesto que el proyecto se desarrolla en la empresa, se dispone de todos los
@@ -266,8 +269,8 @@ Es importante destacar de que los precios de los servicios en la nube son
 aproximados y pueden variar en función de la región, el tipo de instancia, el
 tipo de almacenamiento, etc. Por lo tanto, los precios presentados en este
 presupuesto son orientativos y pueden variar en función de las necesidades del
-proyecto. En este caso, se analizan los precios en junio de 2024 en la región
-de Amazon Web Services (AWS) de \textit{eu-west-3} (París).
+proyecto. En este caso, se analizan los precios a junio de 2024 en la región
+de Amazon Web Services (AWS) de \texttt{eu-north-1} (Estocolmo).
 
 \begin{table}[H]
 	\centering
@@ -277,17 +280,20 @@ de Amazon Web Services (AWS) de \textit{eu-west-3} (París).
 	\textbf{Categoría} & \textbf{Ítem} & \textbf{Cantidad} & \textbf{Coste unitario} & \textbf{Coste total} \\
 	\hline
 	\hline
-	AWS Compute & Fargate & 500 vCPU-h/mes & 0,04665€/vCPU-h & 23,33€ \\
-	 & & 1000 GB-h/mes & 0,00511€/GB-h & 5,11€ \\
+	AWS Compute & Fargate & 7168 vCPU-h/mes & 0,04928€/vCPU-h & 353,24€/mes \\
+	 & & 18432 GB-h/mes & 0,00539€/GB-h & 99,35€/mes \\
 	\hline
-	AWS Storage & EFS & 500 GB/mes & 0,36€/GB-mes & 180,00€ \\
-	 & S3 & 250 GB/mes & 0,0245€/GB-mes & 6,13€ \\
+	AWS Storage & EFS & 512 GB/mes & 0,38€/GB-mes & 194,56€/mes \\
+	 & S3 & 256 GB/mes & 0,0255€/GB-mes & 6,53€/mes \\
 	\hline
-	AWS Network & VPC & 4 NAT Gateways & 0,052€/h & 149,76€ \\
-	 & ELB & 4 ALBs & 0,0243€/h & 70,00€ \\
+	AWS Network & VPC & 4 NAT Gateways & 0,054€/h & 155,52€/mes \\
+	 & ELB & 3 ALBs & 0,012€/h & 25,92€/mes \\
+	 & & 1 NLB & 0,027€/h & 19,44€/mes \\
+	 & Route 53 & 3 registros & 0,50€/registro-mes & 1,50€/mes \\
 	\hline
 	AWS Security & IAM & - & Sin cargo & 0,00€ \\
-	 & KMS & 1 CMK & 1,00€/mes & 1,00€ \\
+	 & KMS & 1 CMK & 1,00€/mes & 1,00€/mes \\
+	 & Secret Manager & 12 secretos & 0,40€/secreto-mes & 4,80€/mes \\
 	\hline
 	Stack KELK & Kafka & - & Licencia gratuita & 0,00€ \\
 	 & Elasticsearch & - & Licencia gratuita & 0,00€ \\
@@ -296,26 +302,34 @@ de Amazon Web Services (AWS) de \textit{eu-west-3} (París).
 	\hline
 	AWS Container & ECS & - & Sin cargo & 0,00€ \\
 	\hline
-	AWS Monitor & CloudWatch & 5 métricas & 0,30€/métrica-mes & 1,50€ \\
-	 & X-Ray & 50,000 trazas/mes & 4,60€/1M trazas & 0,23€ \\
+	AWS Monitor & CloudWatch & 5 métricas & 0,30€/métrica-mes & 1,50€/mes \\
+	 & X-Ray & 50,000 trazas/mes & 4,60€/1M trazas & 0,23€/mes \\
 	\hline
 	Despliegue & Terraform & - & Licencia gratuita & 0,00€ \\
 	\hline
-	Capacitación & Cursillo online & 1 & 184,00€ & 184,00€ \\
-	\hline
-	\textbf{Subtotal} & \multicolumn{4}{r|}{620,06€} \\
+	\textbf{Subtotal} & \multicolumn{4}{r|}{863,59€/mes} \\
 	\hline
 	\hline
 	Otros & Support & Plan Basic & Sin cargo & 0,00€ \\
-	 & Optimización & - & 5\% del subtotal & 31,00€ \\
-	 & Contingencia & - & 10\% del subtotal & 62,00€ \\
+	 & Optimización & - & 5\% del subtotal & 43,18€ \\
+	 & Contingencia & - & 10\% del subtotal & 86,36€ \\
 	\hline
-	\textbf{Total} & \multicolumn{4}{r|}{713,06€} \\
+	\textbf{Total} & \multicolumn{4}{r|}{993,13€/mes} \\
 	\hline
 	\end{tabular}
-	\caption{Propuesta de presupuesto de materiales}
+	\caption{Propuesta de presupuesto mensual de materiales (región eu-north-1)}
 	\label{tab:presupuesto_material}
 \end{table}
+
+Asumiendo que el proyecto se desarrolla en la región de AWS de Estocolmo
+(\texttt{eu-north-1}), el coste total del material asciende a 993,13€ (novecientos
+noventa y tres euros con trece céntimos) al mes, que incluye
+el coste de los servicios en la nube, el coste de las licencias de software y el
+coste de las herramientas de desarrollo.
+
+Suponiendo un horizonte de desarrollo de 3 meses, el coste total del material
+durante el desarrollo del proyecto asciende a 2.979,39€ (dos mil novecientos
+setenta y nueve euros con treinta y nueve céntimos).
 
 
 \newpage{}
@@ -329,24 +343,24 @@ cada rol y el coste total del personal.
 	\small
 	\begin{tabular}{|l|l|r|r|r|}
 	\hline
-	\textbf{Rol} & \textbf{Descripción} & \textbf{Horas/mes} & \textbf{CU (€/h)} & \textbf{CT (€/mes)} \\
+	\textbf{Rol} & \textbf{Descripción} & \textbf{Horas/mes} & \textbf{CU (€/h)} & \textbf{Coste total} \\
 	\hline
 	\hline
-	Arquitecto & Diseño de la arquitectura y supervisión & 40 & 60 & 2.400,00€ \\
+	Arquitecto & Diseño de la arquitectura y supervisión & 40 & 60 & 2.400,00€/mes \\
 	\hline
-	Desarrollador & Desarrollo y mantenimiento & 160 & 45 & 7.200,00€ \\
+	Desarrollador & Desarrollo y mantenimiento & 160 & 45 & 7.200,00€/mes \\
 	\hline
-	Administrador & Gestión de sistemas y seguridad & 160 & 50 & 8.000,00€ \\
+	Administrador & Gestión de sistemas y seguridad & 160 & 50 & 8.000,00€/mes \\
 	\hline
-	DevOps & Infraestructuras y monitorización & 80 & 55 & 4.400,00€ \\
+	DevOps & Infraestructuras y monitorización & 80 & 55 & 4.400,00€/mes \\
 	\hline
-	\textbf{Subtotal} & \multicolumn{4}{r|}{22.000,00€} \\
+	\textbf{Subtotal} & \multicolumn{4}{r|}{22.000,00€/mes} \\
 	\hline
 	\hline
-	Otros & \multicolumn{3}{|l|}{IVA (21\%)} & 4.620,00€ \\
-	 & \multicolumn{3}{|l|}{Margen (5\%)} & 1.100,00€ \\
+	Otros & \multicolumn{3}{|l|}{IVA (21\%)} & 4.620,00€/mes \\
+	 & \multicolumn{3}{|l|}{Margen (5\%)} & 1.100,00€/mes \\
 	\hline
-	\textbf{Total} & \multicolumn{4}{r|}{27.720,00€} \\
+	\textbf{Total} & \multicolumn{4}{r|}{27.720,00€/mes} \\
 	\hline
 	\end{tabular}
 	\caption{Propuesta de presupuesto de personal}
@@ -357,34 +371,44 @@ El coste del personal es ficticio, pero se ha calculado en base a experiencias
 previas de contratación y subcontratación de personal en la empresa, además de
 tener en cuenta el coste medio de los roles en Asturias.
 
+El coste total del personal asciende a 27.720,00€ (veintisiete mil setecientos
+veinte euros) al mes, que incluye el coste de las horas de trabajo de cada rol,
+el IVA y el margen de beneficio industrial.
+
+Asumiendo un horizonte de desarrollo de 3 meses, el coste total del personal
+durante el desarrollo del proyecto asciende a 83.160,00€ (ochenta y tres mil
+ciento sesenta euros).
+
+
+\newpage{}
 \subsection{Presupuesto total}\label{subsec:pres_total}
 Finalmente, se presenta el presupuesto total del proyecto, que incluye el coste
-del material y el coste del personal, así como el coste total del proyecto.
+del material y el coste del personal, así como el coste total del proyecto,
+durante el horizonte de desarrollo establecido de 3 meses.
 
 \begin{table}[H]
 	\centering
 	\small
 	\begin{tabular}{|l|r|}
 	\hline
-	\textbf{Concepto} & \textbf{Coste (€/mes)} \\
+	\textbf{Concepto} & \textbf{Coste} \\
 	\hline
-	Presupuesto de materiales & 713,06€ \\
+	Presupuesto de materiales & 2.979,39€ \\
 	\hline
-	Presupuesto de personal & 27.720,00€ \\
+	Presupuesto de personal & 83.160,00€ \\
 	\hline
-	\textbf{Subtotal} & \textbf{28.433,06€} \\
+	\textbf{Subtotal} & \textbf{86.139,39€} \\
 	\hline
 	\hline
-	Beneficio Industrial (15\%) & 4.264,96€ \\
+	Beneficio industrial (15\%) & 12.920,91€ \\
 	\hline
-	\textbf{Total} & \textbf{32.698,02€} \\
+	\textbf{Total} & \textbf{99.060,30€} \\
 	\hline
 	\end{tabular}
 	\caption{Costes combinados de presupuesto y materiales con beneficio industrial}
 	\label{tab:costes_combinados}
 \end{table}
 
-El presupuesto total del proyecto asciende a 32.698,02€ (treinta y dos mil
-seiscientos noventa y ocho euros con dos céntimos), que incluye el coste del
-material, el coste del personal y el beneficio industrial, además de sus
-márgenes.
+El presupuesto total del proyecto asciende a 99.060,30€ (noventa y nueve mil
+sesenta euros con treinta céntimos), que incluye el coste del material, el coste
+del personal y el margen de beneficio industrial.

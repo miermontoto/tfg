@@ -1,0 +1,36 @@
+\section{Ingesta de datos}\label{sec:impl_ingesta}
+Tras la creación y el despliegue de la infraestructura base, se procede a la
+creación de los scripts de ingesta de datos, de manera escalonada y siguiendo
+la prioridad de las fuentes de datos.
+
+Puesto que se ha decidido utilizar Kafka como sistema de mensajería, se
+desarrollan los scripts de ingesta de datos para que los datos se envíen a
+Kafka y se procesen mediante Logstash y Elasticsearch.
+
+Para la ingesta de datos, se han desarrollado scripts de Python que se encargan
+de la lectura de los datos de las fuentes, su transformación y su envío a Kafka.
+Estos scripts se ejecutan mediante un \textit{cron} que se encarga de la
+ejecución periódica de los mismos.
+
+Esta sección de la memoria documenta el desarrollo de las siguientes historias
+de usuario, siguiendo la planificación establecida en la sección \fullref{sec:planif_inicial}:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{0.7\linewidth}|c|c|}
+		\hline
+		\textbf{Nombre} & \textbf{Prioridad} & \textbf{Tamaño} \\
+		\hline
+		\hline
+		Como desarrollador de Okticket, quiero que se ingesten de manera automática datos de la base de datos interna de MongoDB & P0\cellcolor{red!50} & M\cellcolor{yellow!50} \\
+		\hline
+		Como desarrollador de Okticket, quiero que se ingesten de manera automática datos de la base de datos interna de MySQL & P0\cellcolor{red!50} & M\cellcolor{yellow!50} \\
+		\hline
+		Como desarrollador de Okticket, quiero que los datos se limpien de manera automática & P0\cellcolor{red!50} & M\cellcolor{yellow!50} \\
+		\hline
+		Como desarrollador de Okticket, quiero que se ingesten de manera automática logs de balanceador de AWS & P1\cellcolor{orange!50} & S\cellcolor{green!25} \\
+		\hline
+  \end{tabular}
+  \caption{Lista de HUs cumplimentadas con la ingesta de datos}
+  \label{tab:impl_ingesta}
+\end{table}

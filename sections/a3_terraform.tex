@@ -1,1 +1,26 @@
 \chapter{Scripts de despliegue cloud}\label{anexo:cloud}
+\section{Recursos de AWS}
+\subsection{Fichero principal}
+\lstinputlisting[caption={Fichero \emph{main.tf} de despliegue cloud}]{input/tf/main.tf}
+\subsection{Variables}
+\lstinputlisting[caption={Fichero \emph{variables.tf} de despliegue cloud}]{input/tf/variables.tf}
+\subsection{Salidas}
+\lstinputlisting[caption={Fichero \emph{outputs.tf} de despliegue cloud}]{input/tf/outputs.tf}
+\subsection{Volúmenes lógicos}
+\lstinputlisting[caption={Fichero \emph{efs.tf} de despliegue cloud}]{input/tf/efs.tf}
+\subsection{Roles, usuarios y políticas}
+\lstinputlisting[caption={Fichero \emph{iam.tf} de despliegue cloud}]{input/tf/iam.tf}
+\subsection{Recursos de red}
+\lstinputlisting[caption={Fichero \emph{network.tf} de despliegue cloud}]{input/tf/network.tf}
+\subsection{Grupos de seguridad}
+\lstinputlisting[caption={Fichero \emph{secrets.tf} de despliegue cloud}]{input/tf/security.tf}
+
+\section{Servicios de ELK}
+\subsection{Elasticsearch}
+\lstinputlisting[caption={Fichero \emph{elastic.tf} de despliegue cloud}]{input/tf/elastic.tf}
+\subsection{Kibana}
+\lstinputlisting[caption={Fichero \emph{kibana.tf} de despliegue cloud}]{input/tf/kibana.tf}
+\subsection{Logstash}
+\lstinputlisting[caption={Fichero \emph{logstash.tf} de despliegue cloud}]{input/tf/logstash.tf}
+\subsection{Kafka}
+\lstinputlisting[caption={Fichero \emph{kafka.tf} de despliegue cloud}]{input/tf/kafka.tf}

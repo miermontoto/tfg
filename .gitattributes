@@ -1,3 +1,4 @@
 main.pdf linguist-generated
 *.md linguist-detectable
 teams/* linguist-generated
+*.tf linguist-generated
