@@ -37,13 +37,6 @@ resource "aws_security_group" "kafka" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
   egress {
     from_port   = 0
     to_port     = 0
@@ -58,44 +51,9 @@ resource "aws_security_group" "elastic" {
   description = "Permitir trafico a los nodos de Elasticsearch"
 
   ingress {
-    from_port   = 0
-    to_port     = 0
+    from_port   = var.elastic_port
+    to_port     = var.elastic_port
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
-
-resource "aws_security_group" "kibana" {
-  vpc_id = aws_vpc.main.id
-  name   = "tahoe-kibana-sg"
-  description = "Permitir trafico a los paneles de Kibana"
-
-  ingress {
-    from_port   = var.kibana_port
-    to_port     = var.kibana_port
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -116,13 +74,6 @@ resource "aws_security_group" "logstash" {
     from_port   = var.logstash_port
     to_port     = var.logstash_port
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 

@@ -1,6 +1,6 @@
 resource "aws_secretsmanager_secret" "es_certs" {
   name        = "tahoe-certs-${local.hash}"
-  description = "Claves y contraseñas para el data lake de OKT (codename: tahoe)"
+  description = "Claves para el data lake de OKT (codename: tahoe)"
 }
 
 resource "aws_secretsmanager_secret_version" "es_certs" {

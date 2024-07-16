@@ -28,12 +28,8 @@ resource "aws_iam_role_policy" "ecs_task_secrets_access" {
     Statement = [
       {
         Effect = "Allow"
-        Action = [
-          "secretsmanager:GetSecretValue",
-        ]
-        Resource = [
-          aws_secretsmanager_secret.es_certs.arn,
-        ]
+        Action = [ "secretsmanager:GetSecretValue" ]
+        Resource = [ aws_secretsmanager_secret.es_certs.arn ]
       }
     ]
   })
@@ -58,7 +54,6 @@ resource "aws_iam_role_policy" "ecs_exec_policy" {
       }
     ]
   })
-
 }
 
 data "aws_iam_policy_document" "efs" {
@@ -78,10 +73,10 @@ data "aws_iam_policy_document" "efs" {
 
     resources = ["*"]
 
-    # condition {
-    #   test     = "Bool"
-    #   variable = "aws:SecureTransport"
-    #   values   = ["true"]
-    # }
+    condition {
+      test     = "Bool"
+      variable = "aws:SecureTransport"
+      values   = ["true"]
+    }
   }
 }

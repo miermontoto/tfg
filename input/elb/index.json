@@ -1,0 +1,24 @@
+{
+  "index_patterns": [
+    "cloudwatch-logs-*"
+  ],
+  "mappings": {
+    "properties": {
+      "log_group": {
+        "type": "keyword"
+      },
+      "log_stream": {
+        "type": "keyword"
+      },
+      "message": {
+        "type": "text"
+      },
+      "timestamp": {
+        "type": "date"
+      }
+    }
+  },
+  "settings": {
+    "number_of_shards": 1
+  }
+}

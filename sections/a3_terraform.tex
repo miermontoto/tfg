@@ -1,36 +1,39 @@
 \chapter{Scripts de despliegue cloud}\label{anexo:cloud}
 \section{Recursos de AWS}
 \subsection{Fichero principal}
-\lstinputlisting[caption={Fichero \emph{main.tf} de despliegue cloud}]{input/tf/main.tf}
+\lstinputlisting[caption={Fichero \emph{main.tf} de despliegue cloud}, label={lst:main}]{input/tf/main.tf}
 \newpage{}
 \subsection{Variables}
-\lstinputlisting[caption={Fichero \emph{variables.tf} de despliegue cloud}]{input/tf/variables.tf}
+\lstinputlisting[caption={Fichero \emph{variables.tf} de despliegue cloud}, label={lst:variables}]{input/tf/variables.tf}
 \newpage{}
 \subsection{Salidas}
-\lstinputlisting[caption={Fichero \emph{outputs.tf} de despliegue cloud}]{input/tf/outputs.tf}
+\lstinputlisting[caption={Fichero \emph{outputs.tf} de despliegue cloud}, label={lst:outputs}]{input/tf/outputs.tf}
 \newpage{}
-\subsection{Volúmenes lógicos}
-\lstinputlisting[caption={Fichero \emph{efs.tf} de despliegue cloud}]{input/tf/efs.tf}
+\subsection{Volúmenes lógicos (EFS)}
+\lstinputlisting[caption={Fichero \emph{efs.tf} de despliegue cloud}, label={lst:efs}]{input/tf/efs.tf}
 \newpage{}
-\subsection{Roles, usuarios y políticas}
-\lstinputlisting[caption={Fichero \emph{iam.tf} de despliegue cloud}]{input/tf/iam.tf}
+\subsection{Roles, usuarios y políticas (IAM)}
+\lstinputlisting[caption={Fichero \emph{iam.tf} de despliegue cloud}, label={lst:iam}]{input/tf/iam.tf}
+\newpage{}
+\subsection{Secretos (Secret Manager)}
+\lstinputlisting[caption={Fichero \emph{secrets.tf} de despliegue cloud}, label={lst:secrets}]{input/tf/secrets.tf}
 \newpage{}
 \subsection{Recursos de red}
-\lstinputlisting[caption={Fichero \emph{network.tf} de despliegue cloud}]{input/tf/network.tf}
+\lstinputlisting[caption={Fichero \emph{network.tf} de despliegue cloud}, label={lst:network}]{input/tf/network.tf}
 \newpage{}
-\subsection{Grupos de seguridad}
-\lstinputlisting[caption={Fichero \emph{secrets.tf} de despliegue cloud}]{input/tf/security.tf}
+\subsection{Grupos de seguridad (SG)}
+\lstinputlisting[caption={Fichero \emph{secrets.tf} de despliegue cloud}, label={lst:security}]{input/tf/security.tf}
 
 \newpage{}
 \section{Servicios de ELK}
 \subsection{Elasticsearch}
-\lstinputlisting[caption={Fichero \emph{elastic.tf} de despliegue cloud}]{input/tf/elastic.tf}
+\lstinputlisting[caption={Fichero \emph{elastic.tf} de despliegue cloud}, label={lst:elastic}]{input/tf/elastic.tf}
 \newpage{}
 \subsection{Kibana}
-\lstinputlisting[caption={Fichero \emph{kibana.tf} de despliegue cloud}]{input/tf/kibana.tf}
+\lstinputlisting[caption={Fichero \emph{kibana.tf} de despliegue cloud}, label={lst:kibana}]{input/tf/kibana.tf}
 \newpage{}
 \subsection{Logstash}
-\lstinputlisting[caption={Fichero \emph{logstash.tf} de despliegue cloud}]{input/tf/logstash.tf}
+\lstinputlisting[caption={Fichero \emph{logstash.tf} de despliegue cloud}, label={lst:logstash}]{input/tf/logstash.tf}
 \newpage{}
 \subsection{Kafka}
-\lstinputlisting[caption={Fichero \emph{kafka.tf} de despliegue cloud}]{input/tf/kafka.tf}
+\lstinputlisting[caption={Fichero \emph{kafka.tf} de despliegue cloud}, label={lst:kafka}]{input/tf/kafka.tf}

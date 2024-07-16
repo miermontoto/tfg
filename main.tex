@@ -32,7 +32,6 @@
 \usepackage{fancyvrb}
 \usepackage{textcomp}
 \usepackage{listings}
-\usepackage{minted}
 \input{config.tex}
 
 
@@ -80,12 +79,15 @@
 \include{sections/concl.tex}
 
 %% Anexos
-% \addcontentsline{toc}{chapter}{Anexos}
+\clearpage
+\addcontentsline{toc}{chapter}{Anexos}
 \appendix % Inicia los anexos
+\chapter*{Anexos}
 \include{sections/a1_local.tex}
 \include{sections/a2_certificados.tex}
 \include{sections/a3_terraform.tex}
-\include{sections/a4_ingesta.tex}
+\include{sections/a4_kafka.tex}
+\include{sections/a5_elb.tex}
 
 %% Esto incluirá la bibliografía correctamente en nuestro trabajo
 \newpage % En una nueva página

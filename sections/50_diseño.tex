@@ -467,7 +467,7 @@ servicios del sistema.
 
 
 \newpage{}
-\subsection{Infraestructura}
+\subsection{Infraestructura}\label{subsec:infra}
 Para la infraestructura del sistema, se utilizará un clúster de \textit{ECS} con
 cuatro servicios en total: uno dedicado a \textit{Elasticsearch}, otro para
 \textit{Kibana}, un tercero para \textit{Logstash} y por último un servicio que
@@ -496,7 +496,7 @@ permitirá compartir datos y configuraciones entre los contenedores del sistema.
 \end{figure}
 
 
-\subsection{Seguridad}
+\subsection{Seguridad}\label{subsec:seguridad}
 A nivel de seguridad, se debe garantizar la protección de los datos y la
 confidencialidad de la información. Para ello, se utilizarán varios servicios de
 AWS, como \textit{IAM} para la gestión de roles y políticas de seguridad, o
@@ -524,7 +524,7 @@ En el diagrama anterior, se pueden observar los grupos de seguridad (resaltados
 en azul) que engloban a los componentes, mientras que todos ellos se encuentran
 dentro de una \textit{VPC}.
 
-\subsection{Redes}
+\subsection{Redes}\label{subsec:redes}
 A nivel de configuración de redes, se establecen tres subredes: dos públicas y
 otra privada, estando las públicas en zonas de disponibilidad diferentes. La
 subred pública estará conectada a internet a través de un

@@ -1,0 +1,15 @@
+\chapter{Código de ingesta de logs de ELB (AWS)}\label{anexo:elb}
+\section{Lambda de ingesta}
+\lstinputlisting[language=python, caption={Lambda de ingesta de logs de ELB}]{input/elb/lambda.py}
+
+\newpage{}
+\section{Filtro de suscripción}
+\lstinputlisting[language=bash, caption={Comando para añadir el filtro de suscripción}]{input/elb/filter.sh}
+
+\newpage{}
+\section{Configuración de Logstash}
+\lstinputlisting[caption={Configuración de Logstash para ingesta de logs de ELB}]{input/elb/logstash.conf}
+
+\newpage{}
+\section{Creación del índice}
+\lstinputlisting[caption={Estructura del índice de Elasticsearch}]{input/elb/index.json}
