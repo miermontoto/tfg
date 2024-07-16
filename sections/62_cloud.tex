@@ -72,6 +72,63 @@ si así se desea.
 	\label{fig:definition}
 \end{figure}
 
+Durante el desarrollo del despliegue, se utilizan las herramientas de
+monitorización de AWS para comprobar el estado de los recursos y servicios
+creados, y se realizan pruebas básicas de funcionamiento para asegurar que los
+servicios se han desplegado correctamente. En la siguiente figura, se muestran
+los logs de una tarea de ECS.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{impl/task_logs.png}
+	\caption{Ejemplo de logs de una tarea de ECS}
+	\label{fig:task_logs}
+\end{figure}
+
+En la siguiente figura, se muestra el estado actual de todos los balanceadores
+de carga, junto a más detalles como sus zonas de disponibilidad o el estado de
+los nodos.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{impl/estado_elb.png}
+	\caption{Estado de los balanceadores de carga}
+	\label{fig:estado_elb}
+\end{figure}
+
+Por último, en la siguiente figura, se muestra el estado de un despliegue de un
+servicio, con información sobre el estado de los contenedores, la versión de la
+imagen, la cantidad de tareas en ejecución y la cantidad de tareas deseadas.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{impl/deploy_state.png}
+	\caption{Métricas de estado del despliegue de un servicio}
+	\label{fig:deploy_state}
+\end{figure}
+
+Por supuesto, los propios servicios cuentan con sus herramientas de
+monitorización básicas a las que se puede acceder a través del navegador (en
+caso de que funcionen correctamente).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{impl/kibana_status.png}
+	\caption{Estado de Kibana}
+	\label{fig:kibana_status}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{impl/elastic_status.png}
+	\caption{Estado de Elasticsearch}
+	\label{fig:elastic_status}
+\end{figure}
+
+Estas herramientas se utilizan para el desarrollo incremental y la comprobación
+de que los servicios se despliegan correctamente, y se espera que, en la fase de
+producción, no sea necesario su uso, puesto que se cuenta con herramientas de
+monitorización más avanzadas y específicas para cada servicio.
 
 \newpage{}
 \subsection{Despliegue de la infraestructura}\label{subsec:impl_cloud_despliegue}
