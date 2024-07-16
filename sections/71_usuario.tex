@@ -17,6 +17,7 @@ usuario y contraseña generados durante el despliegue de la infraestructura.
 
 \emph{NOTA: se utilizan datos y paneles de ejemplo para ilustrar el manual.}
 
+\subsection{Usuario normal}
 Una vez introducidos los datos de acceso, Kibana redirige el usuario a la
 página por defecto configurada para su rol, que para el usuario final debería
 ser siempre el listado de \textit{dashboards}.
@@ -44,12 +45,13 @@ En la parte superior de la pantalla, el usuario puede seleccionar el rango de
 tiempo que desea visualizar, así como el intervalo de actualización de los
 datos. Además, puede seleccionar el rango de tiempo de forma manual.
 
-\newpage{}
 También existe la posibilidad de filtrar la información mostrada en el panel
 según diferentes campos, bien haciendo uso de los filtros predefinidos o
 haciendo consultas personalizadas en el campo de búsqueda con sintaxis KQL
 \footnote{\url{https://www.elastic.co/guide/en/kibana/current/kuery-query.html}}.
 
+
+\subsection{Usuario administrador}
 Aquellos usuarios con permisos de administración podrán además acceder a otras
 partes más avanzadas de Kibana, como la monitorización y creación de alertas o
 la gestión de usuarios y roles.

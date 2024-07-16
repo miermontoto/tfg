@@ -1,0 +1,42 @@
+@startuml
+skinparam class {
+    BackgroundColor LightYellow
+    ArrowColor DarkBlue
+    BorderColor DarkBlue
+}
+
+class "Log" as Log {
+    +id: Integer
+    +message: Text
+    +context: Text
+    +level: Integer
+    +level_name: String
+    +channel: String
+    +record_datetime: DateTime
+    +extra: Text
+    +formatted: Text
+    +remote_addr: String
+    +user_agent: String
+    +created_at: DateTime
+    +updated_at: DateTime
+}
+
+class "LogLevel" as LogLevel {
+    +DEBUG: Integer = 100
+    +INFO: Integer = 200
+    +NOTICE: Integer = 250
+    +WARNING: Integer = 300
+    +ERROR: Integer = 400
+    +CRITICAL: Integer = 500
+    +ALERT: Integer = 550
+    +EMERGENCY: Integer = 600
+}
+
+class "Channel" as Channel {
+    +name: String
+}
+
+Log "0..*" -- "1" LogLevel : tiene >
+Log "0..*" -- "1" Channel : pertenece a >
+
+@enduml
