@@ -139,6 +139,7 @@ monitorización más avanzadas y específicas para cada servicio.
 % Entonces que se vea que hay ese proceso y luego el diagrama de despliegue de lo
 % que el proyecto permite desplegar
 
+|TODO| completar
 
 \newpage{}
 \subsection{Explicación del código}\label{sec:impl_configuracion}
@@ -155,60 +156,55 @@ Como previamente descrito, la definción de los recursos generales se divide en
 ficheros, cada uno de ellos con una función específica. A continuación, se
 detallan dichos ficheros y su función en el proyecto.
 
-\paragraph{Fichero principal}
-El fichero principal de Terraform, \texttt{main.tf}, se encarga de las
-configuraciones más esenciales o que no tienen cabida en otros ficheros, como
-la definción de la región, el cluster, el grupo de logs o el bucket S3 de logs.
 
-\textit{Ver código: \fullref{lst:main}}
+\paragraph{Fichero principal}
+El fichero principal de Terraform, \halfref{lst:main}{main.tf}, se encarga de
+las configuraciones más esenciales o que no tienen cabida en otros ficheros,
+como la definción de la región, el cluster, el grupo de logs o el bucket S3 de
+logs.
 
 
 \paragraph{Variables}
-El fichero de variables (\texttt{variables.tf}) se encarga de la definición de
-todas las variables necesarias para el despliegue de la infraestructura, como
-nombres, regiones, versiones, puertos, etc., de manera que se puedan modificar y
+El fichero de variables \halfref{lst:variables}{variables.tf}
+se encarga de la definición de todas las variables necesarias para el despliegue
+de la infraestructura, como nombres, regiones, versiones, puertos, etc., de
+manera que se puedan modificar y
 reutilizar de manera sencilla a lo largo del resto de ficheros de definción.
 
 También se definen contraseñas de manera aleatoria, para mejorar la seguridad
 de los servicios.
 
-\textit{Ver código: \fullref{lst:variables}}
 
-
-\newpage{}
 \paragraph{Salidas}
-El fichero de salidas (\texttt{outputs.tf}) se encarga de la definición de las
-salidas de Terraform, es decir, de las variables que se pueden consultar una vez
-que se ha desplegado la infraestructura, como las direcciones URL de los servicios
-o las contraseñas generadas alteatoriamente.
+El fichero de salidas \halfref{lst:outputs}{outputs.tf} se encarga de la
+definición de las salidas de Terraform, es decir, de las variables que se pueden
+consultar una vez que se ha desplegado la infraestructura, como las direcciones
+URL de los servicios o las contraseñas generadas alteatoriamente.
 
 Un ejemplo de estas salidas se encuentra en la figura
 \fullref{fig:terraform_output}.
 
-\textit{Ver código: \fullref{lst:outputs}}
 
-
+\newpage{}
 \paragraph{Volúmenes lógicos (EFS)}
-El fichero de volúmenes lógicos (\texttt{efs.tf}) se encarga de la definción de
-los volúmenes lógicos necesarios para la persistencia de los datos de los
-servicios, como los datos de Elasticsearch o los logs de los servicios.
-
-\textit{Ver código: \fullref{lst:efs}}
+El fichero de volúmenes lógicos \halfref{lst:efs}{efs.tf} se encarga de la
+definción de los volúmenes lógicos necesarios para la persistencia de los datos
+de los servicios, como los datos de Elasticsearch o los logs de los servicios.
 
 
 \paragraph{Roles, políticas y permisos (IAM)}
-El fichero de roles, políticas y permisos (\texttt{iam.tf}) se encarga de la
-definción de los roles y políticas necesarios para el correcto funcionamiento
-de los servicios, como los roles de ejecución de tareas de ECS, los permisos
-de acceso a los servicios de AWS o las políticas de acceso a los recursos.
-
-\textit{Ver código: \fullref{lst:iam}}
+El fichero de roles, políticas y permisos \halfref{lst:iam}{iam.tf} se encarga
+de la definción de los roles y políticas necesarios para el correcto
+funcionamiento de los servicios, como los roles de ejecución de tareas de ECS,
+los permisos de acceso a los servicios de AWS o las políticas de acceso a los
+recursos.
 
 
 \paragraph{Secretos}
-El fichero de secretos (\texttt{secrets.tf}) se encarga de la definción de las
-claves necesarias para el correcto funcionamiento de los servicios, como los
-certificados de Elasticsearch o las claves de acceso a los servicios.
+El fichero de secretos \halfref{lst:secrets}{secrets.tf} se encarga de la
+definción de las claves necesarias para el correcto funcionamiento de los
+servicios, como los certificados de Elasticsearch o las claves de acceso a los
+servicios.
 
 Estos secretos se almacenan en \textit{AWS Secrets Manager}, un servicio de AWS
 que permite el almacenamiento seguro de información sensible, como contraseñas,
@@ -220,29 +216,23 @@ almacenamiento y evitar problemas de codificación en el paso de los mismos.
 Se utilizan cadenas generadas aleatoriamente para evitar la exposición de
 contraseñas y claves de acceso en el código.
 
-\textit{Ver código: \fullref{lst:secrets}}
-
 
 \paragraph{Redes}
-El fichero de redes (\texttt{network.tf}) se encarga de la definción de los
-elementos de red necesarios para la correcta comunicación entre los servicios y
-su seguridad.
+El fichero de redes \halfref{lst:network}{network.tf} se encarga de la definción
+de los elementos de red necesarios para la correcta comunicación entre los
+servicios y su seguridad.
 
 La lógica y arquitectura de red se explica en el apartado
 \fullref{subsec:redes}, lo que facilita la definición de las redes en Terraform.
 
-\textit{Ver código: \fullref{lst:network}}
-
 
 \paragraph{Grupos de seguridad}
-El fichero de grupos de seguridad (\texttt{security.tf}) se encarga de la
-definción de los grupos de seguridad necesarios para la correcta comunicación
-entre los servicios y su seguridad.
+El fichero de grupos de seguridad \halfref{lst:security}{security.tf} se encarga
+de la definción de los grupos de seguridad necesarios para la correcta
+comunicación entre los servicios y su seguridad.
 
 La lógica y arquitectura de seguridad se explica en el apartado
 \fullref{subsec:seguridad}.
-
-\textit{Ver código: \fullref{lst:security}}
 
 
 \newpage{}

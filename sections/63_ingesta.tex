@@ -35,9 +35,9 @@ Kafka y se procesen mediante Logstash y Elasticsearch.
 
 Para la ingesta de datos, se han desarrollado scripts de Python que se encargan
 de la lectura de los datos de las fuentes, su transformación y su envío a Kafka.
-Estos scripts se ejecutan mediante continuamente.
+Estos scripts se ejecutan continuamente.
 
-Algunos servidores de los cuales se necesita beber información se encuentran
+Algunos de los servidores que contienen la información a ingestar se encuentran
 detrás de subredes privadas, por lo que los scripts de ingesta se deben ejecutar
 a través de \texttt{SSH} en los servidores bastiones de dichas subredes. Estos
 servidores se encargarán de conectar con la infraestructura desplegada y enviar
@@ -46,6 +46,29 @@ la información.
 \textit{Ver código: \fullref{anexo:kafka}}
 
 
+\subsubsection{Componentes de Kafka}
+\textit{Kafka} se compone de varios componentes clave:
+
+\begin{itemize}
+    \item \textbf{Tópico}: Un tópico es una categoría a la que se envían los
+		mensajes y a la que los consumidores están \textit{suscritos}. Los
+		consumidores pueden estar suscritos a uno o varios tópicos, y los
+		productores pueden enviar mensajes a uno o varios tópicos. Los tópicos
+		son la unidad básica de organización de los mensajes en cualquier
+		sistema de mensajería de publicación/suscripción.
+    \item \textbf{Productor}: El productor es el componente responsable de crear
+		y enviar mensajes al cluster de Kafka. Está separado del resto de los
+		componentes y produce mensajes de manera asíncrona y rápida.
+    \item \textbf{Consumidor}: El consumidor es el componente responsable de
+		leer los mensajes producidos por el productor. Está suscrito a un tópico
+		a través del broker y consume los mensajes.
+    \item \textbf{Broker}: El broker es el componente responsable de recibir los
+		mensajes producidos por el productor y enviarlos a los consumidores. Es
+		el intermediario entre los productores y los consumidores.
+\end{itemize}
+
+
+\newpage{}
 \subsubsection{Explicación del código}
 Todos los \textit{productores} de datos siguen un patrón similar, ya que su
 función es la misma: leer datos de una fuente, transformarlos y enviarlos a
@@ -70,7 +93,6 @@ diseño de \textit{Extract, Transform, Load} (ETL) definido anteriormente
 \end{itemize}
 
 
-\newpage{}
 \subsubsection{Dependencias}
 Para la ejecución de los scripts de Python, se necesitan las siguientes
 librerías, dependiendo del script a ejecutar:
@@ -95,7 +117,7 @@ envío a Logstash. Se siguen cuatro pasos principales:
 
 \begin{enumerate}
 	\item \textbf{Creación de la lambda:} se crea una lambda en Python que se
-		ejecuta cada vez que se genera un log en CloudWatch (5 minutios)
+		ejecuta cada vez que se genera un log en CloudWatch (5 minutos)
 	\item \textbf{Filtro de subscripción:} se crea una suscripción en CloudWatch
 		para que los logs generados se envíen a la lambda.
 	\item \textbf{Configuración de Logstash:} se configura Logstash para que

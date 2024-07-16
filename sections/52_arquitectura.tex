@@ -9,28 +9,44 @@ manera automatizada mediante \textit{Terraform} contando con la mínima
 intervención posible por parte de los operadores del sistema, y hará uso de
 \textit{Amazon ECS} como servicio de orquestación de contenedores.
 
+
+\subsection{Servicios y componentes de AWS}\label{subsec:servicios}
 Además de \textit{ECS}, se utilizarán otros servicios de AWS necesarios para el
 planteamiento de una arquitectura completa y funcional, como \textit{VPC},
 \textit{IAM}, \textit{EFS}, \textit{S3}, \textit{SG}, entre otros. A
 continuación, se detallan los servicios y componentes que formarán parte de la
 arquitectura del sistema.
 
+\paragraph{Componentes de seguridad}
 \begin{itemize}
 	\item \textbf{IAM:} \textit{Identity and Access Management} es un servicio
 		que permite gestionar el acceso a los recursos de AWS de forma segura.
 		En este caso, se crearán roles y políticas de IAM para controlar el
 		acceso a los servicios del sistema y garantizar la seguridad de los
 		datos.
-	\item \textbf{ALB/NLB:} Los \textit{Application} o \textit{Network Load
+	\item \textbf{SG:} Los \textit{Security Groups} son reglas de seguridad que
+		definen qué tráfico está permitido o denegado en los recursos de AWS.
+		Se tendrán que configurar grupos de seguridad para controlar el tráfico
+		desde y hacia los servicios del sistema.
+\end{itemize}
+
+\newpage{}
+\paragraph{Componentes de red}
+\begin{itemize}
+	\item \textbf{VPC:} \textit{Virtual Private Cloud} es un servicio que permite
+		crear una red virtual privada en la nube de AWS. Se configurará una VPC
+		para aislar los recursos del sistema y garantizar la seguridad de los
+		datos.
+	\item \textbf{Subnets:} Las \textit{Subnets} son segmentos de red dentro de
+		una VPC que permiten dividir la red en subredes más pequeñas. Se
+		configurarán varias subredes para distribuir los recursos del sistema en
+		diferentes zonas de disponibilidad.
+		\item \textbf{ALB/NLB:} Los \textit{Application} o \textit{Network Load
 		Balancers} son servicios de balanceo de carga que permiten distribuir
 		el tráfico entre los contenedores del sistema. En este caso, se
 		configurará un ALB o NLB para equilibrar la carga entre los contenedores
 		del sistema y garantizar la disponibilidad y la escalabilidad de los
 		servicios. \begin{itemize}
-			\item Los balanceadores de carga cuentan a su vez con varios
-				componentes como \textit{Target Groups} y \textit{Listeners} que
-				permiten configurar las reglas de enrutamiento y el tráfico de
-				red.
 			\item La diferencia entre ALB y NLB\footnote{\url{
 					https://aws.amazon.com/es/compare/the-difference-between-the-difference-between-application-network-and-gateway-load-balancing/?nc1=h_ls
 				}} radica en el nivel de la capa de red en la que operan, siendo
@@ -42,34 +58,23 @@ arquitectura del sistema.
 				mayores costes, además de limitar la capacidad de integración
 				con otros servicios de AWS como el sistema de logs.
 		\end{itemize}
-	\item \textbf{Componentes de red:} Se configurarán varios componentes de
-		red, como \textit{VPC}\footnote{\url{
-			https://docs.aws.amazon.com/es_es/vpc/latest/userguide/what-is-amazon-vpc.html
-		}}, \textit{Subnets}, \textit{Route Tables},
-		\textit{Internet Gateways}, \textit{NAT Gateways}\ldots, para garantizar
+	\item \textbf{Route Tables:} Las \textit{Route Tables} son tablas de rutas
+		que permiten definir cómo se enruta el tráfico de red entre los
+		recursos de AWS. Se configurarán varias tablas de rutas para garantizar
 		la conectividad y la seguridad de los servicios del sistema.
-		% TODO: Añadir más detalles sobre los componentes de red.
-	\item \textbf{EFS:} \textit{Elastic File System} es un servicio de
-		almacenamiento de archivos que permite compartir archivos entre los
-		contenedores del sistema. EFS es vital para almacenar los datos y
-		configuraciones de manera compartida entre los contenedores.
-	\item \textbf{S3:} \textit{Simple Storage Service} es un servicio de
-		almacenamiento de objetos que permite almacenar y recuperar grandes
-		volúmenes de datos de forma segura y escalable. Se usará S3 para
-		almacenar los datos de los servicios del sistema.
-	\item \textbf{CloudWatch:} \textit{CloudWatch} es un servicio de
-		monitorización y gestión de logs que permite supervisar y analizar los
-		recursos de AWS en tiempo real. Este servicio se utilizará durante el
-		periodo de desarrollo de la infraestructura, cuando la ingesta de datos
-		no esté completamente implementada.
-	\item \textbf{SG:} Los \textit{Security Groups} son reglas de seguridad que
-		definen qué tráfico está permitido o denegado en los recursos de AWS.
-		Se tendrán que configurar grupos de seguridad para controlar el tráfico
-		desde y hacia los servicios del sistema.
-	\item \textbf{ECS:} Dentro de \textit{Elastic Container Service}, se
-		configurarán los \underline{clústeres}, \underline{servicios},
-		\underline{tareas} y \underline{contenedores} necesarios para
-		ejecutar los servicios del sistema.
+	\item \textbf{Internet Gateway:} El \textit{Internet Gateway} es un servicio
+		que permite conectar una VPC a internet. Se configurará un Internet
+		Gateway para permitir la comunicación entre los servicios del sistema y
+		la red pública.
+	\item \textbf{NAT Gateway:} El \textit{Network Address Translation Gateway}
+		es un servicio que permite conectar una subred privada a internet. Se
+		configurará un NAT Gateway para permitir la comunicación entre los
+		servicios del sistema y la red pública.
+\end{itemize}
+
+\newpage{}
+\paragraph{Componentes de gestión}
+\begin{itemize}
 	\item \textbf{Route 53:} \textit{Route 53} es un servicio de DNS que permite
 		rastrear y redirigir el tráfico de red a los recursos de AWS. En este
 		caso, se utilizará Route 53 para gestionar los nombres de dominio de la
@@ -84,6 +89,45 @@ arquitectura del sistema.
 		entre los servicios del sistema. ACM gestionará los certificados SSL/TLS
 		de los recursos de AWS.
 \end{itemize}
+
+\paragraph{Componentes de almacenamiento y monitorización}
+\begin{itemize}
+	\item \textbf{EFS:} \textit{Elastic File System} es un servicio de
+		almacenamiento de archivos que permite compartir archivos entre los
+		contenedores del sistema. EFS es vital para almacenar los datos y
+		configuraciones de manera compartida entre los contenedores.
+	\item \textbf{S3:} \textit{Simple Storage Service} es un servicio de
+		almacenamiento de objetos que permite almacenar y recuperar grandes
+		volúmenes de datos de forma segura y escalable. Se usará S3 para
+		almacenar los datos de los servicios del sistema.
+	\item \textbf{CloudWatch:} \textit{CloudWatch} es un servicio de
+		monitorización y gestión de logs que permite supervisar y analizar los
+		recursos de AWS en tiempo real. Este servicio se utilizará durante el
+		periodo de desarrollo de la infraestructura, cuando la ingesta de datos
+		no esté completamente implementada.
+\end{itemize}
+
+\newpage{}
+\paragraph{Componentes de ECS}
+\begin{itemize}
+	\item \textbf{Clústeres:} Los \textit{clústeres} de ECS son grupos de
+		servicios, tareas y contenedores que se ejecutan en una región de AWS.
+		En el caso de este sistema, se configurará un clúster de ECS para
+		agrupar los servicios del sistema.
+	\item \textbf{Servicios:} Los \textit{servicios} de ECS son conjuntos de
+		tareas que se ejecutan en un clúster y que se encargan de ejecutar los
+		contenedores del sistema.
+	\item \textbf{Tareas:} Las \textit{tareas} de ECS son instancias de
+		contenedores que se ejecutan en un servicio y que se encargan de
+		ejecutar el código de los servicios del sistema.
+	\item \textbf{Contenedores:} Los \textit{contenedores} de ECS son imágenes
+		de Docker que contienen el código y las dependencias necesarias para
+		ejecutar los servicios del sistema. Los contenedores se encuentran
+		dentro de las tareas y se ejecutan en las instancias del tipo de
+		máquinas escogida.
+\end{itemize}
+
+\noindent\rule{14cm}{0.4pt}
 
 A continuación, se presentan los diagramas de la arquitectura del sistema en AWS
 para cada una de las áreas de estudio: infraestructura, seguridad y redes. En
@@ -109,19 +153,20 @@ encargará de distribuir el tráfico entre las tareas, garantizando la
 disponibilidad y escalabilidad de los servicios.
 
 Los \textit{ALB} están conectados directamente a un \textit{bucket} S3 que
-almacena los logs de los servicios (\textit{NLB} no soporta esta funcionalidad).
-Además, los servicios que necesiten almacenar datos de forma persistente (todos
-menos Kafka) estarán conectados a un sistema de archivos \textit{EFS} que
-permitirá compartir datos y configuraciones entre los contenedores del sistema.
+almacena los logs de cada balanceador (\textit{NLB} no soporta esta
+funcionalidad). Además, los servicios que necesiten almacenar datos de forma
+persistente (todos menos Kafka) estarán conectados a un sistema de archivos
+\textit{EFS} que permitirá compartir datos y configuraciones entre los
+contenedores del sistema.
 
 \begin{figure}[H]
-	\centerline{\includegraphics[width=1.3\textwidth]{infra/aws_infra.png}}
+	\centerline{\includegraphics[width=1.2\textwidth]{infra/aws_infra.png}}
 	\caption{Diagrama inicial de la infraestructura en AWS}
-
 	\label{fig:aws_infra}
 \end{figure}
 
 
+\newpage{}
 \subsection{Seguridad}\label{subsec:seguridad}
 A nivel de seguridad, se debe garantizar la protección de los datos y la
 confidencialidad de la información. Para ello, se utilizarán varios servicios de
@@ -141,7 +186,7 @@ claves necesarias.
 
 
 \begin{figure}[H]
-	\centerline{\includegraphics[width=1.3\textwidth]{infra/aws_seguridad.png}}
+	\centerline{\includegraphics[width=1.2\textwidth]{infra/aws_seguridad.png}}
 	\caption{Diagrama incial de la seguridad en AWS}
 	\label{fig:aws_seguridad}
 \end{figure}
@@ -150,6 +195,8 @@ En el diagrama anterior, se pueden observar los grupos de seguridad (resaltados
 en azul) que engloban a los componentes, mientras que todos ellos se encuentran
 dentro de una \textit{VPC}.
 
+
+\newpage{}
 \subsection{Redes}\label{subsec:redes}
 A nivel de configuración de redes, se establecen tres subredes: dos públicas y
 otra privada, estando las públicas en zonas de disponibilidad diferentes. La
@@ -160,7 +207,7 @@ a una \textit{VPC} que permitirá la comunicación entre los servicios del
 sistema.
 
 \begin{figure}[H]
-	\centerline{\includegraphics[width=1.3\textwidth]{infra/aws_redes.png}}
+	\centerline{\includegraphics[width=1.2\textwidth]{infra/aws_redes.png}}
 	\caption{Diagrama incial de las redes en AWS}
 	\label{fig:aws_redes}
 \end{figure}
