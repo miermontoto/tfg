@@ -272,77 +272,44 @@ A continuación, se presenta una tabla resumen con los resultados de la
 ejecución de todas las pruebas planificadas, incluyendo las pruebas de
 despliegue, ingesta de datos, visualización y rendimiento.
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
-    \begin{tabular}{|p{1.5cm}|p{5cm}|p{5cm}|p{2cm}|}
+    \begin{tabular}{|p{0.11\textwidth}|p{0.32\textwidth}|p{0.35\textwidth}|p{0.07\textwidth}|}
         \hline
-        \textbf{ID} & \textbf{Prueba} & \textbf{Resultado} & \textbf{Estado} \\
+        \rowcolor{gray!20}
+        ID & Salida esperada & Salida obtenida & Estado \\
         \hline
-        DP-01 & Despliegue desde cero &
-        Recursos desplegados y accesibles &
-        \cellcolor{green!25}OK \\
+        DP-01 & Recursos desplegados y accesibles & Recursos desplegados y accesibles & \cellcolor{green!25}OK \\
         \hline
-        DP-02 & Redespliegue con sistema existente &
-        Sin cambios realizados &
-        \cellcolor{green!25}OK \\
+        DP-02 & Sin cambios realizados & Sin cambios realizados & \cellcolor{green!25}OK \\
         \hline
-        DP-03 & Despliegue con volúmenes existentes &
-        Volúmenes reutilizados &
-        \cellcolor{green!25}OK \\
+        DP-03 & Volúmenes reutilizados & Volúmenes reutilizados & \cellcolor{green!25}OK \\
         \hline
-        DP-04 & Despliegue con puertos ocupados &
-        Error de puertos mostrado &
-        \cellcolor{green!25}Error (OK) \\
+        DP-04 & Error & Error de puertos mostrado & \cellcolor{green!25}OK \\
         \hline
-        DP-05 & Despliegue sin cuenta AWS &
-        Error de credenciales &
-        \cellcolor{green!25}Error (OK) \\
+        DP-05 & Error & Error de credenciales & \cellcolor{green!25}OK \\
         \hline
-        DP-06 & Despliegue con cuenta AWS incorrecta &
-        Error de credenciales &
-        \cellcolor{green!25}Error (OK) \\
+        DP-06 & Error & Error de credenciales & \cellcolor{green!25}OK \\
         \hline
-        IN-01 & Ingesta logs MySQL &
-        Logs en Elasticsearch &
-        \cellcolor{green!25}OK \\
+        IN-01 & Logs en Elasticsearch & Logs en Elasticsearch & \cellcolor{green!25}OK \\
         \hline
-        IN-02 & Ingesta masiva MongoDB &
-        Datos ingestados sin pérdidas &
-        \cellcolor{green!25}OK \\
+        IN-02 & Datos ingestados sin pérdidas & Datos ingestados sin pérdidas & \cellcolor{green!25}OK \\
         \hline
-        IN-03 & Ingesta tiempo real Laravel &
-        Logs visibles, retraso $<5$s &
-        \cellcolor{green!25}OK \\
+        IN-03 & Logs visibles, retraso $<5$s & Logs visibles, retraso $<5$s & \cellcolor{green!25}OK \\
         \hline
-        IN-04 & Ingesta periódica AWS ELB &
-        Logs cada 5min &
-        \cellcolor{green!25}OK \\
+        IN-04 & Logs cada 5min & Logs cada 5min & \cellcolor{green!25}OK \\
         \hline
+        VIS-01 & Gráfico creado correctamente & Gráfico creado correctamente & \cellcolor{green!25}OK \\
         \hline
-        VIS-01 & Gráfico de barras simple &
-        Gráfico creado correctamente &
-        \cellcolor{green!25}OK \\
+        VIS-02 & Panel con 4 fuentes de datos & Panel con 4 fuentes de datos & \cellcolor{green!25}OK \\
         \hline
-        VIS-02 & Panel control complejo &
-        Panel con 4 fuentes de datos &
-        \cellcolor{green!25}OK \\
+        VIS-03 & 1M registros en $<3$s & 1M registros en $<3$s & \cellcolor{green!25}OK \\
         \hline
-        VIS-03 & Tabla gran volumen &
-        1M registros en $<3$s &
-        \cellcolor{green!25}OK \\
+        PERF-01 & 1M eventos/min sin pérdidas & 1M eventos/min sin pérdidas & \cellcolor{green!25}OK \\
         \hline
+        PERF-02 & 20 consultas, respuesta $<2$s & 20 consultas, respuesta $<2$s & \cellcolor{green!25}OK \\
         \hline
-        PERF-01 & Ingesta alta carga 1h &
-        1M eventos/min sin pérdidas &
-        \cellcolor{green!25}OK \\
-        \hline
-        PERF-02 & Consultas complejas simultáneas &
-        20 consultas, respuesta $<2$s &
-        \cellcolor{green!25}OK \\
-        \hline
-        PERF-03 & Carga mixta &
-        500k/min + 10 consultas, $<3$s &
-        \cellcolor{green!25}OK \\
+        PERF-03 & 500k/min + 10 consultas, $<3$s & 500k/min + 10 consultas, $<3$s & \cellcolor{green!25}OK \\
         \hline
     \end{tabular}
     \caption{Ejecución de pruebas del sistema}

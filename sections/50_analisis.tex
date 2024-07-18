@@ -22,7 +22,8 @@ que, en conjunto, conforman el proyecto planteado.
 \section{Historias de usuario}
 Las historias de usuario describen las funcionalidades específicas desde la
 perspectiva del usuario final. A continuación, se detallan las historias de
-usuario para cada epic:
+usuario para cada epic, incluyendo sus criterios de aceptación:
+
 
 \subsection{Epic 1: Infraestructura y despliegue}
 Este epic se centra en la creación y gestión de la infraestructura necesaria
@@ -32,16 +33,34 @@ para el sistema.
     \item \textbf{HU1.1:} Como desarrollador de Okticket, quiero poder
     desplegar un prototipo del sistema en mi entorno local para facilitar el
     desarrollo y las pruebas iniciales.
+    \begin{itemize}
+        \item El sistema se desplegará correctamente en un entorno local.
+        \item Todos los servicios estarán funcionando.
+        \item Se podrá acceder a las interfaces web de los servicios.
+    \end{itemize}
 
     \item \textbf{HU1.2:} Como desarrollador de Okticket, quiero que la
     arquitectura se despliegue y orqueste de manera automática en la nube para
     facilitar la gestión y el paso a producción del sistema.
+    \begin{itemize}
+        \item El sistema se desplegará automáticamente con un solo comando.
+        \item Todos los recursos en la nube se crearán correctamente.
+        \item Los servicios serán accesibles a través de URLs públicas.
+    \end{itemize}
 
     \item \textbf{HU1.3:} Como administrador del sistema, quiero que la
     infraestructura sea capaz de escalar automáticamente en función de la
     demanda para optimizar el rendimiento y los costos.
-	\end{itemize}
+    \begin{itemize}
+        \item Se habrán configurado políticas de auto-escalado para los
+        servicios críticos.
+        \item El sistema aumentará los recursos cuando la carga aumente.
+        \item El sistema reducirá los recursos cuando la demanda disminuya.
+    \end{itemize}
+\end{itemize}
 
+
+\newpage{}
 \subsection{Epic 2: Ingesta de datos}
 La ingesta de datos es fundamental para el funcionamiento del sistema,
 abarcando diversas fuentes de información.
@@ -50,18 +69,48 @@ abarcando diversas fuentes de información.
     \item \textbf{HU2.1:} Como desarrollador de Okticket, quiero que se
     ingesten de manera automática datos de la base de datos interna de MongoDB
     para centralizar la información.
+    \begin{itemize}
+        \item Los datos de MongoDB se ingestarán correctamente en el sistema.
+        \item La ingesta se realizará de forma periódica y automática.
+        \item Se podrá verificar la integridad de los datos ingestados.
+    \end{itemize}
+
     \item \textbf{HU2.2:} Como desarrollador de Okticket, quiero que se
     ingesten de manera automática datos de la base de datos interna de MySQL
     para tener una visión completa de los datos.
+    \begin{itemize}
+        \item Los datos de MySQL se ingestarán correctamente en el sistema.
+        \item La ingesta se realizará de forma periódica y automática.
+        \item Se podrá verificar la integridad de los datos ingestados.
+    \end{itemize}
+
     \item \textbf{HU2.3:} Como desarrollador de Okticket, quiero que se
     ingesten de manera automática logs de balanceador de AWS para monitorear
     el rendimiento de la infraestructura.
+    \begin{itemize}
+        \item Los logs del balanceador de AWS se ingestarán correctamente.
+        \item La ingesta se realizará en tiempo real o con un retraso mínimo.
+        \item Los logs ingestados incluirán toda la información relevante.
+    \end{itemize}
+
     \item \textbf{HU2.4:} Como desarrollador de Okticket, quiero poder ingestar
     datos de APIs externas a la empresa para enriquecer nuestros análisis.
+    \begin{itemize}
+        \item Se podrán configurar conexiones a múltiples APIs externas.
+        \item Los datos de las APIs se ingestarán correctamente en el sistema.
+        \item La ingesta de APIs se realizará de forma programada o bajo demanda.
+    \end{itemize}
+
     \item \textbf{HU2.5:} Como desarrollador de Okticket, quiero poder ingestar
     información de páginas web externas (scraping) para obtener datos
     adicionales relevantes.
+    \begin{itemize}
+        \item Se podrán configurar tareas de scraping para múltiples sitios web.
+        \item Los datos obtenidos por scraping se almacenarán correctamente.
+        \item El proceso de scraping respetará las políticas de los sitios web.
+    \end{itemize}
 \end{itemize}
+
 
 \newpage{}
 \subsection{Epic 3: Procesamiento y almacenamiento de datos}
@@ -72,11 +121,24 @@ ingresados.
     \item \textbf{HU3.1:} Como desarrollador de Okticket, quiero que los datos
     se limpien de manera automática para garantizar la calidad de la
     información.
+    \begin{itemize}
+        \item Se implementarán procesos de limpieza de datos para cada fuente.
+        \item Los datos limpiados no contendrán valores nulos o incorrectos.
+        \item Se mantendrá un registro de las transformaciones aplicadas.
+    \end{itemize}
+
     \item \textbf{HU3.2:} Como desarrollador de Okticket, quiero que los datos
     contengan metadatos que faciliten su filtrado o búsqueda para mejorar la
     eficiencia en el análisis.
+    \begin{itemize}
+        \item Cada registro de datos incluirá metadatos relevantes.
+        \item Los metadatos permitirán filtrar y buscar eficientemente.
+        \item Se podrán realizar búsquedas complejas utilizando los metadatos.
+    \end{itemize}
 \end{itemize}
 
+
+\newpage{}
 \subsection{Epic 4: Visualización y análisis}
 La visualización y análisis de datos es crucial para extraer valor de la
 información recopilada.
@@ -84,16 +146,38 @@ información recopilada.
 \begin{itemize}
     \item \textbf{HU4.1:} Como trabajador de Okticket, quiero poder ver y
     consultar datos internos de la empresa para tomar decisiones informadas.
+    \begin{itemize}
+        \item Existirán paneles de control que mostrarán datos internos relevantes.
+        \item Los paneles se actualizarán en tiempo real o con una frecuencia adecuada.
+        \item Los usuarios podrán personalizar las visualizaciones según sus necesidades.
+    \end{itemize}
+
     \item \textbf{HU4.2:} Como desarrollador de Okticket, quiero poder ver el
     estado general de la infraestructura para monitorear su salud y rendimiento.
+    \begin{itemize}
+        \item Existirá un panel que mostrará el estado de todos los servicios del sistema.
+        \item Se visualizarán métricas clave como CPU, memoria y uso de red.
+        \item El panel incluirá alertas visuales para problemas críticos.
+    \end{itemize}
+
     \item \textbf{HU4.3:} Como trabajador de Okticket, quiero poder ver y
     consultar datos de empresas cliente para ofrecer un mejor servicio y
     soporte.
+    \begin{itemize}
+        \item Se podrán visualizar datos específicos de cada empresa cliente.
+        \item La información se presentará de forma clara y organizada.
+        \item Se podrán generar informes personalizados para cada cliente.
+    \end{itemize}
+
     \item \textbf{HU4.4:} Como gestor de una empresa cliente, quiero poder ver
     información relevante sobre mi empresa que recoja Okticket para optimizar
     mis procesos y tomar decisiones estratégicas.
+    \begin{itemize}
+        \item Existirá un panel de control específico para cada empresa cliente.
+        \item Los datos se presentarán de forma comprensible para usuarios no técnicos.
+        \item Se incluirán métricas y KPIs relevantes para la gestión empresarial.
+    \end{itemize}
 \end{itemize}
-
 
 \newpage{}
 \section{Story Mapping}
