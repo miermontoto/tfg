@@ -22,14 +22,14 @@ las tareas planificadas.
 	\centering
 	\begin{tikzpicture}
 		\begin{axis}[
-			title={Diagrama Burndown del Proyecto},
+			title={Diagrama burndown del proyecto},
 			date coordinates in=x,
 			xmin={2024-03-18},
 			xmax={2024-07-18},
 			xtick={2024-03-18,2024-04-18,2024-05-18,2024-06-18,2024-07-18},
 			xticklabel style={rotate=45,anchor=east},
 			xticklabel={\day-\month},
-			ylabel={Tareas Restantes},
+			ylabel={Puntos de estimación restantes},
 			ymin=0,
 			ymax=41,
 			grid=both,
@@ -64,6 +64,8 @@ las tareas planificadas.
 	\caption{Diagrama Burndown que representa el progreso del proyecto}
 	\label{fig:burndown}
 \end{figure}
+
+La estimación de las tareas se realizó en el apartado \fullref{sec:planif_inicial}.
 
 \newpage{}
 La línea azul representa el progreso ideal, mientras que la línea roja muestra

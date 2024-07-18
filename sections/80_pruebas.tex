@@ -18,20 +18,29 @@ carga.
 
 \newpage{}
 \section{Plan de pruebas}
-El plan de pruebas se divide en dos categorías principales: pruebas funcionales,
-que evalúan el comportamiento del sistema en función de sus especificaciones,
-y pruebas no funcionales, que evalúan aspectos como la calidad del código y el
-rendimiento del sistema.
+El plan de pruebas evalua diferentes aspectos del sistema, incluyendo el
+despliegue, la ingesta de datos, la visualización y el rendimiento. Cada
+aspecto se evalúa mediante pruebas de sistema y pruebas de carga, con el
+objetivo de verificar el correcto funcionamiento del sistema en diferentes
+condiciones.
 
 
-\subsection{Pruebas funcionales}
-El plan de pruebas funcional se ha dividido en tres categorías principales,
-cada una enfocada en un aspecto crítico del sistema:
+El plan de pruebas se divide en dos categorías principales: pruebas de sistema
+y pruebas de carga. Cada categoría incluye diferentes tipos de pruebas, con
+objetivos específicos y casos de prueba asociados.
 
 \begin{enumerate}
-    \item Pruebas de despliegue
-    \item Pruebas de ingesta de datos
-    \item Pruebas de visualización
+    \item \textbf{Pruebas de sistema:} verificar el correcto funcionamiento
+        del sistema en diferentes escenarios. \begin{enumerate}
+            \item Pruebas de despliegue
+            \item Pruebas de visualización
+            \item Análisis estático de código
+        \end{enumerate}
+    \item \textbf{Pruebas de carga:} evaluar el rendimiento del sistema bajo
+        diferentes condiciones de carga. \begin{enumerate}
+            \item Pruebas de ingesta de datos
+            \item Pruebas de rendimiento
+        \end{enumerate}
 \end{enumerate}
 
 A continuación, se detalla cada una de estas categorías, especificando los
@@ -40,6 +49,12 @@ propuestos.
 
 
 \newpage{}
+\subsection{Pruebas de sistema}
+Las pruebas de sistema evalúan el correcto funcionamiento del sistema en
+diferentes escenarios, verificando que cumple con los requisitos y
+especificaciones establecidas. Estas pruebas se centran en aspectos clave del
+sistema, como el despliegue, la visualización y la calidad del código.
+
 \subsubsection{Pruebas de despliegue}
 Las pruebas de despliegue son cruciales para asegurar que el sistema puede ser
 implementado correctamente en diferentes escenarios. Estas pruebas verifican
@@ -57,7 +72,9 @@ diferentes escenarios.
 		virtuales montados
     \item Estado de puertos: Libres, Ocupados
     \item Cuenta en AWS: Sin cuenta configurada, con cuenta configurada
-    incorrectamente, con cuenta configurada correctamente
+        incorrectamente, con cuenta configurada correctamente.
+    \item Servicios disponibles: servicios no disponibles, Elasticsearch disponible,
+        ES+Kibana disponible, Kafka disponible, todos disponibles\ldots
 \end{itemize}
 
 \paragraph{Casos de prueba}
@@ -72,6 +89,64 @@ diferentes escenarios.
 
 
 \newpage{}
+\subsubsection{Pruebas de visualización}
+La visualización efectiva de los datos es esencial para que los usuarios
+puedan obtener insights valiosos. Estas pruebas evalúan la capacidad básica
+de Kibana para visualizar los datos ingestados.
+
+Las pruebas de visualización son, conceptualmente, pruebas \textit{end-to-end},
+ya que verifican que los datos ingestados se visualizan correctamente en la
+herramienta de visualización.
+
+\textbf{Objetivo:} Verificar que los datos ingestados se visualizan
+correctamente en Kibana.
+
+\paragraph{Clases de equivalencia}
+\begin{itemize}
+    \item Tipo de visualización: Gráficos de barras, gráficos de líneas,
+        tablas, paneles de control
+    \item Complejidad de la consulta: Simple, ``compleja''
+    \item Volumen de datos visualizados: Pequeño, ``grande''
+\end{itemize}
+
+\paragraph{Casos de prueba}
+\begin{enumerate}
+    \item \textbf{VIS-01:} Creación de un gráfico de barras simple con pocos datos
+    \item \textbf{VIS-02:} Generación de un panel de control complejo con datos de múltiples fuentes
+    \item \textbf{VIS-03:} Visualización de una tabla con gran volumen de datos
+\end{enumerate}
+
+
+\newpage{}
+\subsubsection{Análisis estático de código}
+El análisis estático de código es una técnica que permite detectar posibles
+errores y problemas en el código fuente sin necesidad de ejecutarlo. Estas
+pruebas evalúan la calidad del código y su cumplimiento de las normas de
+programación.
+
+En el caso de este proyecto, se analiza de manera constante el código fuente
+mediante SonarQube, una herramienta de análisis estático de código que permite
+identificar problemas de calidad y seguridad en el código.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{pruebas/sonar_gate.png}
+	\caption{Análisis estático de código con SonarQube}
+	\label{fig:sonarqube}
+\end{figure}
+
+SonarQube analiza la calidad de cada versión en base a un conjunto de reglas
+predefinidas (\textit{quality gate}), y muestra un informe detallado con los
+problemas encontrados y sugerencias para su corrección.
+
+Se utiliza la máquina especializada de SonarQube de la empresa, desplegada y
+mantenida por el alumno, para analizar el código de manera automatizada mediante
+las \textit{pipelines} de Bitbucket cada vez que se publica un cambio al
+repositorio.
+
+
+\newpage{}
+\subsection{Pruebas de carga}
 \subsubsection{Pruebas de ingesta de datos}
 La ingesta de datos es una funcionalidad central del data lake. Estas pruebas
 están diseñadas para verificar la capacidad del sistema para procesar datos de
@@ -96,60 +171,6 @@ diferentes fuentes.
     \item \textbf{IN-03:} Ingesta en tiempo real de logs de Laravel
     \item \textbf{IN-04:} Ingesta periódica de logs de AWS ELB
 \end{enumerate}
-
-
-\newpage{}
-\subsubsection{Pruebas de visualización}
-La visualización efectiva de los datos es esencial para que los usuarios
-puedan obtener insights valiosos. Estas pruebas evalúan la capacidad básica
-de Kibana para visualizar los datos ingestados.
-
-\textbf{Objetivo:} Verificar que los datos ingestados se visualizan
-correctamente en Kibana.
-
-\paragraph{Clases de equivalencia}
-\begin{itemize}
-    \item Tipo de visualización: Gráficos de barras, gráficos de líneas,
-        tablas, paneles de control
-    \item Complejidad de la consulta: Simple, ``compleja''
-    \item Volumen de datos visualizados: Pequeño, ``grande''
-\end{itemize}
-
-\paragraph{Casos de prueba}
-\begin{enumerate}
-    \item \textbf{VIS-01:} Creación de un gráfico de barras simple con pocos datos
-    \item \textbf{VIS-02:} Generación de un panel de control complejo con datos de múltiples fuentes
-    \item \textbf{VIS-03:} Visualización de una tabla con gran volumen de datos
-\end{enumerate}
-
-
-\newpage{}
-\subsection{Pruebas no funcionales}
-Además de las pruebas funcionales, se han diseñado pruebas no funcionales para
-evaluar aspectos críticos del sistema que no están directamente relacionados
-con su funcionalidad, como la calidad del código y el rendimiento.
-
-\subsubsection{Análisis estático de código}
-El análisis estático de código es una técnica que permite detectar posibles
-errores y problemas en el código fuente sin necesidad de ejecutarlo. Estas
-pruebas evalúan la calidad del código y su cumplimiento de las normas de
-programación.
-
-En el caso de este proyecto, se analiza de manera constante el código fuente
-mediante SonarQube, una herramienta de análisis estático de código que permite
-identificar problemas de calidad y seguridad en el código.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{pruebas/sonar_gate.png}
-	\caption{Análisis estático de código con SonarQube}
-	\label{fig:sonarqube}
-\end{figure}
-
-Se utiliza la máquina especializada de SonarQube de la empresa, desplegada y
-mantenida por el alumno, para analizar el código de manera automatizada mediante
-las \textit{pipelines} de Bitbucket cada vez que se publica un cambio al
-repositorio.
 
 
 \newpage{}
