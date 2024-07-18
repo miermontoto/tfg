@@ -30,14 +30,12 @@ y pruebas de carga. Cada categoría incluye diferentes tipos de pruebas, con
 objetivos específicos y casos de prueba asociados.
 
 \begin{enumerate}
-    \item \textbf{Pruebas de sistema:} verificar el correcto funcionamiento
-        del sistema en diferentes escenarios. \begin{enumerate}
+    \item \textbf{Pruebas de sistema} \begin{enumerate}
             \item Pruebas de despliegue
             \item Pruebas de visualización
             \item Análisis estático de código
         \end{enumerate}
-    \item \textbf{Pruebas de carga:} evaluar el rendimiento del sistema bajo
-        diferentes condiciones de carga. \begin{enumerate}
+    \item \textbf{Pruebas de carga} \begin{enumerate}
             \item Pruebas de ingesta de datos
             \item Pruebas de rendimiento
         \end{enumerate}
@@ -50,16 +48,15 @@ propuestos.
 
 \newpage{}
 \subsection{Pruebas de sistema}
-Las pruebas de sistema evalúan el correcto funcionamiento del sistema en
-diferentes escenarios, verificando que cumple con los requisitos y
-especificaciones establecidas. Estas pruebas se centran en aspectos clave del
-sistema, como el despliegue, la visualización y la calidad del código.
+Las pruebas de sistema evalúan el correcto funcionamiento del sistema de
+principio a fin, desde la persistencia hasta la interacción del usuario con la
+UI, consiguiendo una cobertura completa del sistema.
 
 \subsubsection{Pruebas de despliegue}
 Las pruebas de despliegue son cruciales para asegurar que el sistema puede ser
 implementado correctamente en diferentes escenarios. Estas pruebas verifican
-la robustez del proceso de despliegue y su capacidad para manejar diversas
-condiciones iniciales.
+la robustez del proceso de despliegue, su capacidad para manejar diversas
+condiciones iniciales y el manejo de errores durante el mismo.
 
 \textbf{Objetivo:} Verificar que el sistema se despliega correctamente en
 diferentes escenarios.
@@ -91,12 +88,12 @@ diferentes escenarios.
 \newpage{}
 \subsubsection{Pruebas de visualización}
 La visualización efectiva de los datos es esencial para que los usuarios
-puedan obtener insights valiosos. Estas pruebas evalúan la capacidad básica
+puedan obtener conocimientos valiosos. Estas pruebas evalúan la capacidad básica
 de Kibana para visualizar los datos ingestados.
 
 Las pruebas de visualización son, conceptualmente, pruebas \textit{end-to-end},
-ya que verifican que los datos ingestados se visualizan correctamente en la
-herramienta de visualización.
+ya que validan tanto los procesos ETL, la persistencia de los datos, así como su
+visualización por parte del usuario.
 
 \textbf{Objetivo:} Verificar que los datos ingestados se visualizan
 correctamente en Kibana.
@@ -105,8 +102,10 @@ correctamente en Kibana.
 \begin{itemize}
     \item Tipo de visualización: Gráficos de barras, gráficos de líneas,
         tablas, paneles de control
-    \item Complejidad de la consulta: Simple, ``compleja''
-    \item Volumen de datos visualizados: Pequeño, ``grande''
+    \item Complejidad de la consulta: Simple (una fuente), compleja
+        (múltiples fuentes)
+    \item Volumen de datos visualizados: Pocos ($<5$ fuentes),
+        muchos ($>=5$ fuentes)
 \end{itemize}
 
 \paragraph{Casos de prueba}
@@ -121,12 +120,12 @@ correctamente en Kibana.
 \subsubsection{Análisis estático de código}
 El análisis estático de código es una técnica que permite detectar posibles
 errores y problemas en el código fuente sin necesidad de ejecutarlo. Estas
-pruebas evalúan la calidad del código y su cumplimiento de las normas de
-programación.
+pruebas evalúan la calidad del código y su cumplimiento de estándares y
+convenios, complejidad o la existencia de vulnerabilidades de seguridad.
 
-En el caso de este proyecto, se analiza de manera constante el código fuente
-mediante SonarQube, una herramienta de análisis estático de código que permite
-identificar problemas de calidad y seguridad en el código.
+En el proyecto se utiliza SonarQube, en la figura \ref{fig:sonarqube} se
+presenta el cuadro de mando donde se aprecia el cumplimiento de las reglas de
+calidad definidas por el equipo.
 
 \begin{figure}[H]
 	\centering
@@ -142,11 +141,17 @@ problemas encontrados y sugerencias para su corrección.
 Se utiliza la máquina especializada de SonarQube de la empresa, desplegada y
 mantenida por el alumno, para analizar el código de manera automatizada mediante
 las \textit{pipelines} de Bitbucket cada vez que se publica un cambio al
-repositorio.
+repositorio. Gracias a esta integración, se asegura la calidad del código y se
+podría configurar la cancelación del despliegue en caso de que se detecten
+problemas de seguridad o no se cumpla con la \textit{quality gate}.
 
 
 \newpage{}
 \subsection{Pruebas de carga}
+Las pruebas de carga miden el rendimiento de manera anticipada mediante cargas
+simuladas. Esto permite anticipar posibles problemas de rendimiento bajo picos
+de tráfico y verificar las capacidades del sistema.
+
 \subsubsection{Pruebas de ingesta de datos}
 La ingesta de datos es una funcionalidad central del data lake. Estas pruebas
 están diseñadas para verificar la capacidad del sistema para procesar datos de

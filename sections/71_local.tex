@@ -206,6 +206,7 @@ Para simplificar lo máximo posible la arquitectura de este prototipo, tan solo
 se define un nodo de Elasticsearch, aunque la configuración de escalabilidad
 sería sencilla gracias al diseño de Docker.
 
+\newpage{}
 Por último, se definen los servicios de Kibana y Logstash, que dependen de
 Elastic.
 
@@ -250,6 +251,7 @@ kibana:
       retries: 10
 \end{lstlisting}
 
+\newpage{}
 \begin{lstlisting}[style=yaml, caption={Definición de los servicios de Logstash}]
 logstash:
   container_name: logstash
