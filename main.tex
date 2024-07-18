@@ -12,6 +12,7 @@
 \PassOptionsToPackage{table}{xcolor}
 
 % Paquetes para que funcione el formato.
+\usepackage{pgfplots}
 \usepackage{xcolor}
 \usepackage{plantuml}
 \usepackage{tikz}
@@ -39,6 +40,8 @@
 
 \rmfamily % Fuente tipo Romana
 \input{title.tex} % Portada de la memoria
+
+% \frontmatter
 
 % Índice de contenido
 \addcontentsline{toc}{chapter}{Índice de contenido} % Añade la referencia al índice de contenido
@@ -68,14 +71,24 @@
 \setlength{\parskip}{\baselineskip} % Separación entre párrafos de 1 linea
 \onehalfspacing{}
 
+\blankpage
+
+% declaración de autoría
+\input{sections/00_declaracion.tex}
+
+\blankpage
+% \mainmatter
+
 %% El contenido de la memoria, dividido en capítulos:
 \include{sections/10_intro.tex}
 \include{sections/20_teoria.tex}
 \include{sections/30_desc.tex}
 \include{sections/40_planif.tex}
-\include{sections/50_diseño.tex}
-\include{sections/60_impl.tex}
-\include{sections/70_manual.tex}
+\include{sections/50_analisis.tex}
+\include{sections/60_diseño.tex}
+\include{sections/70_impl.tex}
+\include{sections/80_pruebas.tex}
+\include{sections/90_manual.tex}
 \include{sections/concl.tex}
 
 %% Anexos

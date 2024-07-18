@@ -32,28 +32,34 @@ es el siguiente:
 		\hline
 		Como desarrollador de Okticket, quiero que se ingesten de manera automática datos de la base de datos interna de MySQL & P0\cellcolor{red!50} & M\cellcolor{yellow!50} \\
 		\hline
-		Como desarrollador de Okticket, quiero que los datos se limpien de manera automática & P0\cellcolor{red!50} & M\cellcolor{yellow!50} \\
+		Como desarrollador de Okticket, quiero que los datos se limpien de manera automática & P0\cellcolor{red!50} & S\cellcolor{green!25} \\
 		\hline
-		Como trabajador de Okticket, quiero poder ver y consultar datos internos de la empresa & P1\cellcolor{orange!50} & L\cellcolor{orange!50} \\
+		Como trabajador de Okticket, quiero poder ver y consultar datos internos de la empresa & P1\cellcolor{orange!50} & M\cellcolor{yellow!50} \\
 		\hline
-		Como desarrollador de Okticket, quiero que se ingesten de manera automática logs de balanceador de AWS & P1\cellcolor{orange!50} & S\cellcolor{green!25} \\
+		Como desarrollador de Okticket, quiero que se ingesten de manera automática logs de balanceador de AWS & P1\cellcolor{orange!50} & M\cellcolor{yellow!50} \\
 		\hline
-		Como desarrollador de Okticket, quiero poder ver el estado general de la infraestructura & P1\cellcolor{orange!50} & L\cellcolor{orange!50} \\
+		Como desarrollador de Okticket, quiero poder ver el estado general de la infraestructura & P1\cellcolor{orange!50} & M\cellcolor{yellow!50} \\
 		\hline
-		Como desarrollador de Okticket, quiero que los datos contengan metadatos que faciliten su filtrado o búsqueda & P2\cellcolor{yellow!50} & S\cellcolor{green!25} \\
+		Como desarrollador de Okticket, quiero que los datos contengan metadatos que faciliten su filtrado o búsqueda & P2\cellcolor{yellow!50} & XS\cellcolor{blue!25} \\
 		\hline
-		Como trabajador de Okticket, quiero poder ver y consultar datos de empresas cliente & P2\cellcolor{yellow!50} & M\cellcolor{yellow!50} \\
+		Como trabajador de Okticket, quiero poder ver y consultar datos de empresas cliente & P2\cellcolor{yellow!50} & S\cellcolor{green!25} \\
 		\hline
-		Como gestor de una empresa cliente, quiero poder ver información relevante sobre mi empresa que recoja Okticket & P2\cellcolor{yellow!50} & L\cellcolor{orange!50} \\
+		Como gestor de una empresa cliente, quiero poder ver información relevante sobre mi empresa que recoja Okticket & P2\cellcolor{yellow!50} & M\cellcolor{yellow!50} \\
 		\hline
-		Como desarrollador de Okticket, quiero poder ingestar datos de APIs externas a la empresa & P2\cellcolor{yellow!50} & L\cellcolor{orange!50} \\
+		Como desarrollador de Okticket, quiero poder ingestar datos de APIs externas a la empresa & P2\cellcolor{yellow!50} & M\cellcolor{yellow!50} \\
 		\hline
-		Como desarrollador de Okticket, quiero poder ingestar información de páginas web externas (\textit{scraping}) & P2\cellcolor{yellow!50} & XL\cellcolor{red!50} \\
+		Como desarrollador de Okticket, quiero poder ingestar información de páginas web externas (\textit{scraping}) & P2\cellcolor{yellow!50} & S\cellcolor{green!25} \\
 		\hline
 	\end{tabular}
 	\caption{Historias de usuario iniciales}
 	\label{tab:initial_tasks}
 \end{table}
 
-Siguiendo la tabla anterior, se pueden planear los \textit{sprints} y
-asignar las tareas a cada uno de ellos.
+Los puntos de historia de usuario (PHU) se calculan aplicando la secuencia de
+Fibonacci como comentado anteriormente, donde $XS=1$, $S=2$, $M=3$, $L=5$ y
+$XL=8$.
+
+Debido a la estimación anterior, el valor total de los puntos de historia de
+usuario es de 41. El valor total de los puntos de historia necesarios para
+alcanzar el mínimo producto viable (MVP) es de 30, al no tener en cuenta las
+historias de usuario de prioridad 2.

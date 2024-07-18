@@ -12,8 +12,46 @@
 %		un sistema BigData... Puede que incluso sirva de inspiración el apartado
 %		\ref{sec:alternativas}.
 
-|TODO| describir el proyecto en términos generales.
+El proyecto consiste en el desarrollo de una arquitectura de análisis de datos
+que permita obtener insights valiosos a partir de la información recopilada a
+partir de la extracción, transformación y carga de datos de diversas fuentes.
 
+Además, el despliegue de la infraestructura se debe realizar de manera
+automática en la nube, de manera que se facilite la gestión sencilla y eficiente
+del sistema para los administradores.
+
+El sistema es capaz de ingestar datos de diversas fuentes, como bases de datos
+internas, logs de aplicaciones y servicios externos, y de presentarlos de forma
+clara y útil a través de dashboards personalizados.
+
+Los usuarios finales podrán acceder a los dashboards a través de un servicio web
+y visualizar los datos en tiempo real, así como filtrar la información mostrada
+según diferentes campos.
+
+
+\subsection{Roles y usuarios}
+En el proyecto se distinguen los siguientes roles:
+
+\begin{itemize}
+	\item \textbf{Arquitecto:} responsable de diseñar la arquitectura de la
+		plataforma y definir las tecnologías a utilizar.
+	\item \textbf{Administrador/Desarrollador (DevOps):} responsable de
+		desplegar y orquestar la infraestructura de manera automática.
+	\item \textbf{Analista:} responsable de analizar los datos y sacar
+		conclusiones aplicables al negocio a partir de los mismos.
+\end{itemize}
+
+A parte de estos roles, también se distinguen los siguientes usuarios:
+
+\begin{itemize}
+	\item \textbf{Usuario interno:} empleado de la empresa que utiliza los
+		dashboards para monitorizar el rendimiento de la plataforma.
+	\item \textbf{Usuario externo:} cliente de la empresa que utiliza los
+		dashboards para tomar decisiones informadas sobre su negocio.
+\end{itemize}
+
+
+\newpage{}
 \subsection{Dashboards planteados}
 Para el sistema que se describe, se plantean dos tipos de dashboards diferentes:
 
@@ -28,4 +66,37 @@ Para el sistema que se describe, se plantean dos tipos de dashboards diferentes:
 		negocio. Estos dashboards están enfocados a los clientes de la empresa,
 		y permite a los mismos obtener información relevante sobre su negocio
 		que tenga Okticket.
+\end{itemize}
+
+
+\subsection{Proceso de despliegue}
+El proceso de despliegue de la infraestructura se realizará de manera automática
+en la nube, utilizando herramientas de orquestación como Terraform y Ansible.
+Puesto que se trata de un \textit{stack ELK}, se deberán desplegar los servicios,
+bien de manera separada mediante contenedores o clústeres, o bien de manera
+conjunta mediante una solución tradicional de máquinas virtuales.
+
+El sistema se ha de poder desplegar rápida y sencillamente, de manera que se
+facilite la gestión y mantenimiento del mismo para los administradores en caso
+de necesitar actualizar, configurar o escalar los servicios.
+
+Por requisitos de la empresa, la solución deberá estar desplegada en la nube,
+por lo que se deberá elegir un proveedor de servicios en la nube y desplegar la
+infraestructura en el mismo.
+
+
+\newpage{}
+\subsection{Características del sistema}
+El sistema debe cumplir con las siguientes características:
+
+\begin{itemize}
+	\item \textbf{Escalabilidad:} el sistema debe ser capaz de escalar
+		horizontalmente para soportar un gran volumen de datos.
+	\item \textbf{Flexibilidad:} el sistema debe ser flexible y permitir la
+		ingesta de datos de diversas fuentes.
+	\item \textbf{Robustez:} el sistema debe ser robusto y tolerante a fallos,
+		para garantizar la disponibilidad de los datos en todo momento.
+	\item \textbf{Seguridad:} el sistema debe ser seguro y proteger la
+		información sensible de los usuarios, al tratar información sensible de
+		clientes de Okticket.
 \end{itemize}

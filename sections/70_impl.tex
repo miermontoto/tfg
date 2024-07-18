@@ -1,0 +1,89 @@
+\chapter{Implementación}
+Durante la implementación, se ha seguido la planificación y metodologías
+anteriormente descritas, dividiendo el proyecto en tareas más pequeñas y
+manejables, para que se puedan realizar en un periodo de tiempo razonable.
+
+Al emplearse la metodología \textit{Scrum}, se realizan primero las tareas más
+prioritarias, como la creación de la infraestructura y la ingesta de las fuentes
+esenciales, y se dejan para más adelante tareas como la visualización para
+clientes externos o fuentes menos críticas y más complejas, como las APIs de
+terceros o el \textit{web scraping}.
+
+Con el objetivo de realizar un desarrollo iterativo y ágil, se desarrolla
+primero de todo un prototipo de despliegue en local, para posteriormente
+migrar este despliegue a la nube. A continuación, se desarrollan los scripts de
+ingesta de datos y se finaliza con la visualización de los datos en Kibana.
+
+El burndown chart de la figura \ref{fig:burndown} muestra la evolución de las
+tareas a lo largo del tiempo, y se puede observar cómo se han ido completando
+las tareas planificadas.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			title={Diagrama Burndown del Proyecto},
+			date coordinates in=x,
+			xmin={2024-03-18},
+			xmax={2024-07-18},
+			xtick={2024-03-18,2024-04-18,2024-05-18,2024-06-18,2024-07-18},
+			xticklabel style={rotate=45,anchor=east},
+			xticklabel={\day-\month},
+			ylabel={Tareas Restantes},
+			ymin=0,
+			ymax=41,
+			grid=both,
+			legend pos=north east,
+			width=0.8\textwidth,
+			height=0.6\textwidth,
+		]
+			% Línea ideal
+			\addplot[blue] coordinates {
+				(2024-03-18,41)
+				(2024-07-18,0)
+			};
+
+			% Línea MVP
+			\addplot[blue,dashed] coordinates {
+				(2024-03-18,41)
+				(2024-07-18,11)
+			};
+
+			% Progreso real
+			\addplot[red,mark=*] coordinates {
+				(2024-03-18,41)
+				(2024-04-18,36)
+				(2024-05-18,28)
+				(2024-06-18,17)
+				(2024-07-18,10)
+			};
+
+			\legend{Ideal,MVP,Real}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Diagrama Burndown que representa el progreso del proyecto}
+	\label{fig:burndown}
+\end{figure}
+
+\newpage{}
+La línea azul representa el progreso ideal, mientras que la línea roja muestra
+el progreso real. Se toma el 18 de marzo como fecha de inicio del proyecto y el
+18 de julio como fecha de finalización. Se puede observar cómo el progreso real
+sigue la línea ideal, aunque con algunas desviaciones debido a la naturaleza
+iterativa del desarrollo.
+
+Pese a que el progreso del desarrollo no ha sido completamente óptimo, se ha
+logrado superar los objetivos principales del proyecto, entregando un producto
+mínimo viable (MVP) de calidad y sentando las bases para futuras iteraciones.
+
+\newpage{}
+\input{sections/71_local.tex}
+
+\newpage{}
+\input{sections/72_cloud.tex}
+
+\newpage{}
+\input{sections/73_ingesta.tex}
+
+\newpage{}
+\input{sections/74_visual.tex}

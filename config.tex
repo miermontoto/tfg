@@ -1,4 +1,6 @@
-% Se define un color gris desde su código RGB
+
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{dateplot} % Se define un color gris desde su código RGB
 \definecolor{gris}{RGB}{220,220,220}
 
 \setcounter{secnumdepth}{3} % Para permitir numerar las sub-subsecciones
@@ -44,6 +46,7 @@
 \def\tutorTwo{D. Morán Barbón, Jesús}
 \def\tutorThree{D. Vázquez Faes, Eduardo}
 \def\tfgId{???}
+\def\dni{71777658V}
 
 \def\ORG{\expandafter\MakeUppercase\expandafter{\org}}
 \def\AREA{\expandafter\MakeUppercase\expandafter{\area}}
@@ -79,6 +82,12 @@
 
 \newcommand*{\fullref}[1]{\textit{\hyperref[{#1}]{\ref*{#1} \nameref*{#1}}}}
 \newcommand*{\halfref}[2]{\texttt{\hyperref[{#1}]{#2}}}
+\newcommand{\blankpage}{
+  \newpage
+  \thispagestyle{empty}
+  \mbox{}
+  \newpage
+}
 
 \pagestyle{fancy}
 
@@ -127,3 +136,6 @@
   breakatwhitespace=true,
   postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
 }
+
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{dateplot}

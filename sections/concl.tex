@@ -4,10 +4,40 @@ del desarrollo del proyecto, recopilar las dificultades encontradas y proponer
 líneas de trabajo futuro en vista a la amplicación y mejora del sistema.
 
 \section{Resultados}
+El resultado del proyecto es un sistema de monitorización y análisis de datos
+funcional y escalable, que permite a los usuarios obtener insights valiosos a
+partir de la información recopilada.
+
+Se ha logrado implementar una arquitectura robusta y flexible, basada en
+tecnologías modernas y en la nube, que facilita la ingesta, procesamiento y
+visualización de datos de manera eficiente y sencilla.
+
+El sistema es capaz de ingestar datos de diversas fuentes, como bases de datos
+internas, logs de aplicaciones y servicios externos, y de presentarlos de forma
+clara y útil a través de Kibana.
+
+La infraestructura se despliega y orquesta de manera automática en la nube,
+permitiendo una gestión sencilla y eficiente del sistema para los
+administradores.
+
+Pese a que no se han completado todas las historias de usuario planificadas,
+se han logrado los objetivos principales del proyecto, sentando las bases para
+futuras iteraciones y logrando así entregar un producto mínimo viable (MVP) de
+calidad.
 
 
 \newpage{}
 \section{Trabajo futuro}
+El proyecto ha sentado las bases para un sistema de monitorización y análisis de
+datos robusto y escalable. Sin embargo, existen áreas de mejora y ampliación que
+podrían ser abordadas en futuras iteraciones.
+
+
+\subsection{Historias de usuario restantes}
+Lo primero de todo sería completar las historias de usuario menos críticas que
+han quedado pendientes, como la ingesta de datos de APIs externas o el
+\textit{web scraping}. Estas funcionalidades permitirían enriquecer los datos
+disponibles y ampliar las fuentes de información.
 
 \begin{table}[H]
 	\centering
@@ -30,6 +60,47 @@ líneas de trabajo futuro en vista a la amplicación y mejora del sistema.
 	\caption{Historias de usuario restantes para futuras iteraciones}
 	\label{tab:remaining_tasks}
 \end{table}
+
+
+\newpage{}
+\subsection{Integración de lenguaje natural para búsqueda (DSL)}
+Sería interesante explorar la posibilidad de integrar el sistema con
+un sistema de búsqueda y filtrado de datos a través de lenguaje natural, como
+\textit{Natural Language Processing} (NLP)\footnote{
+	\url{https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html}
+}
+
+Esto permitiría a los usuarios realizar consultas de manera más intuitiva y
+eficiente, sin necesidad de conocer la sintaxis de Kibana Query Language (KQL).
+
+
+\subsection{Aplicación de modelos de Lenguaje de Gran Escala (LLM)}
+Desde la empresa, se ha propuesto la posibilidad de aplicar modelos de LLM
+para la generación de texto automática, presumiblemente de manera agnóstica al
+proveedor (OpenAI, Anthropic, Google\ldots).
+
+Esto permitiría la generación de informes y análisis de manera automática a
+partir de los datos recopilados, facilitando la toma de decisiones y la
+comunicación de insights a los usuarios.
+
+\subsection{Más perspectivas futuras}
+Gracias a la flexibilidad del stack ELK, se podrían añadir nuevas fuentes de
+datos y visualizaciones, como logs de otras partes de la aplicación (gestor web,
+otros servicios internos como Hubspot o Holded, aplicación móvil\ldots) o
+visualizaciones más avanzadas y personalizadas.
+
+Lo bueno de haber diseñado la arquitectura de la manera que se ha hecho
+es que se pueden añadir nuevas funcionalidades sin necesidad de modificar
+la infraestructura existente, simplemente añadiendo nuevos servicios y
+configuraciones.
+
+La escalabilidad del sistema también es un punto a tener en cuenta. En caso de
+necesitar más capacidad de procesamiento o almacenamiento, se podría establecer
+un sistema de autoescalabilidad en base a las definiciones ya realizadas.
+
+Por último, se podría explotar la funcionalidad del stack de generar alertas
+en base a la información ingestada y procesada, para notificar a los usuarios
+de eventos críticos o anomalías detectadas en los datos.
 
 
 \newpage{}
