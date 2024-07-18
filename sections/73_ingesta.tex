@@ -128,6 +128,40 @@ envío a Logstash. Se siguen cuatro pasos principales:
 		almacenar los logs.
 \end{enumerate}
 
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[node distance=2cm, auto]
+		% Definición de estilos
+		\tikzstyle{block} = [rectangle, draw, fill=blue!20,
+			text width=5em, text centered, rounded corners, minimum height=4em]
+		\tikzstyle{line} = [draw, ->]
+
+		% Nodos
+		\node [block] (lambda) {Lambda};
+		\node [block, right of=lambda, node distance=4cm] (filtro) {Filtro de suscripción};
+		\node [block, right of=filtro, node distance=4cm] (logstash) {Config};
+		\node [block, right of=logstash, node distance=4cm] (indice) {Index};
+
+		% Conexiones
+		\path [line] (lambda) -- (filtro);
+		\path [line] (filtro) -- (logstash);
+		\path [line] (logstash) -- (indice);
+
+		% Etiquetas
+		\node [below of=lambda, node distance=1.125cm] {AWS};
+		\node [below of=filtro, node distance=1.125cm] {CloudWatch};
+		\node [below of=logstash, node distance=1.125cm] {Logstash};
+		\node [below of=indice, node distance=1.125cm] {Elasticsearch};
+
+		\node [above of=lambda, node distance=1.5cm] {\textcircled{\raisebox{-0.9pt}{1}}};
+		\node [above of=filtro, node distance=1.5cm] {\textcircled{\raisebox{-0.9pt}{2}}};
+		\node [above of=logstash, node distance=1.5cm] {\textcircled{\raisebox{-0.9pt}{3}}};
+		\node [above of=indice, node distance=1.5cm] {\textcircled{\raisebox{-0.9pt}{4}}};
+	\end{tikzpicture}
+	\caption{Proceso de ingesta de logs de balanceadores de carga de AWS}
+	\label{fig:ingesta-logs-aws}
+\end{figure}
+
 El código completo de las cuatro partes se encuentra en el anexo \fullref{anexo:elb}.
 
 

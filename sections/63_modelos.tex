@@ -25,10 +25,15 @@ de manera rápida y eficiente.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.65\textwidth]{uml/logs_elb.png}
+	\includegraphics[width=0.6\textwidth]{uml/logs_elb.png}
 	\caption{Modelo de datos de los logs de un balanceador de carga de AWS}
 	\label{fig:logs_elb}
 \end{figure}
+
+En la figura \ref{fig:logs_elb},\texttt{ELB} es el balanceador de carga de AWS,
+\texttt{Log} es el registro de la solicitud, \texttt{Cliente} es el usuario que
+realiza la solicitud, \texttt{Objetivo} es el servicio al que se dirige la
+solicitud y \texttt{Petición} es la solicitud en sí.
 
 
 \newpage{}
@@ -45,6 +50,11 @@ estos registros.
 	\label{fig:logs_sql}
 \end{figure}
 
+En la figura \ref{fig:logs_sql},\texttt{Server} es el servidor de la base de
+datos, \texttt{MySQLLog} es el registro de la base de datos MySQL,
+\texttt{Usuario} es el usuario que realiza la consulta y \texttt{Consulta} es la
+consulta realizada.
+
 
 \newpage{}
 \subsection{Logs de bases de datos MongoDB}
@@ -59,6 +69,11 @@ datos de estos registros.
 	\caption{Modelo de datos de los logs de una base de datos MongoDB}
 	\label{fig:logs_mongo}
 \end{figure}
+
+En la figura \ref{fig:logs_mongo},\texttt{Servidor} es el servidor de la base de
+datos, \texttt{MongoDBLog} es el registro de la base de datos MongoDB generado
+por el servidor, \texttt{Cliente} es el usuario que realiza la operación y
+\texttt{Operación} es la operación realizada.
 
 
 \newpage{}
@@ -77,3 +92,9 @@ API, ya que cada uno de ellos puede contener información relevante.
 	\caption{Modelo de datos de los logs de una aplicación Laravel}
 	\label{fig:logs_laravel}
 \end{figure}
+
+En la figura \ref{fig:logs_laravel},\texttt{Log} es el registro de la aplicación
+en sí, \texttt{LogLevel} es el nivel de severidad del log y \texttt{Channel} es
+el canal de salida del log, un patrón de Laravel que permite filtrar los
+mensajes en función del nombre del canal (similar al concepto de tópico en
+Kafka).

@@ -136,32 +136,29 @@ Para desplegar la infraestructura diseñada en AWS utilizando Terraform, se
 siguen los siguientes pasos:
 
 \begin{enumerate}
-    \item \textbf{Preparación del entorno:} Asegurarse de tener instalado
-    Terraform y configuradas las credenciales de AWS correctamente.
+    \item \textbf{Preparación del entorno:} se asegura que se tienen las
+      herramientas y configuraciones necesarias para llevar a cabo el
+      despliegue.
 
-    \item \textbf{Inicialización:} Ejecutar el comando \texttt{terraform init}
-    en el directorio que contiene los archivos de configuración de Terraform.
-    Esto descarga los proveedores necesarios y inicializa el estado de
-    Terraform.
+    \item \textbf{Inicialización:} se inicializa el directorio de trabajo con
+      los módulos y configuraciones necesarios de la herramienta de despliegue.
 
-    \item \textbf{Planificación:} Utilizar el comando \texttt{terraform plan}
-    para revisar los cambios que Terraform realizará en la infraestructura.
-    Este paso ayuda a identificar posibles problemas antes de aplicar los
-    cambios.
+    \item \textbf{Planificación:} se planifican los cambios que se van a
+      realizar en el proveedor en la nube.
 
-    \item \textbf{Aplicación:} Ejecutar \texttt{terraform apply} para crear o
-    modificar la infraestructura en AWS según la configuración definida.
-    Terraform solicitará confirmación antes de realizar cambios.
+    \item \textbf{Aplicación:} se aplican los cambios planificados en el
+      proveedor en la nube.
 
-    \item \textbf{Verificación:} Una vez completado el despliegue, verificar
-    en la consola de AWS que todos los recursos se han creado correctamente.
-    Comprobar que los servicios (Elasticsearch, Kibana, Logstash, Kafka) están
-    en funcionamiento y accesibles.
+    \item \textbf{Verificación:} una vez completado el despliegue,
+      se verifican los recursos y servicios creados para asegurar que se han
+      desplegado correctamente.
 
-    \item \textbf{Pruebas:} Realizar pruebas básicas de conectividad y
-    funcionalidad para asegurar que la infraestructura está operativa y
-    cumple con los requisitos establecidos.
+    \item \textbf{Pruebas:} se realizan pruebas básicas de conectividad y
+      funcionalidad para asegurar que la infraestructura está operativa y
+      cumple con los requisitos establecidos.
 \end{enumerate}
+
+\emph{Ver: \fullref{sec:manual_despliegue}.}
 
 Como se ha mencionado anteriormente, durante cualquier fase del despliegue
 pueden ocurrir erorres o problemas que requieran intervención manual. En caso
@@ -174,18 +171,18 @@ posible futura colaboración en el desarrollo de la infraestructura.
 
 Para visualizar el proceso de despliegue de la infraestructura, se ha creado
 un diagrama que ilustra los principales componentes y pasos. Este diagrama se
-muestra en la Figura \ref{fig:deployment-diagram}.
+muestra en la Figura \ref{fig:diagrama_despliegue}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{uml/deploy.png}
     \caption{Diagrama de despliegue de la infraestructura}
-    \label{fig:deployment-diagram}
+    \label{fig:diagrama_despliegue}
 \end{figure}
 
-El diagrama muestra el flujo desde los archivos de configuración de Terraform
-hasta los recursos desplegados en AWS, pasando por las diferentes etapas del
-proceso de despliegue.
+El diagrama \ref{fig:diagrama_despliegue} muestra el flujo desde los archivos de
+configuración de Terraform hasta los recursos desplegados en AWS, pasando por
+las diferentes etapas del proceso de despliegue.
 
 
 \newpage{}
@@ -409,7 +406,7 @@ esto no significa que no se pueda añadir de manera sencilla en un futuro, como
 así lo demuestran, por ejemplo, la asignación de los servicios a volúmenes EFS.
 
 A diferencia del desarrollo local, la preparación del servicio se realiza desde
-la clave de configuración \texttt{entrypoint}, en lugar de requerir un segundo
+la declaración del \texttt{entrypoint}, en lugar de requerir un segundo
 contenedor de configuración.
 
 
